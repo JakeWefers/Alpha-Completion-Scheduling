@@ -1,13 +1,7 @@
 \documentclass[%
-thesis=student,% bachlor's or master's thesis
-coverpage=false,% do not print an extra cover page
-titlepage=false,% do not print an extra title page
-headmarks=true, % headmarks can be switched on or off
 english,% or `german`
 font=libertine, % use `libertine` font; alternatives: `helvet` / `palatino` / `times`
-math=newpxtx, % math font `newpxtx`; alternatives: `ams`, `pxtx`
-BCOR=5mm,% binding correction - adapt accordingly
-coverBCOR=11mm% binding correction for the cover - adapt accordingly
+math=newpxtx% math font `newpxtx`; alternatives: `ams`, `pxtx`
 ]{./tum-templates/book/tumbook}
 
 \makeatletter %redefine some labels from the TUM template
@@ -17,6 +11,9 @@ coverBCOR=11mm% binding correction for the cover - adapt accordingly
 
 \usepackage{booktabs}% for more beautiful tables
 \usepackage{cleveref}% intelligent references
+\usepackage{graphicx}% for including images
+\usepackage{pgfplots}% for plotting graphs
+\pgfplotsset{compat=1.17}% compatibility setting
 
 \usepackage{diffcoeff}
 \usepackage{amsmath}
@@ -65,12 +62,6 @@ coverBCOR=11mm% binding correction for the cover - adapt accordingly
 \frontmatter
 \maketitle
 
-\section*{Zusammenfassung}
-Eine kurze Zusammenfassung der Arbeit auf Deutsch.
-
-\section*{Abstract}
-A brief abstract of this thesis in English.
-
 \cleardoublepage{}
 
 \tableofcontents
@@ -78,57 +69,74 @@ A brief abstract of this thesis in English.
 \mainmatter{}
 \chapter{Introduction}
 
-To use the \LaTeX{} templates provided here you will need to add the directory \verb|tum-templates| as a local package directory to your \LaTeX{} distribution. An easy way to do this is by setting the environment variable \verb|TEXINPUTS| to \verb|.//:| on Linux/Mac systems and to \verb|.//;| on a windows machine (meaning: search the current directory and its subdirectories for packages first, then use the usual search path). On a Linux or Mac you can compile this document to a PDF file in a terminal through the following commands (the first command needs to be issued only once):
-\begin{verbatim}
-export TEXINPUTS=.//:
-pdflatex master
-bibtex master
-pdflatex master
-\end{verbatim}
 
-On a windows computer, you would use the following commands in a terminal:
+\section{Motivation and Background}
 
-\begin{verbatim}
-set TEXINPUTS=.//;
-pdflatex master
-bibtex master
-pdflatex master
-\end{verbatim}
+\cite{Schwiegelshohn:2011}
 
+\subsection{Scheduling Problems: An Overview}
 
-\section{First Section of the Introduction}%
-\label{sec:first-sect-intr}
-Hier folgt eine ausführliche Erklärung und Motivation. Insbesondere weisen wir auf den wunderbaren Artikel von \textcite{Edmonds:1965} und auf~\cite{GareyJohnson:1979} für weitere Hintergründe.
+Scheduling problems represent a fundamental class of optimization challenges that arise in numerous real-world applications, from manufacturing and logistics to computer systems and project management. At their core, these problems involve assigning tasks or jobs to resources over time while optimizing one or more performance criteria. The complexity arises from the need to balance competing objectives such as minimizing completion times, maximizing resource utilization, or meeting deadlines under various constraints.
 
-\section{Second Section of the Introduction}%
-\label{sec:second-sect-intr}
+\subsection{The P ‖ $\Sigma$wjCj Problem}
 
-Wichtige Informationen finden sich in \cref{tab:wonderful-table}.
+In the context of parallel machine scheduling, one particularly important problem is the minimization of total weighted completion time on identical parallel machines, denoted as P ‖ $\Sigma$ wjCj. This problem involves scheduling $n$ jobs, each with a processing time $p_j$ and a weight $w_j$, on $m$ identical parallel machines to minimize the sum of weighted completion times $\sum (w_j \times C_j)$, where $C_j$ is the completion time of job $j$.
 
-\begin{table}[hbt]
-  \centering
-  \begin{tabular}{rl}
-    \toprule%
-    \textbf{Name}& \textbf{Place of Birth}\\ \midrule
-    Gauß & Braunschweig\\
-    Euler & Basel\\
-    Edmonds & Washington, D.\@C.\@\\
-    \bottomrule
-  \end{tabular}
+\subsection{The Largest-Ratio-First Heuristic and Its Performance Guarantee}
 
-  \caption{A most wonderful table}%
-  \label{tab:wonderful-table}
-\end{table}
+A well-known heuristic for this problem is the \emph{Largest-Ratio-First} (LRF) rule, which orders jobs by decreasing ratio $w_j/p_j$. In a seminal 1986 paper, Kawaguchi and Kyan proved that LRF has a worst-case performance ratio of $\frac{1}{2}(1 + \sqrt{2}) \approx 1.207$, meaning the LRF schedule is at most this factor worse than the optimal schedule. While this result has been known for decades, Schwiegelshohn (2011) provides an alternative proof that is notably simpler and more elegant, using a systematic reduction of the search space through five corollaries that progressively simplify the problem instances to examine.
 
-\subsection{A Lonesome Subsection}%
-\label{sec:lonesome-subsection}
-Eine ausführliche \enquote{Erklärung} findet der aufmerksame Leser in \cref{sec:first-sect-intr}.
+The advancement of modern science and engineering relies increasingly on the ability to efficiently manage complex information systems and computational processes. In this context, technical documentation and reproducibility have become critical components of successful research. The intersection of rigorous scientific methodology and practical implementation tools presents both challenges and opportunities for researchers seeking to communicate their findings effectively.
 
-\clearpage{}
+This thesis addresses fundamental questions about the optimization and accessibility of technical workflows, particularly in environments where precision, version control, and documentation are paramount. Understanding these challenges provides valuable insights into how researchers can enhance their productivity while maintaining the highest standards of scientific rigor.
 
-Hier geht es weiter mit dem Text.
+\section{Problem Statement and Motivation}
+
+Despite significant advances in computational tools and methodologies, many researchers continue to face substantial obstacles in the following areas:
+\begin{itemize}
+    \item \textbf{Documentation Complexity:} The gap between research complexity and the ability to communicate findings clearly remains significant.
+    \item \textbf{Reproducibility Challenges:} Ensuring that research results can be accurately reproduced and verified by peers requires robust documentation and systematic approaches.
+    \item \textbf{Workflow Efficiency:} The integration of multiple tools and processes often introduces inefficiencies that impede research progress.
+\end{itemize}
+
+These challenges motivate our investigation into more effective approaches to managing technical workflows and documentation.
+
+\section{Research Objectives and Questions}
+
+This thesis pursues the following primary research questions:
+\begin{enumerate}
+    \item How can we systematically approach challenges in complex technical documentation?
+    \item What methodologies and best practices lead to more efficient and maintainable research workflows?
+    \item How do these approaches impact the overall quality and accessibility of scientific communication?
+\end{enumerate}
+
+The objective of this work is to provide comprehensive insights and practical guidance that can enhance research productivity and documentation quality.
+
+\section{Contributions}
+
+This thesis contributes to the field by:
+\begin{itemize}
+    \item Providing a systematic analysis of common challenges in technical research workflows
+    \item Presenting evidence-based best practices and methodologies
+    \item Offering practical guidance that can be immediately applied by researchers
+    \item Demonstrating the relationship between workflow optimization and research quality
+\end{itemize}
+
+\section{Thesis Structure}
+
+The remainder of this thesis is organized as follows:
+
+\cref{chap:introduction} provides the motivation and problem statement. \cref{chap:foundations} presents the necessary theoretical foundations and background literature. Further chapters discuss methodology, results, and conclusions.
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/8624550.jpg}
+    \caption{Ein Beispielbild}
+    \label{fig:beispiel-bild}%
+\end{figure}
 
 \chapter{Mathematical Foundations}
+\label{chap:foundations}
 
 \section{Definitions}
 \begin{definition}[Definitheit]
@@ -142,6 +150,44 @@ Hier geht es weiter mit dem Text.
   \end{align*}
 \end{theorem}
 
+\section{Mathematical Tools}
+
+\begin{table}[hbt]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Concept} & \textbf{Definition} & \textbf{Application} \\
+    \midrule
+    Derivative & Rate of change & Optimization \\
+    Integral & Accumulation & Area calculation \\
+    Matrix & Linear transformation & Data manipulation \\
+    \bottomrule
+  \end{tabular}
+  \caption{Mathematical concepts and their applications}
+  \label{tab:math-concepts}%
+\end{table}
+
+\begin{figure}[hbt]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$x$},
+            ylabel={$y$},
+            xmin=-2, xmax=2,
+            ymin=-8, ymax=8,
+            grid=major,
+            legend pos=north west
+        ]
+        \addplot[domain=-2:2, samples=100, color=blue, thick] {x^3};
+        \legend{$y = x^3$}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Graph der kubischen Funktion $y = x^3$}
+    \label{fig:kubisch}%
+\end{figure}
+
+\printbibliography{} % print bibliography
+
 \appendix
 \chapter{Appendix}
 \section{Supporting Data}
@@ -152,7 +198,6 @@ Hier geht es weiter mit dem Text.
 \listoftables% may be removed
 
 \nocite{Alspach:2008,GaleShapley:1962} % further literature that has not been explicitly referenced in the text
-\printbibliography{} % print bibliography
 
 \end{document}
 
