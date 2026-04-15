@@ -26,7 +26,7 @@
 % v2.0 2021/04/19 Initial version.
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{tumbook}[2021/04/19 v2.0]
+\ProvidesClass{./tum-templates/book/tumbook}[2021/04/19 v2.0]
 
 
 % .:: Load required packages
@@ -101,18 +101,18 @@
 % .:: Load TUM packages
 % ----------------------------------------------------------------------------
 
-\RequirePackage{tumbase}
-\RequirePackage{tumcolors}
-\RequirePackage{tumlogo}
-\RequirePackage{tumlang}
-\RequirePackage{tumcaptions}
-\RequirePackage{tumpage}
-\RequirePackage{tumfonts}
-\RequirePackage{tumboxes}
-\RequirePackage{tumuser}
+\RequirePackage{./tum-templates/commons/tumbase}
+\RequirePackage{./tum-templates/commons/tumcolors}
+\RequirePackage{./tum-templates/commons/tumlogo}
+\RequirePackage{./tum-templates/commons/tumlang}
+\RequirePackage{./tum-templates/commons/tumcaptions}
+\RequirePackage{./tum-templates/commons/tumpage}
+\RequirePackage{./tum-templates/commons/tumfonts}
+\RequirePackage{./tum-templates/commons/tumboxes}
+\RequirePackage{./tum-templates/commons/tumuser}
 
 % load book package with common macros for tumbook and tumcover
-\RequirePackage{tumbook}
+\RequirePackage{./tum-templates/book/tumbook}
 
 
 % .:: General layout settings
