@@ -1,11 +1,13 @@
+% !TeX program = pdflatex
+% !BIB program = biber
 \documentclass[%
-english,% or `german`
-font=libertine, % use `libertine` font; alternatives: `helvet` / `palatino` / `times`
-math=newpxtx% math font `newpxtx`; alternatives: `ams`, `pxtx`
+english, titlepage=false % or `german`
 ]{./tum-templates/book/tumbook}
 
+\pgfkeys{/TUM/book/.cd, thesis=student, coverpage=false}
+
 \makeatletter %redefine some labels from the TUM template
-\provideName{\@tum@examiner@}{Supervisorino}{Themensteller} % or `Themenstellerin`
+\provideName{\@tum@examiner@}{Supervisor}{Themensteller} % or `Themenstellerin`
 \provideName{\@tum@supervisor@}{Advisors}{Betreuer} % or `Advisor` / `Betreuerin`
 \makeatother
 
@@ -24,10 +26,9 @@ math=newpxtx% math font `newpxtx`; alternatives: `ams`, `pxtx`
 
 %Literatur
 \usepackage[%
-    backend=bibtex, %, or `biber` on more up-to-date systems
+    backend=biber,
     sortcites, % sort automatically
     sorting=nty, % sort order
-    safeinputenc, % solves problems with unicode-formatted author names etc.
     citestyle=alphabetic, %
     bibstyle=alphabetic, %
     hyperref=true, % provide clickable links
@@ -44,16 +45,16 @@ math=newpxtx% math font `newpxtx`; alternatives: `ams`, `pxtx`
 \usepackage[autostyle=true]{csquotes}
 
 
-\title{Doing a PHD in Latex Debugging }
-\subtitle{To call this a comprehensive guide is like calling Mexican Cartells a public benefit NGO}
+\title{Approximation Ratio of the WSPT Rule for Total Weighted alpha-Completion Time Scheduling}
+\subtitle{blank}
 
-\author{Felix Klein}
+\author{Jake Wefers}
 
 \degree{Master of Science}% or `Bachlor of Science`
 \dateSubmitted{31. März 2023}% preferably use some universally recognized date format
 
 
-\examiner{Prof.\@ Dr.\@ rer.\@ nat.\@ Adolf Hurwitz}% `Themensteller`
+\examiner{M.\@ Sc.\@ rer.\@ nat.\@ Adolf Hurwitz}% `Themensteller`
 \supervisor{Dr.\@ L. Euler\\Dr.\@ C.-F. Gauß}% `Betreuer`
 
 
@@ -61,30 +62,52 @@ math=newpxtx% math font `newpxtx`; alternatives: `ams`, `pxtx`
 
 \frontmatter
 \maketitle
-
-\cleardoublepage{}
+%\cleardoublepage{}
 
 \tableofcontents
 
+\chapter*{Notation}
+\addcontentsline{toc}{chapter}{Notation}
+
+\begin{tabular}{@{}p{0.22\textwidth}p{0.68\textwidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$I$ & Scheduling instance. \\
+$n$ & Number of jobs in an instance. \\
+$m$ & Number of identical parallel machines. \\
+$j$ & Index of a job. \\
+$p_j$ & Processing time of job $j$. \\
+$w_j$ & Weight of job $j$. \\
+$S_j$ & Start time of job $j$ in a schedule. \\
+$C_j$ & Completion time of job $j$. \\
+$C_j(\alpha)$ & $\alpha$-completion time of job $j$. \\
+$\alpha$ & Completion-time parameter, usually with $0 < \alpha \leq 1$. \\
+$P \parallel \sum w_j C_j(\alpha)$ & Scheduling problem on identical parallel machines minimizing total weighted $\alpha$-completion time. \\
+$\sum w_j C_j(\alpha)$ & Total weighted $\alpha$-completion time of a schedule. \\
+$S_{LRF}$ & Largest-Ratio-First schedule, ordering jobs by non-increasing $w_j/p_j$. \\
+$OPT$ & Cost of an optimal schedule for the considered instance. \\
+\bottomrule
+\end{tabular}
+
 \mainmatter{}
-\chapter{Introduction}
+\chapter{Introduction}\label{chap:introduction}
 
 
-\section{Motivation and Background}
+\section{Motivation and Backgrounding}
 
-\cite{Schwiegelshohn:2011}
 
 \subsection{Scheduling Problems: An Overview}
 
 Scheduling problems represent a fundamental class of optimization challenges that arise in numerous real-world applications, from manufacturing and logistics to computer systems and project management. At their core, these problems involve assigning tasks or jobs to resources over time while optimizing one or more performance criteria. The complexity arises from the need to balance competing objectives such as minimizing completion times, maximizing resource utilization, or meeting deadlines under various constraints.
 
-\subsection{The P ‖ $\Sigma$wjCj Problem}
+\subsection{\texorpdfstring{$P \parallel \sum w_j C_j$}{P parallel sum wj Cj} Problem}
 
-In the context of parallel machine scheduling, one particularly important problem is the minimization of total weighted completion time on identical parallel machines, denoted as P ‖ $\Sigma$ wjCj. This problem involves scheduling $n$ jobs, each with a processing time $p_j$ and a weight $w_j$, on $m$ identical parallel machines to minimize the sum of weighted completion times $\sum (w_j \times C_j)$, where $C_j$ is the completion time of job $j$.
+In the context of parallel machine scheduling, one particularly important problem is the minimization of total weighted completion time on identical parallel machines, denoted as $P \parallel \sum w_j C_j$. This problem involves scheduling $n$ jobs, each with a processing time $p_j$ and a weight $w_j$, on $m$ identical parallel machines to minimize the sum of weighted completion times $\sum (w_j \times C_j)$, where $C_j$ is the completion time of job $j$.
 
 \subsection{The Largest-Ratio-First Heuristic and Its Performance Guarantee}
 
-A well-known heuristic for this problem is the \emph{Largest-Ratio-First} (LRF) rule, which orders jobs by decreasing ratio $w_j/p_j$. In a seminal 1986 paper, Kawaguchi and Kyan proved that LRF has a worst-case performance ratio of $\frac{1}{2}(1 + \sqrt{2}) \approx 1.207$, meaning the LRF schedule is at most this factor worse than the optimal schedule. While this result has been known for decades, Schwiegelshohn (2011) provides an alternative proof that is notably simpler and more elegant, using a systematic reduction of the search space through five corollaries that progressively simplify the problem instances to examine.
+A well-known heuristic for this problem is the \emph{Largest-Ratio-First} (LRF) rule, which orders jobs by decreasing ratio $w_j / p_j$. In a seminal paper, Kawaguchi and Kyan~\cite{KawaguchiKyan:1988} proved that LRF has a worst-case performance ratio of $\frac{1}{2}(1 + \sqrt{2}) \approx 1.207$, meaning the LRF schedule is at most this factor worse than the optimal schedule. While this result has been known for decades, Schwiegelshohn (2011) provides an alternative proof that is notably simpler and more elegant, using a systematic reduction of the search space through five corollaries that progressively simplify the problem instances to examine.
 
 The advancement of modern science and engineering relies increasingly on the ability to efficiently manage complex information systems and computational processes. In this context, technical documentation and reproducibility have become critical components of successful research. The intersection of rigorous scientific methodology and practical implementation tools presents both challenges and opportunities for researchers seeking to communicate their findings effectively.
 
@@ -128,63 +151,59 @@ The remainder of this thesis is organized as follows:
 
 \cref{chap:introduction} provides the motivation and problem statement. \cref{chap:foundations} presents the necessary theoretical foundations and background literature. Further chapters discuss methodology, results, and conclusions.
 
-\begin{figure}[hbt]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/8624550.jpg}
-    \caption{Ein Beispielbild}
-    \label{fig:beispiel-bild}%
-\end{figure}
-
-\chapter{Mathematical Foundations}
-\label{chap:foundations}
+\chapter{Mathematical Foundations}\label{chap:foundations}
 
 \section{Definitions}
-\begin{definition}[Definitheit]
-  Hier definieren wir definitive Definitheit.
+\begin{definition}[$P \parallel \sum w_j C_j(\alpha)$]
+    $P \parallel \sum w_j C_j(\alpha)$ is defined to be the problem of
+    finding a schedule for an instance $I$ that minimizes the total weighted completion time $\sum w_j C_j(\alpha)$, where $w_j$ is the weight of job $j$ and 
+    $C_j(\alpha)$ is its $\alpha$-completion time.
+
+    An instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be a set of $n$ jobs, each with a processing time $p_j \ge 0$ and a weight $w_j \ge 0$, a well as a set of $m$ identical parallel machines on which the jobs are to be scheduled.
+
 \end{definition}
 
-\begin{theorem}[vom X]
-  War wohl nix. Es gilt aber
+
+\begin{definition}[Schedule]
+    A schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be an assignment of each job in a given instance $I$to a machine and a start time $S_j$, such that no two jobs that are 
+    assigned to the same machine are processed at the same time and all jobs are completed meaning $C_j \ge S_j + p_j$ for all jobs $j$. 
+\end{definition}
+
+\begin{definition}[List]
+    A list for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be an ordered list of all jobs in $I$.
+\end{definition}
+
+\begin{definition}[List Schedule]
+    A list schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be a schedule that results from considering the jobs in a list and scheduling them in that order, assigning each job to the machine that is idle at the earliest time.
+    Note that a schedule is only a list schedule if it can be associated with such an ordered list.
+\end{definition}
+
+\begin{definition}[Worst List Schedule]
+    A worst list schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be a list schedule with maximal cost among all list schedules for the given instance $I$.
+    For the special case $w_j = p_j$ for all jobs $j$, a worst list schedule is an LRF schedule as defined below.
+\end{definition}
+
+\begin{definition}[Maximally Unified Instance]
+    An instance $I$ is called maximally unified if there exists no pair consisting of a best schedule and a worst schedule for $I$ on which a unification step can be performed such that both schedule costs remain unchanged.
+\end{definition}
+
+\begin{definition}[Optimal Schedule]
+    An optimal schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be a schedule that minimizes the total weighted completion time $\sum w_j C_j$ among all possible schedules for that instance.
+    Note that, for the case of $\alpha = 1$, there always exists a list schedule that is optimal for any instance of $P \parallel \sum w_j C_j(\alpha)$~\cite{GareyJohnson:1979}.
+
+\end{definition}
+
+
+\begin{definition}[$S_{LRF}$]
+    The Largest-Ratio-First (LRF) schedule  $S_{LRF}$ is defined to be the list schedule that orders jobs by non-increasing order of ratios $w_j / p_j$. 
+
   \begin{align*}
-    \sum_{i=1}^{n} f_i(x) = \int \hat{f}(x) \dl{x}
+    S_{LRF} = (w_1 / p_1 \geq w_2 / p_2 \geq \cdots \geq w_n / p_n)
   \end{align*}
-\end{theorem}
+
+\end{definition}
 
 \section{Mathematical Tools}
-
-\begin{table}[hbt]
-  \centering
-  \begin{tabular}{@{}lll@{}}
-    \toprule
-    \textbf{Concept} & \textbf{Definition} & \textbf{Application} \\
-    \midrule
-    Derivative & Rate of change & Optimization \\
-    Integral & Accumulation & Area calculation \\
-    Matrix & Linear transformation & Data manipulation \\
-    \bottomrule
-  \end{tabular}
-  \caption{Mathematical concepts and their applications}
-  \label{tab:math-concepts}%
-\end{table}
-
-\begin{figure}[hbt]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            xlabel={$x$},
-            ylabel={$y$},
-            xmin=-2, xmax=2,
-            ymin=-8, ymax=8,
-            grid=major,
-            legend pos=north west
-        ]
-        \addplot[domain=-2:2, samples=100, color=blue, thick] {x^3};
-        \legend{$y = x^3$}
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Graph der kubischen Funktion $y = x^3$}
-    \label{fig:kubisch}%
-\end{figure}
 
 \printbibliography{} % print bibliography
 
@@ -196,8 +215,6 @@ The remainder of this thesis is organized as follows:
 \backmatter{}
 \listoffigures% may be removed
 \listoftables% may be removed
-
-\nocite{Alspach:2008,GaleShapley:1962} % further literature that has not been explicitly referenced in the text
 
 \end{document}
 

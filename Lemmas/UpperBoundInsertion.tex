@@ -1,0 +1,532 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\WORST}{\mathrm{WORST}}
+
+\begin{document}
+
+\title{Bounds for \(P||\sum_j p_j C_j\) under adjacency restrictions}
+\author{}
+\date{}
+\maketitle
+
+\section{Preliminaries}
+
+We consider the scheduling problem \(P||\sum_j p_j C_j\) on \(m\) identical parallel machines.  
+Each job \(j\) has processing time \(p_j>0\), and the objective value of a schedule is
+
+\[
+\sum_j p_j C_j .
+\]
+
+Let \(P=\sum_j p_j\) and \(S=\sum_j p_j^2\). For a schedule whose machine loads are
+\(L_1,\dots,L_m\), the objective value is independent of the order of the jobs on each
+machine and is given by
+
+\[
+\sum_j p_j C_j
+=
+\frac12\left(\sum_{i=1}^m L_i^2+S\right).
+\]
+
+Indeed, if a machine contains jobs with processing times \(x_1,\dots,x_t\), then regardless
+of the order,
+
+\[
+\sum_{r=1}^t x_r C_r
+=
+\sum_{r=1}^t x_r^2+\sum_{1\le r<s\le t}x_r x_s
+=
+\frac12\left(\left(\sum_{r=1}^t x_r\right)^2+\sum_{r=1}^t x_r^2\right).
+\]
+
+Let \(O_1,\dots,O_m\) denote the machines in an optimal schedule, and let
+
+\[
+L_i^{\OPT}=\sum_{j\in O_i}p_j
+\]
+
+be the load of OPT-machine \(i\). Let \(W_1,\dots,W_m\) denote the machines in the
+considered List schedule, and let
+
+\[
+L_k^{\WORST}=\sum_{j\in W_k}p_j
+\]
+
+be the load of WORST-machine \(k\).
+
+We assume throughout that jobs are labeled by their OPT-machine: job \(j\) has color \(i\)
+if \(j\in O_i\). The adjacency restriction is:
+
+\[
+\text{If two jobs are consecutive on the same machine in WORST, then they have different OPT-colors.}
+\]
+
+We also assume the following job-size condition: there exists \(\beta>0\) such that for every
+job \(j\in O_i\),
+
+\[
+p_j\le \beta \frac{L_i^{\OPT}}{m}.
+\]
+
+\section{The case of exactly \(m\) jobs per WORST machine}
+
+\begin{theorem}
+Suppose each WORST-machine contains exactly \(m\) jobs. Assume the adjacency restriction
+and the job-size condition
+
+\[
+p_j\le \beta \frac{L_i^{\OPT}}{m}
+\qquad
+\text{for every } j\in O_i.
+\]
+
+Let
+
+\[
+h=\left\lceil \frac m2\right\rceil .
+\]
+
+Then
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{m\beta^2 h^2+1}{m+1}.
+\]
+
+Consequently,
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\min\left\{
+\frac{2m}{m+1},
+\frac{m\beta^2 h^2+1}{m+1}
+\right\},
+\]
+
+where \(2m/(m+1)\) is the general List-scheduling bound.
+\end{theorem}
+
+\begin{proof}
+Fix a WORST-machine \(W_k\). Since \(W_k\) contains exactly \(m\) jobs, its sequence of
+OPT-colors has length \(m\). Since no two adjacent jobs may have the same OPT-color, any
+one color can appear at most
+
+\[
+h=\left\lceil \frac m2\right\rceil
+\]
+
+times in this sequence. Therefore,
+
+\[
+|O_i\cap W_k|\le h
+\qquad
+\text{for all } i,k.
+\]
+
+Using the job-size condition, we get
+
+\[
+L_k^{\WORST}
+=
+\sum_{i=1}^m \sum_{j\in O_i\cap W_k} p_j
+\le
+\sum_{i=1}^m |O_i\cap W_k| \cdot \beta \frac{L_i^{\OPT}}{m}.
+\]
+
+Since \(|O_i\cap W_k|\le h\), it follows that
+
+\[
+L_k^{\WORST}
+\le
+\frac{\beta h}{m}\sum_{i=1}^m L_i^{\OPT}
+=
+\frac{\beta hP}{m}.
+\]
+
+Hence
+
+\[
+\sum_{k=1}^m \left(L_k^{\WORST}\right)^2
+\le
+m\left(\frac{\beta hP}{m}\right)^2
+=
+\frac{\beta^2h^2P^2}{m}.
+\]
+
+On the other hand, by Cauchy--Schwarz,
+
+\[
+\sum_{i=1}^m \left(L_i^{\OPT}\right)^2
+\ge
+\frac{P^2}{m}.
+\]
+
+Since there are \(m\) machines and exactly \(m\) jobs on each WORST-machine, the total
+number of jobs is \(m^2\). Therefore, again by Cauchy--Schwarz,
+
+\[
+S=\sum_j p_j^2
+\ge
+\frac{P^2}{m^2}.
+\]
+
+Now using the load formula for the objective,
+
+\[
+\frac{\WORST}{\OPT}
+=
+\frac{
+\sum_{k=1}^m (L_k^{\WORST})^2+S
+}{
+\sum_{i=1}^m (L_i^{\OPT})^2+S
+}.
+\]
+
+Substituting the upper bound on the WORST squared-load sum and the lower bound on the
+OPT squared-load sum gives
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{
+\frac{\beta^2h^2P^2}{m}+S
+}{
+\frac{P^2}{m}+S
+}.
+\]
+
+Let \(X=P^2/m\). Then this becomes
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{\beta^2h^2 X+S}{X+S}.
+\]
+
+Assuming \(\beta h\ge 1\), which is the natural regime for this bound, the right-hand side
+is decreasing in \(S\). Since \(S\ge P^2/m^2=X/m\), we obtain
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{\beta^2h^2 X+X/m}{X+X/m}
+=
+\frac{m\beta^2h^2+1}{m+1}.
+\]
+
+Thus
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{m\beta^2 h^2+1}{m+1}.
+\]
+
+Combining this with the general List-scheduling bound
+
+\[
+\frac{\WORST}{\OPT}\le \frac{2m}{m+1}
+\]
+
+gives the claimed minimum bound.
+\end{proof}
+
+\begin{remark}
+The new adjacency-based bound improves the general List-scheduling bound precisely when
+
+\[
+\frac{m\beta^2 h^2+1}{m+1}
+<
+\frac{2m}{m+1}.
+\]
+
+Equivalently,
+
+\[
+m\beta^2h^2+1<2m,
+\]
+
+or
+
+\[
+\beta h < \sqrt{2-\frac1m}.
+\]
+
+Since \(h=\lceil m/2\rceil\), this condition is quite restrictive for \(m\ge 3\).
+\end{remark}
+
+\section{The case with between \(m\) and \(Q\) jobs per WORST machine}
+
+We now consider the more general case where each WORST-machine contains at least \(m\)
+jobs but at most \(Q\) jobs.
+
+\begin{theorem}
+Suppose each WORST-machine \(W_k\) contains \(q_k\) jobs, where
+
+\[
+m\le q_k\le Q.
+\]
+
+Assume the adjacency restriction and the job-size condition
+
+\[
+p_j\le \beta \frac{L_i^{\OPT}}{m}
+\qquad
+\text{for every } j\in O_i.
+\]
+
+Let
+
+\[
+H=\left\lceil \frac Q2\right\rceil .
+\]
+
+If the total number of jobs is \(n\), then
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{n\beta^2H^2+m}{n+m}.
+\]
+
+Consequently,
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\min\left\{
+\frac{2m}{m+1},
+\frac{n\beta^2H^2+m}{n+m}
+\right\}.
+\]
+\end{theorem}
+
+\begin{proof}
+Fix a WORST-machine \(W_k\). Its sequence has length \(q_k\). Since adjacent jobs cannot
+have the same OPT-color, any one OPT-color can appear at most
+
+\[
+\left\lceil \frac{q_k}{2}\right\rceil
+\]
+
+times in \(W_k\). Since \(q_k\le Q\), we have
+
+\[
+|O_i\cap W_k|
+\le
+\left\lceil \frac{q_k}{2}\right\rceil
+\le
+\left\lceil \frac Q2\right\rceil
+=
+H.
+\]
+
+Using the job-size condition,
+
+\[
+L_k^{\WORST}
+=
+\sum_{i=1}^m \sum_{j\in O_i\cap W_k} p_j
+\le
+\sum_{i=1}^m |O_i\cap W_k| \cdot \beta \frac{L_i^{\OPT}}{m}.
+\]
+
+Since \(|O_i\cap W_k|\le H\), this gives
+
+\[
+L_k^{\WORST}
+\le
+\frac{\beta H}{m}\sum_{i=1}^m L_i^{\OPT}
+=
+\frac{\beta HP}{m}.
+\]
+
+Therefore,
+
+\[
+\sum_{k=1}^m \left(L_k^{\WORST}\right)^2
+\le
+m\left(\frac{\beta HP}{m}\right)^2
+=
+\frac{\beta^2H^2P^2}{m}.
+\]
+
+As before, by Cauchy--Schwarz,
+
+\[
+\sum_{i=1}^m \left(L_i^{\OPT}\right)^2
+\ge
+\frac{P^2}{m}.
+\]
+
+Also, since there are \(n\) jobs,
+
+\[
+S=\sum_j p_j^2
+\ge
+\frac{P^2}{n}.
+\]
+
+Using the load formula for \(P||\sum_j p_j C_j\), we obtain
+
+\[
+\frac{\WORST}{\OPT}
+=
+\frac{
+\sum_{k=1}^m (L_k^{\WORST})^2+S
+}{
+\sum_{i=1}^m (L_i^{\OPT})^2+S
+}
+\le
+\frac{
+\frac{\beta^2H^2P^2}{m}+S
+}{
+\frac{P^2}{m}+S
+}.
+\]
+
+Let \(X=P^2/m\). Then
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{\beta^2H^2X+S}{X+S}.
+\]
+
+Assuming \(\beta H\ge 1\), the right-hand side is decreasing in \(S\). Since
+
+\[
+S\ge \frac{P^2}{n}=\frac{mX}{n},
+\]
+
+we get
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{\beta^2H^2X+\frac{mX}{n}}{X+\frac{mX}{n}}
+=
+\frac{\beta^2H^2+\frac mn}{1+\frac mn}.
+\]
+
+Multiplying numerator and denominator by \(n\), this becomes
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{n\beta^2H^2+m}{n+m}.
+\]
+
+Thus
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{n\beta^2H^2+m}{n+m}.
+\]
+
+Combining with the general List-scheduling bound gives
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\min\left\{
+\frac{2m}{m+1},
+\frac{n\beta^2H^2+m}{n+m}
+\right\}.
+\]
+\end{proof}
+
+\begin{remark}
+The \(Q\)-bound improves the general List-scheduling bound precisely when
+
+\[
+\frac{n\beta^2H^2+m}{n+m}
+<
+\frac{2m}{m+1}.
+\]
+
+Equivalently,
+
+\[
+(m+1)(n\beta^2H^2+m)<2m(n+m).
+\]
+
+Rearranging gives
+
+\[
+n(m+1)\beta^2H^2
+<
+2mn+2m^2-m^2-m,
+\]
+
+hence
+
+\[
+n(m+1)\beta^2H^2
+<
+2mn+m^2-m.
+\]
+
+Therefore the \(Q\)-bound is better exactly when
+
+\[
+\beta H
+<
+\sqrt{
+\frac{2mn+m^2-m}{n(m+1)}
+}.
+\]
+
+Since
+
+\[
+H=\left\lceil \frac Q2\right\rceil,
+\]
+
+this becomes
+
+\[
+\beta \left\lceil \frac Q2\right\rceil
+<
+\sqrt{
+\frac{2mn+m^2-m}{n(m+1)}
+}.
+\]
+\end{remark}
+
+\section{Specialization to \(n=m^2\)}
+
+If \(n=m^2\), the \(Q\)-bound becomes
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\frac{m^2\beta^2H^2+m}{m^2+m}
+=
+\frac{m\beta^2H^2+1}{m+1}.
+\]
+
+Thus, when \(n=m^2\),
+
+\[
+\frac{\WORST}{\OPT}
+\le
+\min\left\{
+\frac{2m}{m+1},
+\frac{m\beta^2H^2+1}{m+1}
+\right\}.
+\]
+
+This recovers the earlier bound with \(H=h=\lceil m/2\rceil\) in the special case \(Q=m\).
+
+\end{document}

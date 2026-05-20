@@ -1,0 +1,417 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\DeclareMathOperator*{\supremum}{sup}
+
+\begin{document}
+
+\title{m=3, two jobs zero}
+\author{}
+\date{}
+\maketitle
+
+\section{Problem Introduction}
+
+Let
+\[
+0\le \alpha\le \frac12 \quad\text{and}\quad
+a,b,c,d,e,f,p>0.
+\]
+Set
+\[
+S:=a^2+b^2+c^2+d^2+e^2+f^2+p^2.
+\]
+Consider the function
+\[
+\lambda(a,b,c,d,e,f,p)(\alpha)
+=
+\frac{
+(a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S
+}{
+(a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S
+}
+\]
+subject to
+\[
+\begin{aligned}
+a+b+c&\ge d+e,\\
+d+e+f&\ge a+b,\\
+p&\ge a+b,\\
+p&\ge d+e,\\
+a+d&\ge c+f,\\
+b+e&\ge c+f,\\
+a+d&\ge b,\\
+b+e&\ge a,\\
+c+f+p&\ge a,\\
+c+f+p&\ge b.
+\end{aligned}
+\]
+
+
+\section{First Simplification}
+
+We normalize the problem by setting
+\[p=1.
+\]
+
+The final two constraints are redundant. Indeed, since
+\[
+p\ge a+b
+\]
+and \(a,b>0\), we have \(p\ge a\) and \(p\ge b\). Hence
+\[
+c+f+p\ge a,\qquad c+f+p\ge b
+\]
+hold "automatically".
+
+\section{Expansion of the Ratio}
+
+Define
+\[
+L:=ab+ac+bc+de+df+ef
+\quad \text{and}\quad
+Q:=ad+be+cf+p(c+f).
+\]
+Expanding the denominator of $\lambda$ gives
+\[
+\begin{aligned}
+& (a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S\\
+&=
+2\alpha S+2(ab+ac+bc+de+df+ef)\\
+&=
+2(\alpha S+L).
+\end{aligned}
+\]
+Similarly for the numerator,
+\[
+\begin{aligned}
+& (a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S\\
+&=
+2\alpha S+2(ad+be+cf+p(c+f))\\
+&=
+2(\alpha S+Q).
+\end{aligned}
+\]
+Thus
+\[
+\lambda(a,b,c,d,e,f,p)(\alpha)
+=
+\frac{\alpha S+Q}{\alpha S+L}
+=
+1+\frac{Q-L}{\alpha S+L}.
+\]
+Therefore the problem is equivalent to maximizing
+\[
+\frac{Q-L}{\alpha S+L}.
+\]
+
+Only one term in \(Q\) involves \(p\), namely
+\[
+p(c+f).
+\]
+The denominator contains the compensating term
+\[
+\alpha p^2.
+\]
+Thus, making \(p\) large cannot make the ratio
+arbitrarily large.
+
+Let
+\[
+x=c+f.
+\]
+The constraints
+\[
+a+d\ge x,\qquad b+e\ge x
+\]
+say that the two sums \(a+d\) and \(b+e\) must each carry at least the
+mass \(x\).  We do not set these inequalities tight at this point.
+Instead, the next section derives the active boundary algebraically and
+only then checks that any slack in these two inequalities lowers the
+ratio on that reduced face.
+The same applies to the constraint \(b+e\ge a\): it is not assumed
+active here.  After \(a+d=b+e=x\) and \(c=f=x/2\) have been reduced to,
+the remaining dependence is through \(y=a+b\), and the numerator
+\[
+px-\frac74x^2+2xy-y^2
+\]
+is maximized at \(y=x\); the denominator then forces \(ab=0\), so on
+the symmetric branch \(a=x,b=0,e=x\), giving \(b+e=a\).
+
+\section{Constraint Reduction}
+
+We now record the algebraic reduction leading to the active boundary.
+
+\begin{lemma}[Reduction to the active boundary]
+For \(0<\alpha\le \frac12\),
+\[
+\frac{Q-L}{\alpha S+L}
+\le
+\sup_{t>0}
+\frac{t-\frac34t^2}{\alpha+\left(1+\frac52\alpha\right)t^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Introduce the sums
+\[
+u=a+d,\qquad v=b+e,\qquad x=c+f.
+\]
+The constraints include
+\[
+u\ge x,\qquad v\ge x.
+\]
+Also put
+\[
+m=a+b,\qquad n=d+e.
+\]
+The constraints
+\[
+p\ge a+b,\qquad p\ge d+e
+\]
+become
+\[
+p\ge m,\qquad p\ge n.
+\]
+Finally,
+\[
+a+d\ge b,\qquad b+e\ge a
+\]
+become
+\[
+u\ge b,\qquad v\ge a.
+\]
+
+For fixed \(p\) and \(x=c+f\), expanding \(Q-L\) in the variables
+\(u,v,m,c\) gives
+\[
+\begin{aligned}
+Q-L
+={}&px-c^2+c(u+v+x-2m)-m^2\\
+&+m(u+v+x)-uv-x(u+v).
+\end{aligned}
+\]
+As we set
+\[
+a+d=x,\qquad b+e=x.
+\]
+we can analyze the remaining constraint \(b+e\ge a\). Choose the maximizing "split"
+\[
+c=f=\frac x2,
+\]
+which is the maximal feasible choice for fixed \(x\), since it maximizes \(cf\) (numerator)
+and minimizes \(c^2+f^2\) (denominator).  Then
+\[
+d=x-a,\qquad e=x-b,
+\]
+put
+\[
+y=a+b.
+\]
+Then inserting gives
+\[
+Q-L
+=
+px-\frac74x^2+2xy-y^2.
+\]
+For fixed \(x\) and \(p\), this quadratic in \(y\) is maximized at
+\[
+y=x.
+\]
+(as can be seen by differentiation).
+
+Thus the maximizing satisfies
+\[
+a+b=x.
+\]
+Here, the denominator is
+\[
+\alpha S+L
+=
+\alpha p^2+\left(1+\frac52\alpha\right)x^2
++(2-4\alpha)ab.
+\]
+Since \(0<\alpha\le \frac12\), the coefficient \(2-4\alpha\) is
+nonnegative.  Hence the denominator is minimized by
+\[
+ab=0.
+\]
+Consequently either
+\[
+(a,b)=(x,0)
+\qquad\text{or}\qquad
+(a,b)=(0,x).
+\]
+The two cases are symmetric.  We choose the first one, which implies:
+\[
+e=x,\qquad b+e=x=a.
+\]
+Thus, on this symmetric branch, the constraint \(b+e\ge a\) is tight.
+
+Finally, we need to check that this does not benefit from slack in
+\(u\ge x\) or \(v\ge x\). We write
+\[
+u=x+r,\qquad v=x+s,
+\qquad r,s\ge0.
+\]
+this gives
+\[
+(a,b,c,d,e,f,p)
+=
+\left(x,s,\frac x2,r,x,\frac x2,p\right),
+\]
+so that
+\[
+a+d=x+r,\qquad b+e=x+s,\qquad c+f=x.
+\]
+For this family the excess numerator is
+\[
+\begin{aligned}
+Q-L
+&=px-\frac34x^2-\frac{x}{2}(r+s),
+\end{aligned}
+\]
+whereas the denominator is
+\[
+\begin{aligned}
+\alpha S+L
+&=
+\alpha p^2+\left(1+\frac52\alpha\right)x^2
++\frac{3x}{2}(r+s)+\alpha(r^2+s^2).
+\end{aligned}
+\]
+Thus every positive slack \(r\) or \(s\) subtracts from the numerator
+and adds to the denominator.  Consequently, for fixed \(x\) and \(p\),
+the largest value in this slack family is attained at
+$
+r=s=0.
+$
+
+Substituting the active equalities gives
+\[
+(a,b,c,d,e,f,p)
+=
+\left(x,0,\frac x2,0,x,\frac x2,p\right).
+\]
+We normalize p to get
+\[
+\left(t,0,\frac t2,0,t,\frac t2,1\right).
+\]
+On this boundary,
+\[
+Q-L=t-\frac34t^2
+\]
+and
+\[
+\alpha S+L
+=
+\alpha+\left(1+\frac52\alpha\right)t^2.
+\]
+Therefore every feasible point is bounded above by the one-variable
+problem
+\[
+\sup_{t>0}
+\frac{t-\frac34t^2}{\alpha+\left(1+\frac52\alpha\right)t^2}.
+\]
+\end{proof}
+
+\section{Max t}
+
+Define
+\[
+f_\alpha(t)
+=
+\frac{t-\frac34t^2}{\alpha+\left(1+\frac52\alpha\right)t^2},
+\qquad t>0.
+\]
+Set
+\[
+\beta=1+\frac52\alpha.
+\]
+Then
+\[
+f_\alpha(t)=\frac{t-\frac34t^2}{\alpha+\beta t^2}.
+\]
+Differentiate:
+\[
+f_\alpha'(t)
+=
+\frac{
+\left(1-\frac32t\right)(\alpha+\beta t^2)
+-
+\left(t-\frac34t^2\right)(2\beta t)
+}{
+(\alpha+\beta t^2)^2
+}.
+\]
+The numerator simplifies to
+\[
+\alpha-\frac32\alpha t-\beta t^2.
+\]
+Thus the critical point satisfies
+\[
+\beta t^2+\frac32\alpha t-\alpha=0.
+\]
+The positive root is
+\[
+t_\alpha
+=
+\frac{
+-\frac32\alpha+\sqrt{\frac94\alpha^2+4\alpha\beta}
+}{
+2\beta
+}.
+\]
+Since
+\[
+\beta=1+\frac52\alpha,
+\]
+we have
+\[
+\frac94\alpha^2+4\alpha\beta
+=
+4\alpha+\frac{49}{4}\alpha^2
+=
+\frac14\alpha(16+49\alpha).
+\]
+Therefore
+\[
+t_\alpha
+=
+\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha}.
+\]
+
+So the supremum is
+
+\[
+\lambda_\alpha(t_\alpha)
+=
+\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha}.
+\]
+
+
+\section{Appsroaching family}
+
+The maximizing boundary point has zero coordinates:
+\[
+\left(
+t_\alpha,0,\frac{t_\alpha}{2},0,t_\alpha,\frac{t_\alpha}{2},1
+\right).
+\]
+Which is approached by the family of points
+\[
+\left(
+t_\alpha,\varepsilon,\frac{t_\alpha}{2},
+\varepsilon,t_\alpha,\frac{t_\alpha}{2},1
+\right)
+\]
+as \(\varepsilon\to0\).  This family is feasible for every \(\varepsilon>0\).
+
+\end{document}

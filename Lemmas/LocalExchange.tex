@@ -1,0 +1,134 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\newtheorem{lemma}{Lemma}
+
+\title{Lokales Austauschlemma für List-Scheduling}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problemstellung}
+
+Gegeben sei das Scheduling-Problem auf $m$ identischen parallelen Maschinen.
+Für eine Permutation $\pi$ wird eine List-Schedule erzeugt: Jobs werden in der
+Reihenfolge $\pi$ betrachtet und jeweils der aktuell am wenigsten belasteten
+Maschine zugewiesen.
+
+Für jeden Job $j$ mit Bearbeitungszeit $p_j > 0$ sei $S_j^\pi$ seine Startzeit.
+Wir betrachten die Zielfunktion
+\[
+G(\pi) := \sum_{j=1}^n p_j S_j^\pi.
+\]
+
+\section*{Lokales Austauschlemma}
+
+\begin{lemma}[Lokales Austauschlemma]
+Seien $x$ und $y$ zwei Jobs, die in einer Permutation $\pi$ direkt hintereinander
+auftreten. Sei $t$ die kleinste aktuelle Maschinenlast unmittelbar vor der
+Zuweisung dieser beiden Jobs und $t+\delta$ die zweitkleinste Last mit
+$\delta \ge 0$.
+
+Dann gilt für die beiden möglichen lokalen Reihenfolgen $xy$ und $yx$:
+
+\begin{itemize}
+    \item Falls $p_x \le \delta$ und $p_y \le \delta$, dann
+    \[
+    G(xy) = G(yx).
+    \]
+
+    \item Falls $p_x > \delta$ und $p_y > \delta$, dann
+    \[
+    G(xy) = G(yx).
+    \]
+
+    \item Falls $p_x \le \delta < p_y$, dann
+    \[
+    G(xy) - G(yx) = p_x (p_y - \delta) > 0.
+    \]
+
+    \item Falls $p_y \le \delta < p_x$, dann
+    \[
+    G(yx) - G(xy) = p_y (p_x - \delta) > 0.
+    \]
+\end{itemize}
+\end{lemma}
+
+\section*{Beweis}
+
+Die Zielfunktion kann über die Endlasten der Maschinen dargestellt werden als
+\[
+G(\pi) = \frac{1}{2} \left( \sum_{i=1}^m L_i^2 - \sum_{j=1}^n p_j^2 \right),
+\]
+wobei $L_i$ die Endlast von Maschine $i$ ist. Da der zweite Term konstant ist,
+genügt es, $\sum_i L_i^2$ zu vergleichen.
+
+Wir betrachten nur die lokale Wirkung der beiden Jobs $x$ und $y$. Sei vor deren
+Zuweisung die kleinste Last $t$ und die zweitkleinste $t+\delta$.
+
+\subsection*{Fall 1: $p_x \le \delta$ und $p_y \le \delta$}
+
+In beiden Reihenfolgen werden beide Jobs auf dieselbe Maschine gelegt:
+\[
+L = t + p_x + p_y.
+\]
+Die resultierenden Lasten sind identisch, also auch $\sum_i L_i^2$.
+
+\subsection*{Fall 2: $p_x > \delta$ und $p_y > \delta$}
+
+Der erste Job geht auf die kleinste Maschine (Last $t$), danach ist deren Last
+größer als $t+\delta$, sodass der zweite Job auf die zweitkleinste Maschine geht.
+Die Endlasten sind in beiden Fällen:
+\[
+(t + p_x, \; t+\delta + p_y)
+\quad \text{bzw.} \quad
+(t + p_y, \; t+\delta + p_x).
+\]
+Die Summe der Quadrate ist gleich:
+\[
+{(t+p_x)}^2 + {(t+\delta+p_y)}^2 = {(t+p_y)}^2 + {(t+\delta+p_x)}^2.
+\]
+
+\subsection*{Fall 3: $p_x \le \delta < p_y$}
+
+Für $xy$:
+\[
+\text{beide Jobs auf derselben Maschine} \Rightarrow L = t + p_x + p_y.
+\]
+
+Für $yx$:
+\[
+y \text{ auf } t, \quad x \text{ auf } t+\delta.
+\]
+
+Die Differenz der Quadratsummen ergibt:
+\[
+\Delta = {(t+p_x+p_y)}^2 + {(t+\delta)}^2 - \big[{(t+p_y)}^2 + {(t+\delta+p_x)}^2\big].
+\]
+
+Nach Ausmultiplizieren und Kürzen erhält man:
+\[
+\Delta = 2 p_x (p_y - \delta).
+\]
+
+Daraus folgt:
+\[
+G(xy) - G(yx) = \frac{1}{2} \Delta = p_x (p_y - \delta) > 0.
+\]
+
+\subsection*{Fall 4: $p_y \le \delta < p_x$}
+
+Analog ergibt sich:
+\[
+G(yx) - G(xy) = p_y (p_x - \delta) > 0.
+\]
+
+\subsection*{Schluss}
+
+Alle Fälle sind vollständig analysiert, und die Behauptung folgt.
+\hfill $\square$
+
+\end{document}

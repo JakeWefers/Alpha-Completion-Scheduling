@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{Worst-Case Ratio for $P||\sum p_j C_j(\alpha)$ under Pair-Separation Restriction}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem Definition}
+
+We consider the scheduling problem on $m$ identical parallel machines. Let there be $n$ jobs, where each job $j$ has processing time $p_j > 0$.
+
+For a given schedule $S$, define the modified completion time of job $j$ as
+\[
+C_j(\alpha) = B_j + \alpha p_j,
+\]
+where $B_j$ is the total processing time of jobs scheduled before $j$ on the same machine, and $\alpha \in (0,1]$ is a fixed parameter.
+
+The objective function is
+\[
+F_\alpha(S) = \sum_{j=1}^n p_j C_j(\alpha).
+\]
+
+\section{Pairwise Reformulation}
+
+For any schedule $S$, the objective can be rewritten as
+\[
+F_\alpha(S)
+=
+\alpha \sum_{j=1}^n p_j^2
++
+\sum_{\{j,k\}: j,k \text{ on same machine in } S} p_j p_k.
+\]
+
+Define
+\[
+S_2 = \sum_{j=1}^n p_j^2.
+\]
+
+Thus,
+\[
+F_\alpha(S) = \alpha S_2 + \text{pair contribution}.
+\]
+
+\section{Worst Schedule and Restricted Optimal Schedule}
+
+Let $W$ denote a worst-case schedule maximizing $F_\alpha(S)$.
+
+Let $OPT^R$ denote an optimal schedule subject to the following restriction:
+
+\medskip
+
+\noindent
+\textbf{Pair-Separation Restriction:}
+\begin{quote}
+If two jobs $j,k$ are scheduled on the same machine in $W$, then they are not allowed to be scheduled on the same machine in $OPT^R$.
+\end{quote}
+
+\medskip
+
+\section{Structural Consequence}
+
+Under this restriction, any set of jobs that are assigned to the same machine in $W$ must be fully separated across machines in $OPT^R$.
+
+Since $OPT^R$ uses only $m$ machines, it follows that no machine in $W$ can contain more than $m$ jobs. Otherwise, if a machine in $W$ contained $m+1$ jobs, these jobs would require at least $m+1$ machines to be pairwise separated in $OPT^R$, which is impossible.
+
+Therefore, for every machine $i$ in $W$,
+\[
+|S_i^W| \le m.
+\]
+
+\section{Bounding the Worst Schedule}
+
+Fix a machine $i$ in $W$ with job set $S_i^W$. Let
+\[
+L_i = \sum_{j \in S_i^W} p_j, \qquad r_i = |S_i^W| \le m.
+\]
+
+The pair contribution on machine $i$ is
+\[
+\sum_{\{j,k\} \subseteq S_i^W} p_j p_k
+=
+\frac{1}{2} \left( L_i^2 - \sum_{j \in S_i^W} p_j^2 \right).
+\]
+
+By Cauchy-Schwarz,
+\[
+L_i^2
+=
+\left( \sum_{j \in S_i^W} p_j \right)^2
+\le
+r_i \sum_{j \in S_i^W} p_j^2
+\le
+m \sum_{j \in S_i^W} p_j^2.
+\]
+
+Thus,
+\[
+\sum_{\{j,k\} \subseteq S_i^W} p_j p_k
+\le
+\frac{1}{2}(m-1)\sum_{j \in S_i^W} p_j^2.
+\]
+
+Summing over all machines,
+\[
+\sum_{\{j,k\}: j,k \text{ together in } W} p_j p_k
+\le
+\frac{m-1}{2} S_2.
+\]
+
+Hence,
+\[
+W_{\alpha,m}
+\le
+\alpha S_2 + \frac{m-1}{2} S_2.
+\]
+
+\section{Lower Bound on the Restricted Optimum}
+
+For any schedule,
+\[
+C_j(\alpha) = B_j + \alpha p_j \ge \alpha p_j,
+\]
+so
+\[
+p_j C_j(\alpha) \ge \alpha p_j^2.
+\]
+
+Summing over all jobs,
+\[
+F_\alpha(S) \ge \alpha S_2.
+\]
+
+Thus,
+\[
+OPT_{\alpha,m}^R \ge \alpha S_2.
+\]
+
+\section{Approximation Ratio}
+
+Combining the bounds,
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}^R}
+\le
+\frac{\alpha S_2 + \frac{m-1}{2} S_2}{\alpha S_2}
+=
+1 + \frac{m-1}{2\alpha}.
+\]
+
+\section{Tightness}
+
+Consider $n=m$ jobs with equal processing times $p_j = 1$.
+
+\begin{itemize}
+\item Worst schedule: all $m$ jobs placed on one machine
+\[
+W = \alpha m + \binom{m}{2}.
+\]
+
+\item Restricted optimal schedule: each job on a different machine
+\[
+OPT = \alpha m.
+\]
+\end{itemize}
+
+Thus,
+\[
+\frac{W}{OPT}
+=
+\frac{\alpha m + \frac{m(m-1)}{2}}{\alpha m}
+=
+1 + \frac{m-1}{2\alpha}.
+\]
+
+\section{Conclusion}
+
+\[
+\boxed{
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}^R}
+=
+1 + \frac{m-1}{2\alpha}
+}
+\]
+
+This bound is exact and characterizes the worst-case behavior under the pair-separation restriction.
+
+\end{document}

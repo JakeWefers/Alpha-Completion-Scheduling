@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+\title{Maximizing a Ratio Under the Constraint $0<K<C$}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem setup}
+
+
+We consider the general expression
+\[
+    \lambda(I)(\alpha)=\frac{\sum_{i=1}^{m} C^{max}_{i}(S^{WORST})+(1-2(1-\alpha))\sum_{j=1}^{n}p_{j}^{2}}{\sum_{i=1}^{m} C^{max}_{i}(S^{OPT})+(1-2(1-\alpha))\sum_{j=1}^{n}p_{j}^{2}}
+\]
+
+And let \[
+    C:=\sum_{i=1}^{m} C^{max}_{i}(S^{OPT}), \qquad K:=\sum_{j=1}^{n}p_{j}^{2}.
+\]
+
+Thus, 
+\[
+    \lambda(I)(\alpha)=\frac{\sum_{i=1}^{m} C^{max}_{i}(S^{WORST})+(1-2(1-\alpha))K}{C+(1-2(1-\alpha))K}.
+\]
+We know, from Schwiegelshohn(insert reference here), that for \(\alpha \ge
+\frac12, \space \text{we have:} \space \lambda(I)(\alpha) = \frac{\sum_{i=1}^{m} C^{max}_{i}(S^{WORST})}{C}\le \frac43 \).
+Which implies for any feasible instance 
+
+\[
+    \sum_{i=1}^{m} C^{max}_{i}(S^{WORST})
+    \leq
+    \frac43 C.
+\]
+
+If we consider the function
+ \[
+    R(C^{max}_{i}(S^{WORST}))
+    :=
+    \frac{C^{max}_{i}(S^{WORST}) + \bigl(1-2(1-\alpha)\bigr)K}
+         {C + \bigl(1-2(1-\alpha)\bigr)K},
+\]
+then $R$ is monotonically increasing in $C^{max}_{i}(S^{WORST})$. Therefore, to consider the maximum, we may consider from now only the case: 
+\[
+    R(C,K)(\alpha)
+    :=
+    \frac{\frac43 C + \bigl(1-2(1-\alpha)\bigr)K}
+         {C + \bigl(1-2(1-\alpha)\bigr)K}.
+\]
+Furthermore, we know that for any feasible instance, we have $C>0$ and $0 \le K \le C$. And further know, 
+that the case $K=C$ implies that there are exactly $m$ jobs which gives $\lambda(I)(\alpha) = 1$. The case 
+$K=0$ implies that all jobs have zero processing time, which is trivial.
+Therefore, we can restrict our attention to $0<K <C$.
+
+
+\section{Reformulating the objective}
+
+
+We have
+
+\begin{align*}
+    R(C,K,\alpha)
+    &=
+    \frac{\frac43 C+(1-2(1-\alpha))K}{C+(1-2(1-\alpha))K} \\
+    &=
+    \frac{\frac43 C+(2\alpha-1)K}{C+(2\alpha-1)K}\\
+    &=
+    1+
+    \frac{\frac13 C}{C+(2\alpha-1)K}.
+\end{align*}
+The denominator is positive, so the expression is well-defined.
+
+
+Because $C>0$, define
+\[
+    x:=\frac{K}{C}.
+\]
+The constraint $0<K<C$ is equivalent to
+\[
+    0<x<1.
+\]
+Using $K=xC$, we obtain
+\begin{align*}
+    R(C,K,\alpha)
+    &=
+    1+
+    \frac{\frac13 C}{C-(1-2\alpha) K} \\
+    &=
+    1+
+    \frac{\frac13 C}{C-(1-2\alpha)xC} \\
+    &=
+    1+
+    \frac{1}{3(1-(1-2\alpha) x)}.
+\end{align*}
+Thus $R(C,K,\alpha)$ depends on $C$ and $K$ only through the ratio
+\[
+    x=\frac KC.
+\]
+
+\begin{proposition}[Monotonicity in $K/C$]
+Fix $0<\alpha<1/2$. Then the function
+\[
+    x\mapsto 1+\frac{1}{3(1-(1-2\alpha)x)}
+\]
+is strictly increasing on $(0,1)$.
+\end{proposition}
+
+\begin{proof}
+Let $\beta := 1-2\alpha$. Since $0<\alpha<1/2$, we have $0<\beta<1$. Define
+\[
+    g(x):=1+\frac{1}{3(1-\beta x)}.
+\]
+Then
+\[
+    g'(x)
+    =
+    \frac{\beta}{9(1-\beta x)^2}.
+\]
+Since $\beta>0$ and $1-\beta x>0$ for $0<x<1$, we get
+\[
+    g'(x)>0.
+\]
+Therefore $g$ is strictly increasing on $(0,1)$.
+\end{proof}
+
+\section{Supremum for $0<\alpha<1/2$}
+
+\begin{theorem}[Supremum of the ratio]
+Let
+\[
+    C>0, \qquad 0<K<C, \qquad 0<\alpha<\frac12.
+\]
+Then
+\[
+    R(C,K,\alpha)<1+\frac{1}{6\alpha}
+\]
+\end{theorem}
+
+\begin{proof}
+From the monotonicity of $R$ in $x=K/C$, we know that the supreum is reached only for $x \rightarrow 1$. \\
+So, 
+
+\begin{align*}
+    R(C,K,\alpha)
+    &=
+    1+
+    \frac{1}{3(1-(1-2\alpha)x)}\\
+    &<
+    1+
+    \frac{1}{3(1-(1-2\alpha))}.\\
+    &=
+    1+\frac{1}{6\alpha}
+\end{align*}
+
+\end{proof}
+
+\end{document}

@@ -1,0 +1,199 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+
+\title{Worst-Case Ratio Bound for $P||\sum p_j C_j(\alpha)$ with Cardinality Constraints}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem Setup}
+
+We consider the scheduling problem on identical parallel machines with at most $m$ jobs per machine. The objective is
+
+\[
+F_\alpha(S) = \sum_j p_j C_j(\alpha),
+\]
+
+where for a job $j$,
+
+\[
+C_j(\alpha) = B_j + \alpha p_j,
+\]
+
+and $B_j$ is the total processing time of jobs scheduled before $j$ on the same machine. We assume $\alpha > 0$.
+
+\section*{Reformulation of the Objective}
+
+For a machine $i$ with job set $S_i$, define its load:
+
+\[
+L_i = \sum_{j \in S_i} p_j.
+\]
+
+Then,
+
+\[
+\sum_{j \in S_i} p_j C_j(\alpha)
+= \sum_{j \in S_i} p_j B_j + \alpha \sum_{j \in S_i} p_j^2.
+\]
+
+Observe that
+
+\[
+\sum_{j \in S_i} p_j B_j
+= \sum_{\substack{a,b \in S_i \\ a \text{ before } b}} p_a p_b
+= \frac{1}{2}\left(L_i^2 - \sum_{j \in S_i} p_j^2\right).
+\]
+
+Thus,
+
+\[
+\sum_{j \in S_i} p_j C_j(\alpha)
+= \frac{1}{2} L_i^2 + \left(\alpha - \frac{1}{2}\right)\sum_{j \in S_i} p_j^2.
+\]
+
+Summing over all machines:
+
+\[
+F_\alpha(S)
+= \frac{1}{2} \sum_i L_i^2 + \left(\alpha - \frac{1}{2}\right)\sum_{j=1}^n p_j^2.
+\]
+
+Let
+
+\[
+P = \sum_{j=1}^n p_j, \quad S_2 = \sum_{j=1}^n p_j^2.
+\]
+
+Then
+
+\[
+F_\alpha(S)
+= \frac{1}{2} \sum_i L_i^2 + \left(\alpha - \frac{1}{2}\right) S_2.
+\]
+
+\section*{Lower Bound on the Optimum}
+
+For each job,
+
+\[
+C_j(\alpha) = B_j + \alpha p_j \ge \alpha p_j,
+\]
+
+so
+
+\[
+p_j C_j(\alpha) \ge \alpha p_j^2.
+\]
+
+Summing over all jobs:
+
+\[
+F_\alpha(S) \ge \alpha S_2.
+\]
+
+Hence,
+
+\[
+OPT_{\alpha,m} \ge \alpha S_2.
+\]
+
+\section*{Upper Bound on the Worst Schedule}
+
+Since
+
+\[
+\sum_i L_i^2 \le \left(\sum_i L_i\right)^2 = P^2,
+\]
+
+we obtain
+
+\[
+W_{\alpha,m}
+\le
+\frac{1}{2} P^2 + \left(\alpha - \frac{1}{2}\right) S_2.
+\]
+
+\section*{Bounding the Ratio}
+
+We now bound
+
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}}
+\le
+\frac{\frac{1}{2} P^2 + \left(\alpha - \frac{1}{2}\right) S_2}{\alpha S_2}.
+\]
+
+Split the fraction:
+
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}}
+\le
+\frac{P^2}{2 \alpha S_2}
++
+\frac{\alpha - \frac{1}{2}}{\alpha}.
+\]
+
+Simplify:
+
+\[
+\frac{\alpha - \frac{1}{2}}{\alpha}
+= 1 - \frac{1}{2\alpha}.
+\]
+
+Thus,
+
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}}
+\le
+\frac{P^2}{2 \alpha S_2}
++
+1 - \frac{1}{2\alpha}.
+\]
+
+Using the inequality
+
+\[
+P^2 = \left(\sum_{j=1}^n p_j\right)^2 \le n \sum_{j=1}^n p_j^2 = n S_2,
+\]
+
+we obtain
+
+\[
+\frac{P^2}{S_2} \le n.
+\]
+
+Substitute:
+
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}}
+\le
+\frac{n}{2\alpha}
++
+1 - \frac{1}{2\alpha}.
+\]
+
+Therefore,
+
+\[
+\boxed{
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}}
+\le
+1 + \frac{n - 1}{2\alpha}.
+}
+\]
+
+\section*{Conclusion}
+
+The worst-case ratio satisfies
+
+\[
+\frac{W_{\alpha,m}}{OPT_{\alpha,m}} \le 1 + \frac{n - 1}{2\alpha},
+\]
+
+which shows a $\Theta\!\left(\frac{n}{\alpha}\right)$ dependence. The bound is independent of the number of machines and the cardinality constraint $m$, though these may improve the actual worst-case instance.
+
+\end{document}

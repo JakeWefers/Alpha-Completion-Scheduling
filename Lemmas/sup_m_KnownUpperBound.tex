@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\begin{lemma}[List-schedule upper bound under pair separation]
+Let \(m\ge 2\) be the number of identical parallel machines, and let
+\(\alpha>0\). Consider an instance with processing times
+\(p_1,\dots,p_n>0\). For a schedule \(S\), define
+\[
+F_\alpha(S)=\sum_{j=1}^n p_j C_j(\alpha),
+\]
+where \(C_j(\alpha)\) denotes the load preceding job \(j\) on its machine plus
+\(\alpha p_j\).
+
+Let \(W^{LS}_{\alpha,m}\) denote the maximum value of \(F_\alpha(S)\) over all
+schedules obtainable by list scheduling over all job orders. Fix a list
+schedule attaining \(W^{LS}_{\alpha,m}\). Let \(OPT^R_{\alpha,m}\) denote the
+minimum value of \(F_\alpha(S)\) among all feasible schedules satisfying the
+following pair-separation restriction: if two jobs are scheduled on the same
+machine in the fixed worst list schedule, then they may not be scheduled on
+the same machine in the restricted optimum.
+
+Assume that such a restricted optimum exists. Then
+\[
+\frac{W^{LS}_{\alpha,m}}{OPT^R_{\alpha,m}}
+\le
+1+\frac{m-1}{2\alpha}.
+\]
+\end{lemma}
+
+\begin{proof}
+For any schedule \(S\), write
+\[
+S_2=\sum_{j=1}^n p_j^2.
+\]
+The objective admits the pairwise representation
+\[
+F_\alpha(S)
+=
+\alpha S_2
++
+\sum_{\{j,k\}: j,k \text{ are on the same machine in } S} p_jp_k.
+\]
+
+Indeed, on a machine containing jobs with processing times
+\(x_1,\dots,x_q\), the contribution to \(F_\alpha\) is
+\[
+\sum_{r=1}^q x_r
+\left(
+\sum_{s<r}x_s+\alpha x_r
+\right)
+=
+\alpha\sum_{r=1}^q x_r^2
++
+\sum_{1\le s<r\le q}x_sx_r.
+\]
+Summing over all machines gives the claimed representation.
+
+Now consider the fixed list schedule attaining \(W^{LS}_{\alpha,m}\). Let its
+machines be \(W_1,\dots,W_m\). For each \(i\), let \(q_i=|W_i|\). Since the
+restricted optimum must separate every pair of jobs that lies on the same
+machine \(W_i\), all jobs in \(W_i\) must be assigned to distinct machines in
+the restricted optimum. Since there are only \(m\) machines, feasibility
+implies
+\[
+q_i\le m
+\qquad
+\text{for every } i.
+\]
+
+For a fixed list-schedule machine \(W_i\), let
+\[
+P_i=\sum_{j\in W_i}p_j,
+\qquad
+S_i=\sum_{j\in W_i}p_j^2.
+\]
+The pairwise contribution of \(W_i\) is
+\[
+\sum_{\{j,k\}\subseteq W_i}p_jp_k
+=
+\frac12\left(P_i^2-S_i\right).
+\]
+By Cauchy--Schwarz,
+\[
+P_i^2
+=
+\left(\sum_{j\in W_i}p_j\right)^2
+\le
+q_i \sum_{j\in W_i}p_j^2
+=
+q_i S_i.
+\]
+Therefore,
+\[
+\sum_{\{j,k\}\subseteq W_i}p_jp_k
+\le
+\frac12(q_iS_i-S_i)
+=
+\frac{q_i-1}{2}S_i.
+\]
+Since \(q_i\le m\), this gives
+\[
+\sum_{\{j,k\}\subseteq W_i}p_jp_k
+\le
+\frac{m-1}{2}S_i.
+\]
+
+Summing over all machines of the fixed worst list schedule yields
+\[
+\sum_{\{j,k\}: j,k \text{ are on the same machine in the list schedule}}
+p_jp_k
+\le
+\frac{m-1}{2}\sum_{i=1}^m S_i
+=
+\frac{m-1}{2}S_2.
+\]
+Hence
+\[
+W^{LS}_{\alpha,m}
+\le
+\alpha S_2+\frac{m-1}{2}S_2.
+\]
+
+On the other hand, for every feasible restricted schedule \(S\),
+\[
+F_\alpha(S)
+=
+\alpha S_2
++
+\sum_{\{j,k\}: j,k \text{ are on the same machine in }S}p_jp_k
+\ge
+\alpha S_2.
+\]
+Therefore,
+\[
+OPT^R_{\alpha,m}\ge \alpha S_2.
+\]
+
+Combining the two inequalities gives
+\[
+\frac{W^{LS}_{\alpha,m}}{OPT^R_{\alpha,m}}
+\le
+\frac{\alpha S_2+\frac{m-1}{2}S_2}{\alpha S_2}
+=
+1+\frac{m-1}{2\alpha}.
+\]
+This proves the claim.
+\end{proof}
+
+\end{document}
