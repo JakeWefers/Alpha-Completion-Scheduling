@@ -388,16 +388,16 @@ t_\alpha
 \frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha}.
 \]
 
-So the supremum is
+So the supremum over the reduced one-variable problem is
 
 \[
 \lambda_\alpha(t_\alpha)
-=
+= 1+
 \frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha}.
 \]
 
 
-\section{Appsroaching family}
+\section{Approaching family}
 
 The maximizing boundary point has zero coordinates:
 \[
@@ -405,13 +405,200 @@ The maximizing boundary point has zero coordinates:
 t_\alpha,0,\frac{t_\alpha}{2},0,t_\alpha,\frac{t_\alpha}{2},1
 \right).
 \]
-Which is approached by the family of points
+Thus it is not feasible in the original strictly positive region.
+It is feasible only in the closure of that region.
+
+For actual feasible points, first note that
+\[
+0<t_\alpha<1.
+\]
+Indeed, positivity is immediate from
+\(\sqrt{\alpha(16+49\alpha)}>3\alpha\), and the upper bound follows from
+\[
+\sqrt{\alpha(16+49\alpha)}<4+13\alpha,
+\]
+which gives
+\[
+t_\alpha
+=
+\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha}
+<1.
+\]
+Hence, for every
+\[
+0<\varepsilon<1-t_\alpha,
+\]
+the point
 \[
 \left(
 t_\alpha,\varepsilon,\frac{t_\alpha}{2},
 \varepsilon,t_\alpha,\frac{t_\alpha}{2},1
 \right)
 \]
-as \(\varepsilon\to0\).  This family is feasible for every \(\varepsilon>0\).
+is strictly positive and feasible.  Its value converges to
+\[
+1+
+\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha}
+\]
+as \(\varepsilon\to0\).  Therefore the displayed value is the supremum
+over the original strictly positive feasible region, but it is not
+attained there.
+
+\section{Direct evaluation of the approaching family}
+
+We now insert the approaching family directly into the original
+definition of \(\lambda\).  Fix
+\[
+t=t_\alpha
+\]
+and set
+\[
+(a,b,c,d,e,f,p)
+=
+\left(
+t,\varepsilon,\frac t2,
+\varepsilon,t,\frac t2,1
+\right).
+\]
+Then
+\[
+S
+=
+t^2+\varepsilon^2+\frac{t^2}{4}
++\varepsilon^2+t^2+\frac{t^2}{4}+1
+=
+1+\frac52t^2+2\varepsilon^2.
+\]
+The numerator of the original ratio is
+\[
+\begin{aligned}
+N_\varepsilon
+&=
+(a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S\\
+&=
+(t+\varepsilon)^2+(\varepsilon+t)^2+(t+1)^2
++(2\alpha-1)\left(1+\frac52t^2+2\varepsilon^2\right)\\
+&=
+2\alpha+2t+\left(\frac12+5\alpha\right)t^2
++4t\varepsilon+4\alpha\varepsilon^2\\
+&=
+2\left(
+\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
++2t\varepsilon+2\alpha\varepsilon^2
+\right).
+\end{aligned}
+\]
+The denominator is
+\[
+\begin{aligned}
+D_\varepsilon
+&=
+(a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S\\
+&=
+\left(\frac32t+\varepsilon\right)^2
++\left(\frac32t+\varepsilon\right)^2+1
++(2\alpha-1)\left(1+\frac52t^2+2\varepsilon^2\right)\\
+&=
+2\alpha+(2+5\alpha)t^2+6t\varepsilon
++4\alpha\varepsilon^2\\
+&=
+2\left(
+\alpha+\left(1+\frac52\alpha\right)t^2
++3t\varepsilon+2\alpha\varepsilon^2
+\right).
+\end{aligned}
+\]
+Hence
+\[
+\lambda_\varepsilon
+=
+\frac{
+\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
++2t\varepsilon+2\alpha\varepsilon^2
+}{
+\alpha+\left(1+\frac52\alpha\right)t^2
++3t\varepsilon+2\alpha\varepsilon^2
+}.
+\]
+Letting \(\varepsilon\to0\) gives
+\[
+\lim_{\varepsilon\to0}\lambda_\varepsilon
+=
+\frac{
+\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
+}{
+\alpha+\left(1+\frac52\alpha\right)t^2
+}.
+\]
+With
+\[
+\beta=1+\frac52\alpha,
+\]
+this becomes
+\[
+\begin{aligned}
+\lim_{\varepsilon\to0}\lambda_\varepsilon
+&=
+\frac{\alpha+\beta t^2+t-\frac34t^2}
+{\alpha+\beta t^2}\\
+&=
+1+
+\frac{t-\frac34t^2}{\alpha+\beta t^2}.
+\end{aligned}
+\]
+Now use \(t=t_\alpha\).  From the critical point equation
+\[
+\beta t^2+\frac32\alpha t-\alpha=0
+\]
+we have
+\[
+\beta t^2=\alpha-\frac32\alpha t.
+\]
+Therefore
+\[
+\begin{aligned}
+\frac{t-\frac34t^2}{\alpha+\beta t^2}
+&=
+\frac{t\left(1-\frac34t\right)}
+{\alpha+\alpha-\frac32\alpha t}\\
+&=
+\frac{t\left(1-\frac34t\right)}
+{\alpha\left(2-\frac32t\right)}\\
+&=
+\frac{t}{2\alpha}.
+\end{aligned}
+\]
+Finally, since
+\[
+t_\alpha
+=
+\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha},
+\]
+we get
+\[
+\begin{aligned}
+\frac{t_\alpha}{2\alpha}
+&=
+\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}
+{2\alpha(4+10\alpha)}\\
+&=
+\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha},
+\end{aligned}
+\]
+because
+\[
+\left(\sqrt{\alpha(16+49\alpha)}-3\alpha\right)
+\left(\sqrt{\alpha(16+49\alpha)}+3\alpha\right)
+=
+4\alpha(4+10\alpha).
+\]
+Thus the strictly positive approaching family satisfies
+\[
+\lim_{\varepsilon\to0}\lambda_\varepsilon
+=
+1+
+\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha},
+\]
+which is exactly the supremum found above.
 
 \end{document}

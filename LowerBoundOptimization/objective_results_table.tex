@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{siunitx}
+
+\sisetup{
+  round-mode = places,
+  round-precision = 9,
+  table-number-alignment = center
+}
+
+\title{SCIP Objective Values for the Fractional Partition MINLP}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[htbp]
+  \centering
+  \caption{Objectives returned by the compact SCIP formulation}
+  \label{tab:fractional-partition-objectives}
+  \begin{tabular}{
+    c
+    S[table-format=1.9]
+    S[table-format=1.9]
+    S[table-format=1.9]
+  }
+    \toprule
+    {$m$} & {$a=\frac{1}{2}$} & {$a=\frac{1}{4}$} & {$a=\frac{1}{100}$} \\
+    \midrule
+    3 & 1.333333 & 1.586934 & 5.586328 \\
+    4 & 1.325694 & 1.578781 & 5.606681 \\
+    5 & 1.329150 & 1.561089 & 5.58994 \\
+    6 & 1.333333 & 1.586934 & 5.586328 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\noindent
+The runs used \(b=1\), \(0\leq l_i\leq 30\), group and denominator
+tolerance \(10^{-5}\), and a limit of \(50000\) branch-and-bound nodes.
+The auxiliary objective variable used the valid upper bound
+\[
+  r \leq 1+\frac{1}{6a}.
+\]
+The cases \((m,a)=(3,\frac12)\) and \((6,\frac12)\) ended with SCIP
+status \texttt{optimal}. Every other run ended with status
+\texttt{nodelimit}; those entries are the best feasible objectives found
+within the node limit.
+
+\end{document}

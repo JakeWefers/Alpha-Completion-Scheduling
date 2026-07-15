@@ -1,4 +1,5 @@
 .auctex-auto/*
+.latex-build/*
 *.aux
 *.bbl
 *-blx.bib
@@ -10,5 +11,8 @@
 *.lot
 *.out
 *.run.xml
+*.bcf
 *.toc
 *.synctex.gz
+*.synctex
+*.synctex(busy)

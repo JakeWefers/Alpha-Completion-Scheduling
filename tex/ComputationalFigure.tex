@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\renewcommand{\figurename}{Fig.}
+
+\begin{document}
+
+\begin{figure}[ht]
+\centering
+
+\begin{tikzpicture}[
+    x=0.7cm,
+    y=0.7cm,
+    job/.style={
+        draw,
+        thick,
+        fill=white,
+        font=\small
+    },
+    machine/.style={font=\small}
+]
+
+% ------------------------------------------------
+% Template idea:
+% row      = displayed vertical row in the picture
+% machine  = actual machine label shown on the left
+%
+% Use \machinerow{row}{machine label}
+% Use \dotsrow{row}
+% Use \jobblock{row}{start}{length}{job label}
+% Use \jobblock[gray!25]{row}{start}{length}{job label} for shading
+% ------------------------------------------------
+
+\newcommand{\machinerow}[2]{
+    \node[machine, anchor=east] at (-0.3,-#1+0.5) {$M_{#2}$};
+}
+
+\newcommand{\dotsrow}[1]{
+    \foreach \dy in {-0.18,0,0.18} {
+        \fill (-0.6,{-#1+0.5+\dy}) circle[radius=0.025];
+        \fill (2,{-#1+0.5+\dy}) circle[radius=0.025];
+    }
+}
+
+\newcommand{\jobblock}[5][white]{
+    \draw[job, fill=#1] (#3,-#2) rectangle ++(#4,1);
+    \node at ({#3 + #4/2},{-#2 + 0.5}) {$#5$};
+}
+
+% Displayed machine rows
+\machinerow{1}{1}
+\machinerow{2}{2}
+\machinerow{3}{3}
+\dotsrow{4}
+\machinerow{5}{m-1}
+\machinerow{6}{m}
+
+% Example jobs
+\jobblock{1}{0}{1}{}
+\jobblock{1}{1}{2}{}
+\jobblock{1}{3}{1}{}
+\jobblock{1}{4}{1}{}
+\jobblock{1}{5}{3}{\ell_1}
+
+\jobblock{2}{0}{3}{}
+\jobblock{2}{3}{0.5}{}
+\jobblock{2}{3.5}{1.5}{}
+\jobblock{2}{5}{5}{\ell_2}
+
+\jobblock{3}{0}{1}{}
+\jobblock{3}{1}{1}{}
+\jobblock{3}{2}{1}{}
+\jobblock{3}{3}{2}{}
+\jobblock{3}{5}{4}{\ell_3}
+
+\jobblock{5}{0}{2}{}
+\jobblock{5}{2}{3}{}
+\jobblock{5}{5}{3.5}{\ell_{m-1}}
+
+\jobblock{6}{0}{4}{}
+\jobblock{6}{4}{0.5}{}
+\jobblock{6}{4.5}{0.5}{}
+\jobblock{6}{5}{3}{\ell_m}
+
+% Timestamp marker where all \ell jobs begin
+\draw[dashed, thick] (5,0.2) -- (5,-6.0);
+\node[above] at (5,0.2) {$b$};
+
+\end{tikzpicture}
+
+\caption{MINLP is restricted to $S_W$ schedules of this form. The determination of $S^*$ is free for the algorithm to choose.}
+\label{fig:computational-schedule-structure}
+
+\end{figure}
+
+\end{document}

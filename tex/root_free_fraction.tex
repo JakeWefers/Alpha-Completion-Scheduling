@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{microtype}
+
+\title{Root-Free Fractions Whose Maxima Have a Square-Root Denominator}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Goal}
+
+We want to identify a root-free rational function in \(p\) and \(a\) whose maximum over \(p\) can be written in the form
+\[
+1+\frac{c}{da+\sqrt{a(ea+f)}}.
+\]
+Here \(a\) is the variable parameter, while \(p\) is the variable being optimized over.
+
+\section{The root-free fraction}
+
+A natural class of fractions with this property is
+\[
+\boxed{
+G(p,a)
+=
+\frac{\alpha a p^2+Bp+\beta a+\gamma-q}
+{\alpha a p^2+\beta a+\gamma}.
+}
+\]
+Here
+\[
+\alpha,\ B,\ \beta,\ \gamma,\ q
+\]
+are constants.
+
+This fraction has no square roots. Its structure is:
+\begin{itemize}
+    \item the numerator and denominator have the same quadratic term \(\alpha a p^2\);
+    \item the numerator has a linear term \(Bp\);
+    \item the denominator has affine constant part \(\beta a+\gamma\);
+    \item the numerator constant part differs from the denominator constant part by the fixed amount \(q\).
+\end{itemize}
+
+Equivalently,
+\[
+G(p,a)
+=
+\frac{A(a)p^2+Bp+C(a)}
+{A(a)p^2+D(a)},
+\]
+where
+\[
+A(a)=\alpha a,
+\qquad
+D(a)=\beta a+\gamma,
+\qquad
+C(a)=D(a)-q.
+\]
+
+\section{Maximization over \(p\)}
+
+For the general form
+\[
+G(p)
+=
+\frac{Ap^2+Bp+C}{Ap^2+D},
+\]
+the maximizing critical point is
+\[
+p_\ast
+=
+\frac{D-C+\sqrt{(D-C)^2+\frac{B^2D}{A}}}{B}.
+\]
+At that critical point,
+\[
+G_{\max}
+=
+1+\frac{B}{2Ap_\ast}.
+\]
+Substituting the expression for \(p_\ast\) gives
+\[
+G_{\max}
+=
+1+
+\frac{B^2}
+{2A\left(D-C+\sqrt{(D-C)^2+\frac{B^2D}{A}}\right)}.
+\]
+
+Now insert
+\[
+A=\alpha a,
+\qquad
+D=\beta a+\gamma,
+\qquad
+D-C=q.
+\]
+Then
+\[
+G_{\max}(a)
+=
+1+
+\frac{B^2}
+{2\alpha a\left(q+\sqrt{q^2+\frac{B^2(\beta a+\gamma)}{\alpha a}}\right)}.
+\]
+Multiplying the outer \(a\) into the square-root term gives
+\[
+\boxed{
+G_{\max}(a)
+=
+1+
+\frac{B^2}
+{
+2\alpha q\,a
++
+2\sqrt{\alpha a\left((\alpha q^2+B^2\beta)a+B^2\gamma\right)}
+}.
+}
+\]
+
+\section{Writing it in the desired structure}
+
+The previous expression is already of the form
+\[
+1+\frac{c}{da+\sqrt{a(ea+f)}}.
+\]
+Indeed,
+\[
+G_{\max}(a)
+=
+1+
+\frac{B^2}
+{
+2\alpha q\,a
++
+\sqrt{
+a\left(
+4\alpha(\alpha q^2+B^2\beta)a
++
+4\alpha B^2\gamma
+\right)
+}
+}.
+\]
+Therefore the parameter correspondence is
+\[
+\boxed{
+c=B^2,
+}
+\]
+\[
+\boxed{
+d=2\alpha q,
+}
+\]
+\[
+\boxed{
+e=4\alpha(\alpha q^2+B^2\beta),
+}
+\]
+and
+\[
+\boxed{
+f=4\alpha B^2\gamma.
+}
+\]
+
+So the root-free fraction
+\[
+\boxed{
+\frac{\alpha a p^2+Bp+\beta a+\gamma-q}
+{\alpha a p^2+\beta a+\gamma}
+}
+\]
+has maximum
+\[
+\boxed{
+1+\frac{c}{da+\sqrt{a(ea+f)}}
+}
+\]
+with
+\[
+\boxed{
+c=B^2,\qquad
+d=2\alpha q,\qquad
+e=4\alpha(\alpha q^2+B^2\beta),\qquad
+f=4\alpha B^2\gamma.
+}
+\]
+
+\section{Example}
+
+The earlier expression reduced to
+\[
+F(p,a)
+=
+\frac{
+4ap^2+\frac{12}{5}p+\frac{8+74a}{25}
+}{
+4ap^2+\frac{38+74a}{25}
+}.
+\]
+This matches the template with
+\[
+\alpha=4,
+\qquad
+B=\frac{12}{5},
+\qquad
+\beta=\frac{74}{25},
+\qquad
+\gamma=\frac{38}{25},
+\qquad
+q=\frac65.
+\]
+Hence
+\[
+c=B^2=\frac{144}{25},
+\]
+\[
+d=2\alpha q
+=2\cdot4\cdot\frac65
+=\frac{48}{5},
+\]
+\[
+e=4\alpha(\alpha q^2+B^2\beta)
+=4\cdot4\left(4\cdot\frac{36}{25}+\frac{144}{25}\cdot\frac{74}{25}\right),
+\]
+and
+\[
+f=4\alpha B^2\gamma
+=4\cdot4\cdot\frac{144}{25}\cdot\frac{38}{25}.
+\]
+These constants can be divided by a common scaling factor inside the denominator.
+After simplifying the overall fraction, one obtains the cleaner equivalent form
+\[
+\boxed{
+F_{\max}(a)
+=
+1+\frac{3}{5a+\sqrt{a(99a+38)}}.
+}
+\]
+
+\section{Summary}
+
+The important root-free template is
+\[
+\boxed{
+G(p,a)
+=
+\frac{\alpha a p^2+Bp+\beta a+\gamma-q}
+{\alpha a p^2+\beta a+\gamma}.
+}
+\]
+It produces the square-root maximum structure because:
+\begin{enumerate}
+    \item optimizing over \(p\) leads to a quadratic equation;
+    \item solving that quadratic introduces a square root;
+    \item the coefficient of \(p^2\) is proportional to \(a\);
+    \item the denominator's constant part is affine in \(a\);
+    \item the numerator and denominator differ by a constant \(q\) in their non-\(p\) parts.
+\end{enumerate}
+
+\end{document}

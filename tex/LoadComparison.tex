@@ -1,0 +1,343 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+
+\newtheorem*{claim}{Claim}
+\newtheorem*{lemma}{Lemma}
+
+\begin{document}
+
+\title{Load Comp.}
+\author{}
+\date{}
+\maketitle
+
+\begin{claim}
+Consider the problem
+\[
+        P||\sum_j p_j C_j(\alpha) 
+\]
+
+And for any instance $I$ consider a list schedule $S^W$ that maximizes the objective and a 
+list schedule $S^O$ that minimizes the objective. Let $W_i$ and $O_i, i \in [m]$
+be their final machine loads. Then
+\[
+        \min_i W_i \leq O_k
+        \qquad \forall k  \in [m].
+\]
+\end{claim}
+
+\begin{proof}
+We use again the form derived by SChweigelsohn
+Writing $L_i$ for the final load of machine $i$ in a list schedule S of instance I, 
+summing over all machines
+gives
+\[
+        \sum_j p_j C_j
+        =
+        \frac12\sum_i L_i(S(I))^2
+        +
+        \frac12\sum_j p_j^2 .
+\]
+The second term is independent of the list schedule. Hence, among list
+schedules, minimizing $\sum_j p_j C_j$ is equivalent to minimizing
+$\sum_i L_i(S(I))^2$, and maximizing $\sum_j p_j C_j$ is equivalent to maximizing
+$\sum_i L_i(S(I))^2$.
+
+It remains to prove the following exchange property of list schedules.
+
+\begin{lemma}[Conditional on the exchange statement]
+Let $W=(W_1,\dots,W_m)$ be the final load vector of a list schedule $S^{W}$ maximizing
+the objective for instance $I$, and let $O=(O_1,\dots,O_m)$ be the final load vector of a list
+schedule $S^O$ minimizing the objective for instance $I$. After sorting both vectors in nonincreasing
+order,
+\[
+        W_1\geq W_2\geq \cdots \geq W_m,
+        \qquad
+        O_1\geq O_2\geq \cdots \geq O_m,
+\]
+assume that every violated partial-sum cut of the minimum-square schedule
+\(S^O\) admits a non-overshooting exchange. Then
+\[
+        \sum_{i=1}^r W_i
+        \geq
+        \sum_{i=1}^r O_i
+        \qquad
+        \text{for } r=1,\dots,m
+\]
+and equality holds for $r=m$ because both schedules are of the same instance.
+\end{lemma}
+
+\begin{proof}
+We make the exchange argument explicit. Let \(X=(X_1,\dots,X_m)\) be the
+final load vector of some list schedule. The elementary operation to keep in
+mind is the transfer of one job of size \(p\) from machine \(a\) to machine
+\(b\). If before the transfer the two relevant loads are \(X_a\) and \(X_b\),
+then after the transfer they are
+\[
+        X_a-p,
+        \qquad
+        X_b+p.
+\]
+Hence the change in the square-load objective is
+\[
+\begin{aligned}
+\Delta
+&=
+(X_a-p)^2+(X_b+p)^2-X_a^2-X_b^2  \\
+&=
+2p(X_b-X_a)+2p^2  \\
+&=
+-2p(X_a-X_b-p).
+\end{aligned}
+\]
+Thus, if \(X_a-X_b>p\), moving the job from the larger-load machine \(a\) to
+the smaller-load machine \(b\) strictly decreases \(\sum_i X_i^2\). Conversely,
+moving the same job from the smaller-load machine to the larger-load machine
+strictly increases \(\sum_i X_i^2\), since in that case
+\[
+        (X_a+p)^2+(X_b-p)^2-X_a^2-X_b^2
+        =
+        2p(X_a-X_b)+2p^2
+        >
+        0.
+\]
+
+In a list schedule, an adjacent interchange can be analyzed as a finite sequence
+of such elementary transfers between the machines whose assigned jobs change.
+The list rule assigns the earlier job to a machine whose load at that time is
+minimal. Therefore the sign of the change in the square-load objective is
+controlled by the direction and size of these transfers: transfers from smaller
+final loads to larger final loads increase \(\sum_i X_i^2\), while transfers
+from larger final loads to smaller final loads decrease \(\sum_i X_i^2\)
+whenever the moved job does not overshoot the load gap. The inequalities above
+give the exact sign condition for each elementary transfer.
+
+Now suppose that the claimed majorization inequality were false. Then there is
+some \(r<m\) such that
+\[
+        \sum_{i=1}^r W_i
+        <
+        \sum_{i=1}^r O_i .
+\]
+Both schedules process the same total load, say \(P\), so
+\[
+        \sum_{i=r+1}^m W_i
+        =
+        P-\sum_{i=1}^r W_i
+        >
+        P-\sum_{i=1}^r O_i
+        =
+        \sum_{i=r+1}^m O_i .
+\]
+Thus, compared with \(W\), the vector \(O\) has an excess among its \(r\)
+largest machines and the same amount of deficit among its \(m-r\) smallest
+machines. Write this excess as
+\[
+        E
+        =
+        \sum_{i=1}^r O_i-\sum_{i=1}^r W_i
+        >
+        0.
+\]
+At this point one has to be careful: the displayed inequalities do not, by
+themselves, imply that there is an indivisible job whose size does not overshoot
+the relevant load gap. Instead we get the following useful dichotomy.
+
+Let a feasible adjacent interchange move a net amount \(x>0\) from a machine
+\(a\le r\) in the larger-load block to a machine \(b>r\) in the smaller-load
+block. For a single transfer \(x=p\). For a swap of a job of size \(p\) with a
+job of size \(q\), \(x=p-q\). Put
+\[
+        d=O_a-O_b.
+\]
+After the exchange, the two relevant loads are
+\[
+        O_a' = O_a-x,
+        \qquad
+        O_b' = O_b+x,
+\]
+and all other loads are unchanged. The partial-sum excess across the cut
+\(\{1,\dots,r\}\) is reduced by exactly \(x\):
+\[
+\begin{aligned}
+E'
+&=
+\left(\sum_{i=1}^r O_i-x\right)
+-
+\sum_{i=1}^r W_i  \\
+&=
+E-x
+<
+E.
+\end{aligned}
+\]
+At the same time, the square-load objective changes by
+\[
+\begin{aligned}
+\sum_i (O_i')^2-\sum_i O_i^2
+&=
+(O_a-x)^2+(O_b+x)^2-O_a^2-O_b^2 \\
+&=
+-2x(d-x).
+\end{aligned}
+\]
+Now there are two cases.
+
+If
+\[
+        0<x<d,
+\]
+then
+\[
+        -2x(d-x)<0.
+\]
+Thus the exchange strictly decreases \(\sum_i X_i^2\), contradicting the
+choice of \(O\) as a minimum-square list schedule.
+
+If no such non-overshooting exchange exists, then every feasible exchange
+across this cut has \(x\ge d\). A strict overshoot \(x>d\) increases the
+square-load objective by
+\[
+        2x(x-d).
+\]
+Equivalently, because
+\[
+        \sum_j p_j C_j(S)
+        =
+        \frac12\sum_i L_i(S)^2+\frac12\sum_j p_j^2,
+\]
+the objective increases by
+\[
+        x(x-d).
+\]
+This is the direction relevant for an upper bound on the gap from best to
+worst. Write
+\[
+        F(S)=\sum_j p_j C_j(S).
+\]
+Fix any sequence of adjacent interchanges
+\[
+        S^0=S^O,\quad S^1,\quad \dots,\quad S^T=S^W
+\]
+that transforms the list order of \(S^O\) into the list order of \(S^W\), and
+write
+\[
+        \Delta_\ell=F(S^\ell)-F(S^{\ell-1}).
+\]
+Then the desired objective gap telescopes as
+\[
+        F(S^W)-F(S^O)
+        =
+        \sum_{\ell=1}^T \Delta_\ell
+        \leq
+        \sum_{\ell=1}^T \max\{\Delta_\ell,0\}.
+\]
+Thus only objective-increasing exchanges can contribute to the upper bound on
+``worst minus best''. For the \(\ell\)-th exchange of the type above, let
+\(x_\ell>0\) be the net amount transferred from the larger-load side to the
+smaller-load side, and let \(d_\ell\) be the corresponding load gap before the
+exchange. Then
+\[
+        \Delta_\ell=x_\ell(x_\ell-d_\ell).
+\]
+Consequently \(\Delta_\ell>0\) only in the strict overshoot case
+\(x_\ell>d_\ell\), and we get the upper bound
+\[
+\begin{aligned}
+F(S^W)-F(S^O)
+&\le
+\sum_{\ell:\,x_\ell>d_\ell} x_\ell(x_\ell-d_\ell)  \\
+&\le
+\sum_{\ell:\,x_\ell>d_\ell} x_\ell^2 .
+\end{aligned}
+\]
+Thus, if a violated cut cannot be repaired by a non-overshooting exchange, then
+the contribution of that obstruction to the worst-best gap is controlled by the
+overshoot penalties \(x_\ell(x_\ell-d_\ell)\), not by a lower bound on the gap.
+
+There is one useful statement that can be proved directly. For a sorted load
+vector \(X\), write
+\[
+        P_r(X)=\sum_{i=1}^r X_i .
+\]
+Suppose a single transfer changes \(X\) by moving \(x>0\) from a machine \(a\)
+that is among the \(r\) largest loads of \(X\) to a machine \(b\) that is not
+among the \(r\) largest loads of \(X\). Put \(d=X_a-X_b\). If \(x\ge d\), then
+after the transfer the new load of \(b\) is
+\[
+        X_b+x\ge X_a .
+\]
+Thus, in the sorted vector after the transfer, the load \(X_b+x\) can replace
+the old top-\(r\) load \(X_a\) by a load that is at least as large. The other
+\(r-1\) old top loads are unchanged. Therefore
+\[
+        P_r(X')\ge P_r(X).
+\]
+Consequently, any transfer that actually decreases the sorted top-\(r\)
+partial sum must satisfy
+\[
+        0<x<d.
+\]
+So along any transformation path from a schedule with
+\(P_r(X)>P_r(W)\) to \(S^W\), the first step that lowers \(P_r\) is necessarily
+a non-overshooting transfer.
+
+This proves the non-overshooting property for any step that decreases the
+violated partial sum, but it does not yet prove that such a step is available
+directly from \(S^O\). That distinction matters: previous steps along the path
+could have increased the objective before the first partial-sum-decreasing step
+occurs. Hence, to finish the majorization proof, one still needs the stronger
+exchange statement that every violated partial-sum cut of the minimum-square
+schedule \(S^O\) itself admits a non-overshooting exchange.
+
+If that stronger exchange statement is established, then no such \(r\) exists:
+the exchange would strictly decrease \(\sum_i X_i^2\), contradicting the choice
+of \(O\) as a minimum-square list schedule. Therefore
+\[
+        \sum_{i=1}^r W_i
+        \geq
+        \sum_{i=1}^r O_i
+        \qquad
+        r=1,\dots,m-1.
+\]
+For \(r=m\), both sides are equal to the total processing time of the instance.
+\end{proof}
+
+Assuming the exchange statement, apply the lemma. Since $W\succ O$ and the
+total loads are equal, we have
+\[
+        \sum_{i=1}^{m-1} W_i
+        \geq
+        \sum_{i=1}^{m-1} O_i .
+\]
+Subtracting from the common total processing time gives
+\[
+        W_m \leq O_m .
+\]
+Because the vectors were sorted in nonincreasing order,
+\[
+        W_m=\min_i W_i,
+        \qquad
+        O_m=\min_i O_i.
+\]
+Therefore
+\[
+        \min_i W_i
+        \leq
+        \min_i O_i.
+\]
+Finally, every machine load in the optimal schedule is at least the minimum
+load in that schedule, so for every machine $k$,
+\[
+        \min_i W_i
+        \leq
+        \min_i O_i
+        \leq
+        O_k.
+\]
+Thus the claim follows once the exchange statement used in the lemma is proved.
+\end{proof}
+
+\end{document}

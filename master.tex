@@ -1,4 +1,4 @@
-% !TeX program = pdflatex
+% !TeX root = master.tex
 % !BIB program = biber
 \documentclass[%
 english, titlepage=false % or `german`
@@ -15,14 +15,14 @@ english, titlepage=false % or `german`
 \usepackage{cleveref}% intelligent references
 \usepackage{graphicx}% for including images
 \usepackage{pgfplots}% for plotting graphs
-\pgfplotsset{compat=1.17}% compatibility setting
+\pgfplotsset{compat=1.18}% compatibility setting
 
 \usepackage{diffcoeff}
 \usepackage{amsmath}
 \usepackage{mathtools}
 
 \newtheorem{definition}{Definition}[section]
-\newtheorem{theorem}[definition]{Satz}
+\newtheorem{theorem}[definition]{Theorem}
 
 %Literatur
 \usepackage[%
@@ -50,7 +50,7 @@ english, titlepage=false % or `german`
 
 \author{Jake Wefers}
 
-\degree{Master of Science}% or `Bachlor of Science`
+\degree{Master of Science}% or `Bachelor of Science`
 \dateSubmitted{31. März 2023}% preferably use some universally recognized date format
 
 
@@ -86,7 +86,9 @@ $\alpha$ & Completion-time parameter, usually with $0 < \alpha \leq 1$. \\
 $P \parallel \sum w_j C_j(\alpha)$ & Scheduling problem on identical parallel machines minimizing total weighted $\alpha$-completion time. \\
 $\sum w_j C_j(\alpha)$ & Total weighted $\alpha$-completion time of a schedule. \\
 $S_{LRF}$ & Largest-Ratio-First schedule, ordering jobs by non-increasing $w_j/p_j$. \\
-$OPT$ & Cost of an optimal schedule for the considered instance. \\
+$C(S(I))$ & Cost of schedule $S$ for the considered instance $I$. \\
+$S_{OPT}$ & Optimal schedule for the considered instance $I$. \\
+$S_{WORST}$ & Cost maximizing schedule for the considered instance I. \\
 \bottomrule
 \end{tabular}
 
@@ -94,7 +96,7 @@ $OPT$ & Cost of an optimal schedule for the considered instance. \\
 \chapter{Introduction}\label{chap:introduction}
 
 
-\section{Motivation and Backgrounding}
+\section{Motivation and Background}
 
 
 \subsection{Scheduling Problems: An Overview}
@@ -165,7 +167,7 @@ The remainder of this thesis is organized as follows:
 
 
 \begin{definition}[Schedule]
-    A schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be an assignment of each job in a given instance $I$to a machine and a start time $S_j$, such that no two jobs that are 
+    A schedule for an instance $I$ of $P \parallel \sum w_j C_j(\alpha)$ is defined to be an assignment of each job in a given instance $I$ to a machine and a start time $S_j$, such that no two jobs that are 
     assigned to the same machine are processed at the same time and all jobs are completed meaning $C_j \ge S_j + p_j$ for all jobs $j$. 
 \end{definition}
 
@@ -204,6 +206,33 @@ The remainder of this thesis is organized as follows:
 \end{definition}
 
 \section{Mathematical Tools}
+
+\chapter{\texorpdfstring{$\alpha = 0$}{alpha =0}}\label{chap:alpha_zero}
+
+
+\chapter{\texorpdfstring{$\frac12 \le \alpha \le 1$}{alpha >= 1/2}}\label{chap:alpha_g}
+
+
+
+
+
+\chapter{\texorpdfstring{$0 < \alpha < \frac12$}{alpha < 1/2}}\label{chap:alpha_l}
+\section{Upper Bound}\label{sec:upper-bound}
+
+\subsection{\texorpdfstring{$1+ \frac{1}{6\alpha}$}{1 + 1/(6 alpha)}}
+
+\section{Lower Bound}\label{sec:lower-bound}
+
+\subsection{Two machine case}
+
+\subsection{Three machine case}
+
+
+\subsection{\texorpdfstring{$m$-dependent family}{m-dependent family}}
+\subsection{MINLP}
+
+\chapter{Outlook}\label{chap:outlook}
+
 
 \printbibliography{} % print bibliography
 

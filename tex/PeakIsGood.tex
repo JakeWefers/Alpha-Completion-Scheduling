@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+
+\title{A Sum-of-Squares Comparison}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+
+Assume
+\[
+\sum_i a_i=\sum_i a'_i,\qquad
+a_1\ge a_i,\qquad a'_1\ge a'_i,\qquad a'_1>a_1,
+\]
+and assume additionally that
+\[
+a'_i\le a_i \qquad \text{for all } i\ne 1.
+\]
+
+Define
+\[
+r:=\sum_i (a'_i)^2-\sum_i a_i^2.
+\]
+
+We show that \(r\ge 0\). For \(i>1\), define
+\[
+e_i:=a_i-a'_i\ge 0.
+\]
+Since the two vectors have the same total sum,
+\[
+a'_1-a_1=\sum_{i>1}e_i=:d>0.
+\]
+Thus \(a'_1=a_1+d\), and for \(i>1\), \(a'_i=a_i-e_i\). Therefore
+\[
+\begin{aligned}
+r
+&=\sum_i (a'_i)^2-\sum_i a_i^2\\
+&=(a_1+d)^2-a_1^2
+  +\sum_{i>1}\left((a_i-e_i)^2-a_i^2\right)\\
+&=2a_1d+d^2+\sum_{i>1}\left(-2a_i e_i+e_i^2\right)\\
+&=2\sum_{i>1}e_i(a_1-a_i)+d^2+\sum_{i>1}e_i^2.
+\end{aligned}
+\]
+Since \(a_1\ge a_i\) and \(e_i\ge 0\), every term on the right-hand
+side is nonnegative. Hence
+\[
+r\ge 0.
+\]
+In fact, since \(d>0\), we have \(d^2>0\), so \(r>0\).
+
+\end{document}

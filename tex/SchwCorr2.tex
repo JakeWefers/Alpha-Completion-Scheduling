@@ -1,0 +1,67 @@
+
+\documentclass{article}
+
+\usepackage{amsmath,amsthm}
+
+\newtheorem{corollary}{Corollary}
+\newcommand{\Cmax}{C_{\max}}
+\newcommand{\Cmin}{C_{\min}}
+
+\begin{document}
+
+\begin{corollary}\label{corr: Queyranne}
+For any schedule $S$ of an instance $I$ of $P||\sum_j p_j C_j(\alpha)$ with $\alpha \in [0,1]$ on a single machine without intermediate idle times,
+\[
+        \sum_{j\in I}p_j C_j(S)(\alpha)
+        =
+        \frac12\left((2\alpha-1)\left(\sum_{j\in I}p_j^2\right)+(\Cmax(S))^2\right)
+\]
+holds.
+\end{corollary}
+
+\begin{proof}
+Consider first the case of a single machine. And let $C_{\max}(S)$ denote the makespan of schedule $S$. For
+the single machine case, this is of course simply the sum over all processing times, i.e. $C_{\max}(S)=\sum_{j=1}^n p_j$.
+\[
+\begin{aligned}
+        \sum_{j=1}^n p_jC_j(S)(\alpha)
+        &=
+        \sum_{j=1}^n p_j\left(\sum_{k=1}^{j-1} p_k +\alpha p_j \right)                       \\
+        &=
+        \sum_{j=1}^n p_jC_{j-1}(S)+\alpha\left(\sum_{j=1}^n p_j^2  \right)                   \\                 
+        &=
+        \sum_{j=1}^n p_j(C_j(S)-p_j)+\alpha\left(\sum_{j=1}^n p_j^2  \right)                 \\
+        &=
+        \sum_{j=1}^n p_jC_j(S)+(\alpha-1)\left(\sum_{j=1}^n p_j^2  \right)                      \\
+        &\overset{ref. Queyranne here}{=}
+        \frac12\left((C_{max}(S))^2+\sum_{j=1}^n p_j^2\right)+(\alpha-1)\left(\sum_{j=1}^n p_j^2  \right)   \\
+        &=
+        \frac12\left((C_{max}(S))^2+(2\alpha-1)\left(\sum_{j=1}^n p_j^2  \right) \right)
+\end{aligned}
+\]
+Using the notation $C_{\max}^i(S)$ for the makespan
+of machine $i$ in a list schedule $S$ on parallel identical machines, we can
+apply the corollary to every machine separately.
+Formally, let
+\[
+I_i^S= \{j\in I| \text{job j is scheduled on machine i in schedule S}\}
+\]
+Then for any instance I of $P||\sum_j p_j C_j(\alpha)$ with $\alpha \in [0,1]$ and any schedule $S$ of $I$ on $m$ parallel identical machines, we have
+
+\[
+        \sum_{j\in I}p_j C_j(S)(\alpha)
+        =
+        \sum_{i=1}^m \sum_{j\in I_i^S}p_j C_j(S)(\alpha)
+        \overset{\ref{corr: Queyranne}}{=}
+        \frac12\left((2\alpha-1)\left(\sum_{j\in I}p_j^2\right)+\sum_{i=1}^m (C_{\max}^i(S))^2\right).
+\]
+\end{proof}
+Furthermore, define
+\[
+        \Cmin(S)=\min_i\{C_{\max}^i(S)\}
+\]
+as the minimum machine makespan in the parallel identical machine scenario.
+In any list schedule $S$, no job can start after $\Cmin(S)$, and at most
+$m-1$ jobs can complete after $\Cmin(S)$.
+
+\end{document}

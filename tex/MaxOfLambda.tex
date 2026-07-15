@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\maxi}{\max}
+\newcommand{\mini}{\min}
+
+\title{Maximums of $\lambda$ for $\alpha \ge \frac12$}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+We consider only instances with:
+\begin{enumerate}[label=(\alph*)]
+    \item $u < m$ long jobs, where $m$ is the number of machines, with processing time $p$.
+    \item Additional short jobs have total workload $m$.
+    \item $w_j = p_j$ for all $j$.
+    \item $S_{\LRF}$ schedules all small jobs in $[0,1]$ and all long jobs start at $1$.
+    \item $S_{\OPT}$ schedules all long jobs at time $0$, and all machines $i$ that execute a small job have the property
+    \[
+        C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\mini}(S_{\OPT}(I)).
+    \]
+\end{enumerate}
+
+\section*{The Schedule $S_{\OPT}$}
+
+For case (1) of Corollary 5,(REFERENCE MISSING)
+\[
+    C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\mini}(S_{\OPT}(I))
+    \qquad \forall i.
+\]
+Moreover,
+\[
+    m + up \ge mp
+    \quad\Longleftrightarrow\quad
+    p \le \frac{1}{1-\frac{u}{m}}.
+\]
+Thus,
+\begin{align*}
+    C^*(I)(\alpha)
+    &=
+    \frac12 \left(
+        \bigl(2\alpha-1\bigr)
+        \sum_{j \in L(I)} p_j^2
+        +
+        \sum_{i=1}^m
+        \bigl(C_{\max}^i(S_{\OPT}(I))\bigr)^2
+    \right) \\
+    &=
+    \frac12 \left(
+        \bigl(2\alpha-1\bigr)up^2
+        +
+        m\left(\frac{m+up}{m}\right)^2
+    \right).
+\end{align*}
+
+\section*{The Schedule $S_{\LRF}$}
+
+For $S_{\LRF}$,
+\begin{align*}
+    C_{\LRF}(I)(\alpha)
+    &=
+    \frac12 \left(
+        \bigl(2\alpha-1\bigr)
+        \sum_{j \in L(I)} p_j^2
+        +
+        \sum_{i=1}^m
+        \bigl(C_{\max}^i(S_{\LRF}(I))\bigr)^2
+    \right) \\
+    &=
+    \frac12 \left(
+        \bigl(2\alpha-1\bigr)up^2
+        +
+        m-u
+        +
+        u(p+1)^2
+    \right).
+\end{align*}
+% TODO: The handwritten blue note beside this expression appears to read:
+% "Schweigel'schen does change of variables by Wissen of m."
+
+Hence
+\begin{align*}
+    \lambda(u,p)
+    &=
+    \frac{
+        \frac12\left(
+            \bigl(2\alpha-1\bigr)up^2
+            + m-u + u(p+1)^2
+        \right)
+    }{
+        \frac12\left(
+            \bigl(2\alpha-1\bigr)up^2
+            + m\left(\frac{m+up}{m}\right)^2
+        \right)
+    } \\
+    &=
+    \frac{
+        \bigl(2\alpha-1\bigr)up^2
+        + m-u + up^2 + 2up + u
+    }{
+        \bigl(2\alpha-1\bigr)up^2
+        + \frac{m^2+2mup+u^2p^2}{m}
+    } \\
+    &=
+    \frac{
+        2\alpha\frac{u}{m}p^2 + 1 + 2\frac{u}{m}p
+    }{
+        \bigl(2\alpha-1\bigr)\frac{u}{m}p^2
+        + 1 + 2\frac{u}{m}p
+        + \left(\frac{u}{m}\right)^2p^2
+    }.
+\end{align*}
+
+This is for the case
+\[
+    \frac12 \le \alpha \le 1,
+    \qquad
+    0 \le \frac{u}{m} \le 1,
+    \qquad
+    0 \le p \le \frac{1}{1-\frac{u}{m}}.
+\]
+Wolfram Alpha gives the maximum under these constraints as
+\[
+    \frac54,
+    \qquad \text{at } \alpha = \frac12,
+\]
+and
+\[
+    -
+    \frac{
+        2\left(
+            4\sqrt{2}\sqrt{\frac{\alpha}{(2\alpha-1)^4}}\alpha^2
+            - 2\alpha^2
+            - 4\sqrt{2}\sqrt{\frac{\alpha}{(2\alpha-1)^4}}\alpha
+            + \alpha
+            + \sqrt{2}\sqrt{\frac{\alpha}{(2\alpha-1)^4}}
+            - 1
+        \right)
+    }{
+        (2\alpha-1)^2
+    },
+    \qquad
+    \frac12 \le \alpha \le 1.
+\]
+
+Now for case (2) of Corollary 5:
+\[
+    C_{\max}^i(S_{\OPT}(I')) > C_{\max}^{\mini}(S_{\OPT}(I'))
+    \qquad \text{for some } i.
+\]
+Again,
+\[
+    m + up \ge mp
+    \quad\Longleftrightarrow\quad
+    p \le \frac{1}{1-\frac{u}{m}}.
+\]
+
+For $S_{\OPT}$,
+\begin{align*}
+    C^*(I)(\alpha)
+    &=
+    \frac12 \left(
+        \bigl(1 - 2(1-\alpha)\bigr)
+        \sum_{j \in L(I)} p_j^2
+        +
+        \sum_{i=1}^m
+        \bigl(C_{\max}^i(S(I))\bigr)^2
+    \right) \\
+    &=
+    \frac12 \left(
+        \bigl(1 - 2(1-\alpha)\bigr)up^2
+        +
+        (m-u)\left(\frac{m}{m-u}\right)^2
+        +
+        up^2
+    \right) \\
+    &=
+    \frac12 \left(
+        2\alpha up^2
+        +
+        (m-u)\left(\frac{m}{m-u}\right)^2
+    \right).
+\end{align*}
+
+The value of $S_{\LRF}$ stays unchanged, so
+\begin{align*}
+    \lambda(I)
+    &=
+    \frac{
+        \frac12\left(2\alpha up^2 + m + 2up\right)
+    }{
+        \frac12\left(2\alpha up^2 + (m-u)\left(\frac{m}{m-u}\right)^2\right)
+    } \\
+    &=
+    \frac{
+        2\alpha \frac{u}{m}p^2 + 1 + 2\frac{u}{m}p
+    }{
+        2\alpha \frac{u}{m}p^2 + \frac{m}{m-u}
+    } \\
+    &=
+    \frac{
+        2\alpha \frac{u}{m}p^2 + 1 + 2\frac{u}{m}p
+    }{
+        2\alpha \frac{u}{m}p^2 + \frac{1}{1-\frac{u}{m}}
+    }.
+\end{align*}
+
+For
+\[
+    0 \le \frac{u}{m} \le 1,
+    \qquad
+    \frac12 \le \alpha \le 1,
+    \qquad
+    p > \frac{1}{1-\frac{u}{m}},
+\]
+Wolfram Alpha gives for this the maximum
+\[
+    \frac{1}{1-\frac{2}{(2\sqrt{\alpha}+\sqrt{2})^2}},
+    \qquad \text{for } \alpha \ge \frac12,
+\]
+and the maximum is $-\infty$ for $\alpha \le \frac12$.
+
+For
+\[
+    \frac{u}{m}
+    =
+    \frac{
+        \sqrt{2}\sqrt{\frac{\alpha}{(\alpha-2)^2}}\alpha
+        - 2\sqrt{2}\sqrt{\frac{\alpha}{(\alpha-2)^2}}
+        + 2
+    }{
+        4 - 2\alpha
+    },
+\]
+determine which case is bigger for which $\alpha$.
+
+
+
+
+\end{document}

@@ -1,0 +1,568 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+
+\newcommand{\LS}{\mathrm{LS}}
+\newcommand{\OPT}{\mathrm{OPT}}
+
+\title{A m dependant Upper Bound}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Assumptions}
+
+We only consider \(m\ge 3\) identical parallel machines, as we have previously shown, 
+that we have found the best possible upper bound for $m=2$. and jobs
+ \(M_i(S)\) be the set of jobs assigned to machine
+\(i\).  If \(j\in M_i(S)\), define
+\[
+ C_j^S(\alpha)
+ =
+ \sum_{\substack{k\in M_i(S)\\k\text{ before }j}}p_k+\alpha p_j,
+ \qquad 0<\alpha\le\frac12.
+\]
+
+
+We will make use of the following results.
+\begin{enumerate}
+ \item Any $\lambda$ maximizing instance $I$ has the property 
+ that every machine contains at most \(m\) jobs in both $S_{WORST}$ and $S_{OPT}$.
+
+ \item There exists a $\lambda$ maximizing instance $I$ such that 
+ Some job \(p\) is single scheduled  in $S_{OPT}$, and there exists a list such that \(p\) is the
+ last job scheduled in $S_{WORST}$.
+ Additionally, no job in $I$ finishes strictly after $p$ in $S_{WORST}$.
+
+ \item $\max_{I \in P||\sum_{j \in I}p_jC_j(\alpha)}\lambda(I)(\alpha) = \frac43$. 
+ \item We assume $n > m$. Else $\lambda(I)(\alpha) =1$ and we are done. 
+
+\end{enumerate}
+
+Next, we derive a useful form of the objective.
+Fix a machine $i$ and write its jobs in order of processing in schedule $S$:
+\[
+ j_{i,1},j_{i,2},\ldots,j_{i,r_i}.
+\]
+Their incurred cost is: 
+\[
+\begin{aligned}
+\sum_{s=1}^{r_i}p_{j_{i,s}}C_{j_{i,s}}^S(\alpha)
+&=
+\sum_{s=1}^{r_i}
+p_{j_{i,s}}
+\left(
+\sum_{t=1}^{s-1}p_{j_{i,t}}
++\alpha p_{j_{i,s}}
+\right)\\
+&=
+\alpha\sum_{s=1}^{r_i}p_{j_{i,s}}^2
++
+\sum_{s=1}^{r_i}\sum_{t=1}^{s-1}
+p_{j_{i,s}}p_{j_{i,t}}\\
+&=
+\alpha\sum_{j\in M_i(S)}p_j^2
++
+\sum_{\{j,k\}\subseteq M_i(S)}p_jp_k.
+\end{aligned}
+\]
+
+This derivation stems again from Schwiegelshohn (hier reference rein)
+Summing this identity over all machines gives
+\[
+ C(S)(\alpha)=\alpha Q+P(S).
+\tag{1}
+\]
+
+where: 
+\[
+ Q:=\sum_jp_j^2
+\]
+and, for every schedule \(S\),
+\[
+ P(S):=
+ \sum_{i=1}^m\ \sum_{\{j,k\}\subseteq M_i(S)}p_jp_k.
+\]
+
+ We write
+\[
+ P_{W}:=P(S_{WORST}),\qquad P^*:=P(S_{OPT}).
+\]
+
+Because \(\OPT\) has one single scheduled job and every machine
+contains at most \(m\) jobs,
+\[
+ n\le 1+m(m-1).
+\tag{2}
+\]
+
+\section{Max. Cost difference}
+
+Define
+\[
+ \mu_m:=\sqrt{\frac{m-1}{2}},
+ \qquad
+ K_m:=(m-1)^2,
+ \qquad
+ C_m:=m\left(1+(K_m-1)\mu_m\right).
+\]
+
+\begin{lemma}
+\label{lemma: P_W-P*}
+Under the assumptions above,
+\[
+ P_{W}-P^*\le C_m\sqrt{QP^*}.
+\tag{3}
+\]
+\end{lemma}
+
+\begin{proof}
+Consider the jobs in list order of $S_W$.  When job \(j\) is scheduled, let \(\ell_j\)
+be the current load of the receiving machine (eq. this is the starting time of j).  The placement creates pair
+cost \(p_j\ell_j\), and therefore
+\[
+ P_{W}=\sum_jp_j\ell_j.
+\]
+
+Fix any job \(j\) with \(\ell_j>0\) (this exists as we schedule at least m+1 jobs). 
+We consider now only the partial schedule consisting of all jobs scheduled before 
+(and including) $j$.
+Since $j$ is assigned to a globally least-loaded machine,
+every machine has current load at least \(\ell_j\).
+Choose a largest currently assigned job from each machine (excluding j).  At that moment
+each machine contains at most \(m\) jobs, so every selected job has size at
+least
+\[
+ \frac{\ell_j}{m}.
+\]
+The \(m\) selected jobs and \(j\) are \(m+1\) distinct jobs.  Thus, b.c of pidgeonhole, 
+two of them share a machine in $S^*$.
+
+If the colliding pair consists of two selected jobs, then
+\[
+ P^*\ge\frac{\ell_j^2}{m^2}.
+\]
+Since \(p_j\le\sqrt Q\), it follows that
+\[
+ p_j\ell_j\le m\sqrt{QP^*}.
+\tag{4}
+\]
+
+If the colliding pair consists of \(j\) and a selected job, then
+\[
+ P^*\ge\frac{p_j\ell_j}{m},
+\]
+and hence
+\[
+ p_j\ell_j\le mP^*.
+\tag{5}
+\]
+
+For any \(k\) positive numbers \(x_1,\ldots,x_k\),
+\[
+ \sum_{r<s}x_rx_s
+ \le \frac{k-1}{2}\sum_{r=1}^kx_r^2.
+\tag{6}
+\]
+Indeed, this follows from
+\((\sum_rx_r)^2\le k\sum_rx_r^2\).
+
+(ref: J. Michael Steele, The Cauchy–Schwarz Master Class: An Introduction to the Art of Mathematical Inequalities, Cambridge University Press, 2004)
+Applying (6) to every  set $M_{i}(S_{OPT})$ and using $|M_{i}(S_{OPT})|\le m$, then summing over all machines, gives: 
+\[
+ P^*\le\frac{m-1}{2}Q.
+\tag{7}
+\]
+From (5), we have
+\[
+p_j\ell_j \le mP^*.
+\]
+
+Moreover, (7) gives
+\[
+P^* \le \frac{m-1}{2}Q.
+\]
+
+Multiplying (7) by \(P^*\ge 0\), we obtain
+\[
+(P^*)^2
+\le
+\frac{m-1}{2}QP^*.
+\]
+
+Taking square roots on both sides yields
+\[
+P^*
+\le
+\sqrt{\frac{m-1}{2}}\sqrt{QP^*}.
+\]
+
+Substituting this estimate into (5), we conclude that
+\[
+\begin{aligned}
+p_j\ell_j
+&\le mP^*\\
+&\le
+m\sqrt{\frac{m-1}{2}}\sqrt{QP^*}.
+\end{aligned}
+\tag{8}
+\]
+
+Although direct substitution of (7) into (5) also gives the valid bound
+\[
+p_j\ell_j\le \frac{m(m-1)}{2}Q,
+\]
+the mixed estimate in (8) is more useful because it retains the dependence
+on \(P^*\). In particular, with \(z=P^*/Q\),
+\[
+\frac{\sqrt{QP^*}}{\alpha Q+P^*}
+=
+\frac{\sqrt z}{\alpha+z}.
+\]
+
+Since
+\[
+\max_{z\ge0}\frac{\sqrt z}{\alpha+z}
+=
+\frac{1}{2\sqrt{\alpha}},
+\]
+the mixed bound leads to an approximation estimate of order
+\(1/\sqrt{\alpha}\), whereas a bound involving only \(Q\) would remain of
+order \(1/\alpha\).
+
+Consequently, every placement with \(\ell_j>0\) satisfies
+\[
+ p_j\ell_j\le m\mu_m\sqrt{QP^*}.
+\tag{9}
+\]
+
+The first \(m\) jobs of an ordinary list schedule are placed on empty
+machines and have \(\ell_j=0\).  By (2), the number of placements with strictly
+positive $\ell_j$ is at most
+\[
+ n-m\le 1+(m-1)m - m = (m-1)^2=K_m.
+\]
+
+We now use both special properties of \(p\). Since \(p\) is last in some list of $S_{W}$,
+and at least $m$ jobs precede it in the schedule. its preceding load \(\ell_p\) is positive.  Immediately before placing \(p\),
+choose a largest job from each of the \(m\) machines in $S_W$.  None of these
+selected jobs can lie on the singleton machine of $S^*$, because that
+machine contains only \(p\).  Hence the \(m\) selected jobs occupy only
+\(m-1\) optimal machines, and again with pidgeonhole, two selected jobs share a machine in $S^*$.
+Therefore, (4) applies to \(p\), giving: 
+estimate
+\[
+ p\ell_p\le m\sqrt{QP^*}.
+\tag{10}
+\]
+
+There are at most \(K_m-1\) other positive-load ($\ell_j > 0$) assignments .  Summing (9)
+over those placements and adding (10), we obtain
+\[
+\begin{aligned}
+ P_{W}
+ &\le
+ m\left(1+(K_m-1)\mu_m\right)\sqrt{QP^*}\\
+ &=C_m\sqrt{QP^*}.
+\end{aligned}
+\]
+Finally \(P_{\LS}-P^*\le P_{\LS}\), proving (3).
+\end{proof}
+
+\section{The upper bound}
+
+Expanding the established result for $\alpha = \frac12$ by means of (1) gives
+\[
+ \frac12Q+P_{\LS}
+ \le
+ \frac43\left(\frac12Q+P^*\right),
+\]
+and hence
+\[
+ P_{\LS}-P^*\le\frac16Q+\frac13P^*.
+\tag{11}
+\]
+We now translate these two bounds on the additive cost difference into
+bounds on the approximation ratio. By (1),
+\[
+\begin{aligned}
+\frac{C(S_{WORST})(\alpha)}{C(S_{OPT})(\alpha)}
+&=
+\frac{\alpha Q+P_W}{\alpha Q+P^*}\\
+&=
+1+\frac{P_W-P^*}{\alpha Q+P^*}.
+\end{aligned}
+\]
+Using (11) to bound the numerator gives
+\[
+\frac{C(S_{WORST})(\alpha)}{C(S_{OPT})(\alpha)}
+\le
+1+
+\frac{\frac16Q+\frac13P^*}{\alpha Q+P^*}.
+\]
+Using Lemma~\ref{lemma: P_W-P*} instead gives
+\[
+\frac{C(S_{WORST})(\alpha)}{C(S_{OPT})(\alpha)}
+\le
+1+
+\frac{C_m\sqrt{QP^*}}{\alpha Q+P^*}.
+\]
+Both inequalities hold simultaneously. We can therefore take the smaller
+of the two right-hand sides:
+\[
+\frac{C(S_{WORST})(\alpha)}{C(S_{OPT})(\alpha)}
+\le
+1+
+\min\left\{
+\frac{\frac16Q+\frac13P^*}{\alpha Q+P^*},
+\frac{C_m\sqrt{QP^*}}{\alpha Q+P^*}
+\right\}.
+\]
+Finally, since \(Q>0\), define
+\[
+ z:=\frac{P^*}{Q}.
+\]
+Dividing the numerator and denominator of both fractions by \(Q\), and
+using
+\[
+\frac{\sqrt{QP^*}}{Q}
+=
+\sqrt{\frac{P^*}{Q}}
+=\sqrt z,
+\]
+gives
+\[
+ \frac{C(S_{WORST})(\alpha)}{C(S_{OPT})(\alpha)}
+ \le
+ 1+
+ \min\left\{
+ \frac{\frac16+\frac13z}{\alpha+z},
+ \frac{C_m\sqrt z}{\alpha+z}
+ \right\}.
+\tag{12}
+\]
+Next we try to determine, for which values of $z$, which of the above expressions is minimal. 
+TO this end, define \(z_m\)  to be the smaller positive solution of
+\[
+ \frac16+\frac13z=C_m\sqrt z.
+\tag{13}
+\]. 
+
+Equivalently, define
+\[
+ y_m:=
+ \frac{1}{3C_m+\sqrt{9C_m^2-2}},
+ \qquad
+ z_m:=y_m^2.
+\tag{14}
+\]
+
+Note that, since $C_m > 1$, $z_m$ is indeed real and positive. 
+
+\begin{theorem}
+\label{thm:main}
+For every \(0<\alpha\le1/2\),
+\[
+ \lambda(I)(\alpha)
+ \le U_m(\alpha),
+\tag{15}
+\]
+where
+\[
+ U_m(\alpha)=
+ \begin{cases}
+ \displaystyle
+ 1+\frac{C_m}{2\sqrt\alpha},
+ &0<\alpha\le z_m,\\[3mm]
+ \displaystyle
+ 1+\frac{C_m\sqrt{z_m}}{\alpha+z_m}
+ =
+ 1+\frac{1+2z_m}{6(\alpha+z_m)},
+ &z_m\le\alpha\le\frac12.
+ \end{cases}
+\tag{16}
+\]
+Moreover,
+\[
+ U_m(\alpha)<1+\frac{1}{6\alpha}
+ \qquad\text{for }0<\alpha<\frac12,
+\tag{17}
+\]
+and
+\[
+ U_m\left(\frac12\right)=\frac43.
+\tag{18}
+\]
+\end{theorem}
+
+\begin{proof}
+For fixed \(\alpha\), define
+\[
+ g_1(z):=\frac{\frac16+\frac13z}{\alpha+z},
+ \qquad
+ g_2(z):=\frac{C_m\sqrt z}{\alpha+z}.
+\]
+For \(0<\alpha\le1/2\),
+\[
+ g_1'(z)=\frac{\alpha/3-1/6}{(\alpha+z)^2}\le0.
+\]
+By (13), \(g_1(z_m)=g_2(z_m)\).
+
+Suppose first that \(\alpha\ge z_m\).  The function \(g_2\) is increasing
+on \([0,\alpha]\), and hence on \([0,z_m]\).  Thus, for \(z\le z_m\),
+\[
+ \min\{g_1(z),g_2(z)\}\le g_2(z_m),
+\]
+while for \(z\ge z_m\), monotonicity of \(g_1\) gives
+\[
+ \min\{g_1(z),g_2(z)\}\le g_1(z)\le g_1(z_m).
+\]
+This proves the second branch of (16).
+
+Suppose next that \(0<\alpha\le z_m\).  The global maximum of \(g_2\) occurs
+at \(z=\alpha\), where
+\[
+ g_2(\alpha)=\frac{C_m}{2\sqrt\alpha}.
+\]
+For \(z\le z_m\), the minimum in (12) is at most this global maximum.  For
+\(z\ge z_m\), it is at most
+\[
+ g_1(z_m)=g_2(z_m)\le g_2(\alpha).
+\]
+This proves the first branch of (16), and therefore (15).
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+% Numerical values used only to render the qualitative plot.
+% The visible labels remain symbolic.
+\def\alphaval{0.08}
+\def\Cmplot{1.0}
+\def\zone{0.03136}
+\begin{semilogxaxis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    axis lines=left,
+    xlabel={},
+    ylabel={value},
+    xmin=0.008,
+    xmax=20,
+    ymin=0,
+    ymax=3.0,
+    samples=400,
+    domain=0.008:20,
+    legend style={draw=none, fill=none, at={(0.98,0.98)}, anchor=north east, font=\scriptsize},
+    xtick={\zone,\alphaval},
+    xticklabels={$z_m$,$\alpha$},
+    ytick=\empty,
+    tick style={draw=none},
+    clip=false,
+]
+  \addplot[black, thick]
+    {(1/6 + x/3)/(\alphaval + x)};
+  \addlegendentry{$g_1(z)=\frac{1/6+z/3}{\alpha+z}$}
+
+  \addplot[black, thick, dashed]
+    {\Cmplot*sqrt(x)/(\alphaval + x)};
+  \addlegendentry{$g_2(z)=\frac{C_m\sqrt z}{\alpha+z}$}
+
+  \draw[densely dotted] (axis cs:\zone,0) --
+    (axis cs:\zone,{(1/6+\zone/3)/(\alphaval+\zone)});
+  \draw[densely dotted] (axis cs:\alphaval,0) --
+    (axis cs:\alphaval,{\Cmplot*sqrt(\alphaval)/(\alphaval+\alphaval)});
+\end{semilogxaxis}
+\end{tikzpicture}
+\[
+ z_m<\alpha
+\]
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+% Same qualitative plot, but now the maximum of g_2 occurs before z_m.
+% The numerical values are rescaled only to keep both panels visually comparable.
+\def\alphaval{0.035}
+\def\Cmplot{0.8}
+\def\zone{0.05311}
+\begin{semilogxaxis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    axis lines=left,
+    xlabel={},
+    ylabel={value},
+    xmin=0.03,
+    xmax=20,
+    ymin=0,
+    ymax=3.0,
+    samples=400,
+    domain=0.03:20,
+    legend style={draw=none, fill=none, at={(0.98,0.98)}, anchor=north east, font=\scriptsize},
+    xtick={\alphaval,\zone},
+    xticklabels={$\alpha$,$z_m$},
+    ytick=\empty,
+    tick style={draw=none},
+    clip=false,
+]
+  \addplot[black, thick]
+    {(1/6 + x/3)/(\alphaval + x)};
+  \addlegendentry{$g_1(z)=\frac{1/6+z/3}{\alpha+z}$}
+
+  \addplot[black, thick, dashed]
+    {\Cmplot*sqrt(x)/(\alphaval + x)};
+  \addlegendentry{$g_2(z)=\frac{C_m\sqrt z}{\alpha+z}$}
+
+  \draw[densely dotted] (axis cs:\zone,0) --
+    (axis cs:\zone,{(1/6+\zone/3)/(\alphaval+\zone)});
+  \draw[densely dotted] (axis cs:\alphaval,0) --
+    (axis cs:\alphaval,{\Cmplot*sqrt(\alphaval)/(\alphaval+\alphaval)});
+\end{semilogxaxis}
+\end{tikzpicture}
+\[
+ \alpha<z_m
+\]
+\end{minipage}
+\caption{Comparison of \(g_1\) and \(g_2\).}
+\label{fig:g1-g2-comparison}
+\end{figure}
+
+It remains to compare (16) with the old bound.  If
+\(z_m\le\alpha<1/2\), then \(g_1\) is strictly decreasing, so
+\[
+ \frac{1+2z_m}{6(\alpha+z_m)}
+ =g_1(z_m)<g_1(0)=\frac{1}{6\alpha}.
+\]
+If \(0<\alpha\le z_m\), equation (13) gives
+\[
+ 3C_m\sqrt{z_m}=\frac12+z_m<1.
+\]
+Here \(z_m<1/2\) follows immediately from \(C_m\ge2\) and (14).
+Therefore
+\[
+ 3C_m\sqrt\alpha\le3C_m\sqrt{z_m}<1,
+\]
+which is equivalent to
+\[
+ \frac{C_m}{2\sqrt\alpha}<\frac{1}{6\alpha}.
+\]
+This proves (17).
+
+Finally, substituting \(\alpha=1/2\) into the second branch of (16) gives
+\[
+ \frac{1+2z_m}{6(1/2+z_m)}=\frac13,
+\]
+and hence (18).
+\end{proof}
+\end{document}

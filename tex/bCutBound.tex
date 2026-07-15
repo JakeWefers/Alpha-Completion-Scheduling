@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\begin{theorem}[Factor bound from the half-shifted ratio]
+Let \(A,B,x\in\mathbb{R}\) and \(a\in(0,1/2]\). Assume
+\[
+    0 < B < A,
+    \qquad
+    0 \le x < B.
+\]
+Then
+\[
+    \frac{A+(2a-1)x}{B+(2a-1)x}
+    \le
+    \frac{1+2a}{4a}
+    \frac{A+\frac12(2a-1)x}{B+\frac12(2a-1)x}.
+\]
+Consequently, if
+\[
+    \frac{A+\frac12(2a-1)x}{B+\frac12(2a-1)x}\le U,
+\]
+then
+\[
+    \frac{A+(2a-1)x}{B+(2a-1)x}
+    \le
+    \frac{1+2a}{4a}U.
+\]
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+    t := (2a-1)x.
+\]
+Since \(a\in(0,1/2]\), we have \(2a-1\le 0\). Since \(x\ge 0\), it follows that
+\[
+    t\le 0.
+\]
+It is convenient to write
+\[
+    s := -t = (1-2a)x.
+\]
+Then \(s\ge 0\), and the two ratios become
+\[
+    \frac{A+t}{B+t}
+    =
+    \frac{A-s}{B-s},
+    \qquad
+    \frac{A+\frac12 t}{B+\frac12 t}
+    =
+    \frac{A-\frac12 s}{B-\frac12 s}.
+\]
+Because \(x<B\), we have
+\[
+    s=(1-2a)x < (1-2a)B.
+\]
+Therefore
+\[
+    B-s > B-(1-2a)B = 2aB > 0,
+\]
+and also
+\[
+    B-\frac12s > 0.
+\]
+Moreover, since \(s<B<A\), both \(A-s\) and \(A-\frac12s\) are positive.
+Thus all denominators below are positive, and the ratios below are positive.
+
+We compare the full-shifted ratio to the half-shifted ratio:
+\[
+    \frac{
+        \frac{A-s}{B-s}
+    }{
+        \frac{A-\frac12 s}{B-\frac12 s}
+    }
+    =
+    \frac{A-s}{A-\frac12 s}
+    \cdot
+    \frac{B-\frac12 s}{B-s}.
+\]
+Since \(s\ge 0\), we have
+\[
+    A-s \le A-\frac12s,
+\]
+so
+\[
+    \frac{A-s}{A-\frac12s}\le 1.
+\]
+Hence
+\[
+    \frac{
+        \frac{A-s}{B-s}
+    }{
+        \frac{A-\frac12 s}{B-\frac12 s}
+    }
+    \le
+    \frac{B-\frac12s}{B-s}.
+\]
+Using the bound \(s < (1-2a)B\), we estimate
+\[
+    B-\frac12s
+    \le B,
+\]
+and
+\[
+    B-s > 2aB.
+\]
+This already gives the coarser bound
+\[
+    \frac{B-\frac12s}{B-s} < \frac{1}{2a}.
+\]
+For the sharper stated constant, use the monotonicity of the function
+\[
+    g(s) := \frac{B-\frac12s}{B-s}
+\]
+on \(0\le s<B\). Indeed,
+\[
+    g'(s)
+    =
+    \frac{\frac12B}{(B-s)^2}
+    >0.
+\]
+Thus \(g\) is increasing, and since \(s < (1-2a)B\),
+\[
+    g(s)
+    <
+    g\bigl((1-2a)B\bigr).
+\]
+Computing the endpoint value gives
+\[
+    g\bigl((1-2a)B\bigr)
+    =
+    \frac{B-\frac12(1-2a)B}{B-(1-2a)B}
+    =
+    \frac{\frac12(1+2a)B}{2aB}
+    =
+    \frac{1+2a}{4a}.
+\]
+Therefore
+\[
+    \frac{
+        \frac{A-s}{B-s}
+    }{
+        \frac{A-\frac12 s}{B-\frac12 s}
+    }
+    \le
+    \frac{1+2a}{4a}.
+\]
+Multiplying by the positive half-shifted ratio yields
+\[
+    \frac{A-s}{B-s}
+    \le
+    \frac{1+2a}{4a}
+    \frac{A-\frac12 s}{B-\frac12 s}.
+\]
+Substituting \(s=-(2a-1)x\) proves
+\[
+    \frac{A+(2a-1)x}{B+(2a-1)x}
+    \le
+    \frac{1+2a}{4a}
+    \frac{A+\frac12(2a-1)x}{B+\frac12(2a-1)x}.
+\]
+The final implication follows immediately: if the half-shifted ratio is at most \(U\), then the full-shifted ratio is at most
+\[
+    \frac{1+2a}{4a}U.
+\]
+\end{proof}
+
+\end{document}

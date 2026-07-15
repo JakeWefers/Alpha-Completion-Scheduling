@@ -1,0 +1,258 @@
+% !TeX root = lambda_mu_conditions.tex
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{Conditions for lambda-mu Upper Bound}
+\author{}
+\date{}
+\maketitle
+
+\begin{theorem}
+Any upper bound of the form
+\[
+U_{\lambda,\mu}(\alpha)
+=
+1+\frac{1}{\lambda \alpha + \mu\sqrt{\alpha}}
+\]
+for the approximation ratio of the \(P||\sum_{j=1}^{n}w_jC_j(\alpha)\)
+problem has the properties
+\[
+0\le \mu\le 2,
+\qquad
+\lambda+\sqrt2\,\mu<6,
+\qquad
+\mu=2\implies \lambda\le 1.
+\]
+\end{theorem}
+
+\begin{proof}
+
+
+From (insert reference to lower bound family here), we know that 
+\[
+F_k(\alpha)
+=
+1+
+\frac{k}{
+\alpha(k+1)\left(
+1+\sqrt{
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}
+}
+\right)
+},
+\qquad 0<\alpha\le \frac12.
+\]
+is a lower bound for all $k \ge 2$.
+
+Thus, for any upper bound and specifically for the upper bounding family: 
+\[
+U_{\lambda,\mu}(\alpha)
+=
+1+\frac{1}{\lambda \alpha+\mu\sqrt{\alpha}}.
+\]
+It must hold that:
+\[
+U_{\lambda,\mu}(\alpha)>F_k(\alpha)
+\qquad \text{for all } 0<\alpha\le 1/2 \text{ and all } k\ge 2.
+\tag{1}
+\]  
+We will use this to find necessaryconditions on $\lambda,\mu$ such that this inequality holds.
+
+\subsection*{Reduction}
+
+Set
+\[
+t=\sqrt{\alpha}.
+\]
+Then:
+\[
+0<t\le \frac1{\sqrt2},
+\qquad
+\lambda \alpha+\mu\sqrt{\alpha}
+=
+t(\mu+\lambda t).
+\]
+Since \(F_k(\alpha)>1\), an immediate necessary condition on $\lambda,\mu$ in terms of $t$ is:  
+
+\[
+\mu+\lambda t>0
+\qquad
+\text{for all }0<t\le \frac1{\sqrt2}.
+\]
+
+Furthermore, (1) is equivalent to
+\[
+\frac{1}{\lambda \alpha+\mu\sqrt{\alpha}}
+>
+\frac{k}{
+\alpha(k+1)\left(
+1+\sqrt{
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}
+}
+\right)
+}.
+\]
+Substituting \(\alpha=t^2\), this becomes
+\[
+\frac{1}{t(\mu+\lambda t)}
+>
+\frac{k}{
+t^2(k+1)\left(
+1+\sqrt{
+1+\frac{4k\left(k+t^2(k^2+1)\right)}{t^2(k+1)^2}
+}
+\right)
+}.
+\]
+Which is equivalent to
+\[
+t(\mu+\lambda t)
+<
+\frac{t^2(k+1)}{k}
+\left(
+1+\sqrt{
+1+\frac{4k\left(k+t^2(k^2+1)\right)}{t^2(k+1)^2}
+}
+\right).
+\]
+Dividing by \(t>0\), this is
+\[
+\mu+\lambda t<A_k(t),
+\]
+where
+\[
+A_k(t)
+=
+\frac{k+1}{k}t
++
+\frac{1}{k}
+\sqrt{
+4k^2+\left(4k^3+k^2+6k+1\right)t^2
+}.
+\]
+
+Thus the original problem is equivalent to the condition
+\[
+0<\mu+\lambda t<A_k(t)
+\qquad
+\text{for all }0<t\le \frac1{\sqrt2},\ k\ge 2.
+\]
+
+\subsection*{Boundary conditions}
+
+First let \(t\to 0^+\). Since
+\[
+A_k(t)\to 2,
+\]
+we must have
+\[
+0\le \mu\le 2.
+\]
+
+Next consider the endpoint \(t=1/\sqrt2\). For \(k=2\),
+\[
+A_2(t)
+=
+\frac32 t+\frac12\sqrt{16+49t^2}.
+\]
+Hence
+\[
+A_2\left(\frac1{\sqrt2}\right)
+=3\sqrt2.
+\]
+The strict inequality
+\[
+\mu+\lambda t<A_2(t)
+\]
+at \(t=1/\sqrt2\) therefore implies
+\[
+\mu+\frac{\lambda}{\sqrt2}<3\sqrt2.
+\]
+Equivalently,
+\[
+\lambda+\sqrt2\,\mu<6.
+\]
+
+Next we rewrite $A_k(t)$ in a simpler form for taking the limit \(t\to 0^+\):
+\[
+\begin{aligned}
+A_k(t)
+&=
+\frac{k+1}{k}t
++
+\frac{1}{k}
+\sqrt{
+4k^2+\left(4k^3+k^2+6k+1\right)t^2
+} \\
+&=
+\left(1+\frac1k\right)t
++
+2\sqrt{
+1+\frac{4k^3+k^2+6k+1}{4k^2}t^2
+}.
+\end{aligned}
+\]
+For each fixed \(k\), the quantity
+\[
+\frac{4k^3+k^2+6k+1}{4k^2}t^2 \to 0  \qquad (t\to 0)
+\]
+as \(t\to 0^+\). Using Taylor expansion
+\[
+\sqrt{1+s}=1+\frac{s}{2}+O(s^2)
+\qquad (s\to 0),
+\]
+we obtain
+\[
+2\sqrt{
+1+\frac{4k^3+k^2+6k+1}{4k^2}t^2
+}
+=
+2+\frac{4k^3+k^2+6k+1}{4k^2}t^2+O_k(t^4).
+\]
+So we can write
+\[
+A_k(t)
+=
+2+\left(1+\frac1k\right)t
++\frac{4k^3+k^2+6k+1}{4k^2}t^2
++O_k(t^4)
+=
+2+\left(1+\frac1k\right)t+O_k(t^2),
+\]
+Which for fixed $k$ entails
+\[
+\frac{A_k(t)-2}{t}
+\to
+1+\frac1k
+\qquad (t\to 0^+).
+\]
+Therefore, if \(\mu=2\), then the inequality
+\[
+\mu+\lambda t<A_k(t)
+\]
+implies, for every fixed \(k\ge 2\),
+\[
+\lambda
+<
+\frac{A_k(t)-2}{t}
+\]
+for all sufficiently small \(t>0\). Letting \(t\to 0^+\) forces
+\[
+\lambda\le 1+\frac1k
+\]
+for every \(k\ge 2\). Letting \(k\to\infty\) gives
+\[
+\lambda\le 1.
+\]
+
+\end{proof}
+
+\end{document}

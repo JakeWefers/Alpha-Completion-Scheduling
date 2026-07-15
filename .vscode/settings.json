@@ -1,0 +1,86 @@
+{
+  "files.exclude": {
+    "**/.latex-build": true,
+    "**/*.aux": true,
+    "**/*.bbl": true,
+    "**/*.bcf": true,
+    "**/*.blg": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.lof": true,
+    "**/*.log": true,
+    "**/*.lot": true,
+    "**/*.out": true,
+    "**/*.run.xml": true,
+    "**/*.synctex": true,
+    "**/*.synctex(busy)": true,
+    "**/*.synctex.gz": true,
+    "**/*.toc": true
+  },
+  "search.exclude": {
+    "**/.latex-build": true,
+    "**/*.aux": true,
+    "**/*.bbl": true,
+    "**/*.bcf": true,
+    "**/*.blg": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.lof": true,
+    "**/*.log": true,
+    "**/*.lot": true,
+    "**/*.out": true,
+    "**/*.run.xml": true,
+    "**/*.synctex": true,
+    "**/*.synctex(busy)": true,
+    "**/*.synctex.gz": true,
+    "**/*.toc": true
+  },
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/pdf",
+  "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/.latex-build",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.autoBuild.interval": 1000,
+  "latex-workshop.latex.watch.files.ignore": [
+    "**/.latex-build/**",
+    "**/pdf/**",
+    "**/*.aux",
+    "**/*.bbl",
+    "**/*.bcf",
+    "**/*.blg",
+    "**/*.fdb_latexmk",
+    "**/*.fls",
+    "**/*.lof",
+    "**/*.log",
+    "**/*.lot",
+    "**/*.out",
+    "**/*.run.xml",
+    "**/*.synctex",
+    "**/*.synctex(busy)",
+    "**/*.synctex.gz",
+    "**/*.toc"
+  ],
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": [
+        "latexmk"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "-outdir=%OUTDIR%",
+        "-auxdir=%AUXDIR%",
+        "%DOC%"
+      ],
+      "cwd": "%WORKSPACE_FOLDER%"
+    }
+  ]
+}

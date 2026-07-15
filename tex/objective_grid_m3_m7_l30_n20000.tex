@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+
+\usepackage[landscape,margin=0.75in]{geometry}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{siunitx}
+
+\sisetup{
+  round-mode = places,
+  round-precision = 9,
+  table-number-alignment = center
+}
+
+\title{SCIP Objective Grid for the Fractional Partition MINLP}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[htbp]
+  \centering
+  \caption{Objectives returned with \(l_i\leq 30\) and 20000 nodes}
+  \label{tab:objective-grid-m3-m7-l30-n20000}
+  \begin{tabular}{
+    c
+    S[table-format=2.9]
+    S[table-format=2.9]
+    S[table-format=2.9]
+    S[table-format=2.9]
+    S[table-format=2.9]
+    S[table-format=2.9]
+  }
+    \toprule
+    {$m$}
+      & {$a=\frac{1}{2}$}
+      & {$a=\frac{1}{10}$}
+      & {$a=\frac{1}{50}$}
+      & {$a=\frac{1}{200}$}
+      & {$a=\frac{1}{400}$}
+      & {$a=\frac{1}{900}$} \\
+    \midrule
+    3 & 1.333333347 & 2.145683314 & 4.111620016 & 7.666669270 & 10.603192514 & 15.604722751 \\
+    4 & 1.325693946 & 2.141941240 & 4.106326553 & 7.651132216 & 10.633503073 & 15.596631679 \\
+    5 & 1.329150290 & 2.123265789 & 4.118401736 & 7.677028797 & 10.642889269 & 15.631450328 \\
+    6 & 1.333333347 & 2.145683321 & 4.111620464 & 7.694623552 & 10.631359933 & 15.644793716 \\
+    7 & 1.330946449 & 2.143786138 & 4.118326757 & 7.679668017 & 10.619873421 & 15.622156226 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\noindent
+The runs used \(b=1\), \(0\leq l_i\leq 30\), group and denominator
+tolerance \(10^{-5}\), and a limit of 20000 branch-and-bound nodes. The
+auxiliary objective variable used the valid upper bound
+\[
+  r\leq 1+\frac{1}{6a}.
+\]
+The cases \((m,a)=(3,\frac12)\) and \((6,\frac12)\) ended with SCIP
+status \texttt{optimal}. Every other run ended with status
+\texttt{nodelimit}; those entries are the best feasible objectives
+returned by these fresh runs within the node limit and are not
+certificates of global optimality.
+
+\end{document}

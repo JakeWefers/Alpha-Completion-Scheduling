@@ -1,0 +1,155 @@
+
+\documentclass{article}
+
+\usepackage{amsmath,amsthm}
+
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\WSPT}{\mathrm{WSPT}}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\Cmax}{C_{\max}}
+\newcommand{\Cmin}{C_{\min}}
+
+\begin{document}
+\begin{corollary}\label{Corr: Splitting Jobs}
+For every instance $I$ of the $P||\sum_j p_j C_j(\alpha)$ problem with $\alpha \in [\frac12,1]$, there is an
+instance $I'$ of the $P||\sum_j p_j C_j(\alpha)$ problem such that
+$\lambda(I')\geq\lambda(I)$, and every job in $I'$ that starts before
+$C_{max}^{min}(S_{\WSPT}(I'))$ has arbitrarily small processing time.
+\end{corollary}
+
+\begin{proof}
+Assume an arbitrary list schedule $S$ for an instance $I$ of
+$P||\sum_j p_j C_j (\alpha)$. We generate an instance $J$ by taking a job $j_0$ from
+$I$ and replacing it in schedule $S(I)$ with two jobs $j_1$ and $j_2$ such
+that. (kind of inexact to call both the schedule for J and for I S....)
+\[
+        p_{j_1}+p_{j_2}=p_{j_0},
+        \qquad
+        C_{j_2}=C_{j_0},
+        \qquad
+        C_{j_1}=C_{j_0}-p_{j_2}.
+\]
+
+
+This replacement does not alter the completion time of any other job in
+$S(I)$. Therefore,
+\[
+        C_{\max}^i(S(I))=C_{\max}^i(S(J))
+\]
+for all $1\leq i\leq m$. By  (Queyraynne ref. here)
+\begin{align*}
+        \sum_{j\in I}p_j C_j(S(I))(\alpha)-\sum_{j\in J}p_j C_j(S(J))(\alpha) 
+        &=
+        \frac12((2\alpha-1)(p_{j_0}^2-p_{j_1}^2-p_{j_2}^2))\\
+        &=
+        (2\alpha-1)p_{j_1}p_{j_2}\\
+        &\ge 0.
+\end{align*}
+If $C_{j_1}\leq C_{max}^{min}(S_{\WSPT}(I))$, then the resulting schedule
+$S_{\WSPT}(J)$ is again a list schedule. Since every job order is an WSPT order
+for an instance of $P||\sum_j p_j C_j(\alpha)$, we may choose an order for $J$ such
+that $S(J)=S_{\WSPT}(J)$.
+
+Because $S_{\OPT}(J)$ is also a list schedule, we obtain
+\[
+        1\leq \lambda(I)
+        =
+        \frac{C(I)}{C^*(I)}
+        \leq
+        \frac{C(I)-(2\alpha-1)p_{j_1}p_{j_2}}{C^*(I)-(2\alpha-1)p_{j_1}p_{j_2}}
+        \leq
+        \frac{C(J)}{C^*(J)}
+        =
+        \lambda(J).
+\]
+Repeating this splitting operation yields an instance in which all jobs that
+start before $C_{max}^{min}(S_{\WSPT}(I))$ have arbitrarily small processing time.
+Since at most $m-1$ jobs can start at $C_{max}^{min}(S_{\WSPT}(I))$, all but at most
+$m-1$ jobs have arbitrarily small processing time.
+\end{proof}
+
+By the preceding reductions, we from now on only consider instances $I$
+with $w_j=p_j$ for all jobs and in which all jobs have arbitrarily small
+processing time, except for at most $m-1$ long jobs that start at
+$C_{max}^{min}(S_{\WSPT}(I))$. Let $L(I)\subseteq I$ denote the set of these long jobs.
+
+Furthermore, let $K(I)\subseteq L(I)$ be the largest set such that
+\[
+        p_j\geq \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+holds for all $j\in K(I)$. We obtain $K(I)$ by adding long jobs in decreasing
+order of their processing times and testing this property. All jobs in
+$I\setminus L(I)$ are called small jobs.
+
+Since every small job has arbitrarily small processing time, we can ignore
+the term $(2\alpha-1)\sum_{j\in I\setminus L(I)}p_j^2$ in
+(Queryanne ref. here or label of Corr. 2). Thus, for any list schedule $S(I)$,
+\begin{equation}
+\label{eq:long-job-identity}
+        \sum_{j\in I}p_j C_j
+        =
+        \frac12
+        \left(
+            (2\alpha-1)\sum_{j\in L(I)}p_j^2
+            +
+            \sum_{i=1}^m(C_{\max}^i(S(I)))^2
+        \right).
+\end{equation}
+Applying \eqref{eq:long-job-identity} to $S_{\WSPT}(I)$ gives
+\begin{equation}
+\label{eq:wspt-value}
+\begin{aligned}
+        C(I)
+        &=
+        \frac12(2\alpha-1)\sum_{j\in L(I)}p_j^2
+        +
+        \frac12\sum_{j\in L(I)}
+            (p_j+C_{max}^{min}(S_{\WSPT}(I)))^2                    \\
+        &\quad
+        +
+        \frac12\left((m-|L(I)|)(C_{max}^{min}(S_{\WSPT}(I)))^2\right).
+\end{aligned}
+\end{equation}
+
+Next, we address the construction of an optimal schedule for such instances.
+Consider a job order for $I$ in which the long jobs precede all small jobs.
+In the corresponding list schedule $S_{\OPT}(I)$, all long jobs start at time
+$0$, because $|L(I)|<m$. We have,
+\[
+        C_{max}^{min}(S_{\OPT}(I))
+        \leq
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j .
+\]
+If a small job $j_0$ finishes after
+\[
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j ,
+\]
+we split $j_0$ at time
+\[
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+as in the proof of \ref{Corr: Splitting Jobs}. In the list for $S_{\OPT}(I)$, the first new job
+$j_1$ replaces $j_0$, while the second new job $j_2$ is placed at the end of
+the list. After at most $m-|K(I)|-1$ such splitting steps,
+\[
+        C_{\max}^i(S_{\OPT}(I))
+        =
+        C_{max}^{min}(S_{\OPT}(I))
+        =
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+holds for every machine $i$ that executes a small job. Therefore, every
+machine $i$ with
+\[
+        C_{\max}^i(S_{\OPT}(I))>C_{max}^{min}(S_{\OPT}(I))
+\]
+executes only a single long job. By \eqref{eq:long-job-identity} and the
+convexity of the square function, it is impossible to further reduce
+\[
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2
+\]
+by transferring jobs. Hence, $S_{\OPT}(I)$ is optimal.
+
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\newtheorem{example}{Example}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+
+\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\Cmin}{C_{min}^{max}}
+
+\begin{document}
+\begin{corollary}[Unification Lemma]
+    Consider an instance $I$ of the problem $P||\sum p_jC_j(\alpha)$ where $\alpha \in [0,\frac12]$. 
+    Then there exists an instance $I'$ of the problem $P||\sum p_jC_j(\alpha)$ such that no two jobs 
+    $j,k$ that are scheduled on the same machine in any cost maximizing schedule $S'_{\LRF}(I)$, are also 
+    scheduled on the same machine in optimal schedule $S'_{\OPT}(I')$ and $\lambda(I)\le\lambda(I')$. 
+
+\end{corollary}
+
+\begin{definition}[Pairwise Unification]
+    The pairwise unification of two jobs $j,k$ of instance $I$ for a schedule $S$ is defined, by replacing jobs $j,k$
+    with a single job $l$ of 
+    processing time $p_l=p_j+p_k$. We associate this process with the instance $I'$ and schedule $S'$ 
+    which emerges from $S$ by replacing jobs $j,k$ with job $l$ in $S$.
+\end{definition}
+
+Preceding the proof, we first want to make clear that 
+if, two jobs $j,k$ are scheduled on the same machine $i$ and both $F_{j}(S) < C_{max}^{i}(S)$ and 
+$F_{k}(S) < C_{max}^{i}(S)$ hold for some schedule $S$,
+then swapping the processing order of $j,k$ in $S$, does not change the value of $C(S(I))(\alpha) \qquad \forall \alpha \in [0,1]$,
+and all jobs remain scheeduled in some list order.
+If $S$ is optimal, the restrction of : $C_{j} < C_{max}^{i}$ and $C_{k} < C_{max}^{i}$ is not needed. 
+
+
+\begin{corollary}
+    If $j,k$ are jobs scheduled on the same machine $i$ in some schedule $S(I)$, then the pairwise unfication
+    of $j,k$ does not change the value of $C^{i}_{max}(S(I))(\alpha)$.
+
+\end{corollary}
+
+\begin{proof}
+    From ("fact") we may assume without loss of generality, that $j$ and $k$ are scheduled such that either $S_{j} = C_{k}$ or $S_{k} = C_{j}$.
+    As the time in which $j,k$ were previously processed is now used to process $l$, the total load on machine $i$ remains unchanged.
+    The starting and completion times of all other jobs remains unchanged, and thus the value of $C^{i}_{max}(S(I))(\alpha)$ remains unchanged.
+\end{proof}
+
+
+\begin{proof}[Proof of Unification Lemma]
+    Let $I$ be an instance of the problem $P||\sum p_jC_j(\alpha)$ and let $S_{\LRF}(I)$ and $S_{\OPT}(I)$ be cost maximizing and optimal schedules of $I$, respectively.
+    Suppose there exist two jobs $j,k$ that are scheduled on the same machine in both $S_{\LRF}(I)$ and $S_{\OPT}(I)$.
+    We may assume without loss of generality that $j$ and $k$ are scheduled on machine $i$ in both schedules. 
+    We may also assume without loss of generality that either $S_{j} = C_{k}$ or $S_{k} = C_{j}$ in both schedules.
+    We now perform the pairwise unification of $j,k$ in both schedules, and let $I'$ be the instance that emerges from this unification. 
+    Let $S'_{\LRF}(I')$ and $S'_{\OPT}(I')$ be the schedules that emerge from $S_{\LRF}(I)$ and $S_{\OPT}(I)$, respectively, after the pairwise unification of $j,k$.
+    \begin{align*}
+        C(S_{\LRF}(I))(\alpha) - C(S'_{\LRF}(I'))(\alpha)
+        &= \frac12 \sum_{i=1}^{m}
+        \Bigl(
+            C^{i}_{max}(S_{\LRF}(I))^2
+            - C^{i}_{max}(S'_{\LRF}(I'))^2
+        \Bigr) \\
+        &\quad -(2\alpha-1)p_jp_k \\
+        &= (1-2\alpha)p_jp_k \ge 0.
+    \end{align*}
+
+    And equally for $S_{\OPT}$.
+
+    \begin{align*}
+        C(S_{\OPT}(I))(\alpha) - C(S'_{\OPT}(I'))(\alpha)
+        &= (1-2\alpha)p_jp_k \ge 0.
+    \end{align*}
+
+    Then 
+    \begin{align*}
+        \lambda(I) = \frac{C(S_{\LRF}(I))(\alpha)}{C(S_{\OPT}(I))(\alpha)}
+        &= \frac{C(S'_{\LRF}(I'))(\alpha) + (1-2\alpha)p_jp_k}{C(S'_{\OPT}(I'))(\alpha)+ (1-2\alpha)p_jp_k } \\
+        &\le \frac{C(S'_{\LRF}(I'))(\alpha)}{C(S'_{\OPT}(I'))(\alpha)} \\
+        &= \lambda(I').
+    \end{align*}
+    
+\end{proof}
+
+\end{document}

@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+
+\title{A Comparison of Two Ratios}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Statement}
+
+Let \(A>B>C\), let \(b\in(0,1)\) be fixed, and let \(d,e>0\). Suppose both denominators are positive:
+\[
+B-bC>0
+\qquad\text{and}\qquad
+B-e-b(C-d)>0.
+\]
+Then
+\[
+\frac{A-bC}{B-bC}
+<
+\frac{A-e-b(C-d)}{B-e-b(C-d)}
+\]
+if and only if
+\[
+e>bd.
+\]
+
+\section*{Proof}
+
+Define
+\[
+X=A-bC,\qquad Y=B-bC,\qquad t=bd-e.
+\]
+Then
+\[
+A-e-b(C-d)
+=A-e-bC+bd
+=X+t,
+\]
+and similarly
+\[
+B-e-b(C-d)
+=B-e-bC+bd
+=Y+t.
+\]
+Thus the desired inequality is
+\[
+\frac{X}{Y}<\frac{X+t}{Y+t}.
+\]
+Since the two denominators are positive by assumption, we may subtract the left-hand side from the right-hand side without changing signs in the denominator:
+\[
+\frac{X+t}{Y+t}-\frac{X}{Y}
+=\frac{Y(X+t)-X(Y+t)}{Y(Y+t)}
+=\frac{t(Y-X)}{Y(Y+t)}.
+\]
+Now
+\[
+Y-X=(B-bC)-(A-bC)=B-A<0,
+\]
+because \(A>B\). Also \(Y>0\) and \(Y+t>0\) by assumption. Therefore
+\[
+\frac{X+t}{Y+t}-\frac{X}{Y}>0
+\]
+if and only if
+\[
+t<0.
+\]
+Since \(t=bd-e\), this is equivalent to
+\[
+bd-e<0,
+\]
+or
+\[
+e>bd.
+\]
+Hence
+\[
+\frac{A-bC}{B-bC}
+<
+\frac{A-e-b(C-d)}{B-e-b(C-d)}
+\]
+if and only if \(e>bd\), as claimed.
+
+\end{document}

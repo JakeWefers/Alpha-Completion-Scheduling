@@ -1,0 +1,715 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{microtype}
+
+\title{Parameter Conditions for Improving a Square-Root Bound}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Setup}
+
+Let the old function be
+\[
+H(a)
+=
+1+\frac{c}{da+\sqrt{a(ea+f)}},
+\]
+and let the new function be
+\[
+\widetilde H(a)
+=
+1+\frac{\widetilde c}
+{\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}}.
+\]
+We consider the interval
+\[
+0<a\le \frac12.
+\]
+
+Throughout, the functions are assumed to be real-valued and to have positive denominators on the relevant interval. Thus the square-root arguments must be nonnegative and the denominators must be strictly positive wherever the inequalities are imposed.
+
+The goal is to choose new parameters
+\[
+\widetilde c,\ \widetilde d,\ \widetilde e,\ \widetilde f
+\]
+so that
+\[
+\boxed{
+H(a)<\widetilde H(a)<1+\frac{1}{6a}
+\qquad
+\text{for all }0<a\le \frac12.
+}
+\]
+Thus the new function should lie strictly above the old one, but strictly below the ceiling
+\[
+1+\frac{1}{6a}.
+\]
+
+\section{Denominator notation}
+
+Define
+\[
+S(a)
+=
+da+\sqrt{a(ea+f)}
+\]
+and
+\[
+\widetilde S(a)
+=
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}.
+\]
+Then
+\[
+H(a)=1+\frac{c}{S(a)}
+\]
+and
+\[
+\widetilde H(a)=1+\frac{\widetilde c}{\widetilde S(a)}.
+\]
+
+Assuming all denominators are positive, the desired condition is equivalent to
+\[
+\frac{c}{S(a)}
+<
+\frac{\widetilde c}{\widetilde S(a)}
+<
+\frac{1}{6a}
+\qquad
+\text{for all }0<a\le\frac12.
+\]
+
+\section{Exact improvement condition}
+
+The inequality
+\[
+H(a)<\widetilde H(a)
+\]
+is equivalent to
+\[
+\frac{c}{S(a)}
+<
+\frac{\widetilde c}{\widetilde S(a)}.
+\]
+Assuming \(c>0\), \(\widetilde c>0\), \(S(a)>0\), and \(\widetilde S(a)>0\), this becomes
+\[
+\boxed{
+\widetilde S(a)
+<
+\frac{\widetilde c}{c}S(a)
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+Written out explicitly,
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+<
+\frac{\widetilde c}{c}
+\left(
+da+\sqrt{a(ea+f)}
+\right)
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\section{Exact upper-bound condition}
+
+The condition
+\[
+\widetilde H(a)<1+\frac{1}{6a}
+\]
+is equivalent to
+\[
+\frac{\widetilde c}{\widetilde S(a)}
+<
+\frac{1}{6a}.
+\]
+Assuming \(\widetilde c>0\) and \(\widetilde S(a)>0\), this becomes
+\[
+\boxed{
+\widetilde S(a)>6a\widetilde c
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+Explicitly,
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+>
+6a\widetilde c
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\section{Parameter form of the upper-bound condition}
+
+Set
+\[
+\widetilde k=6\widetilde c-\widetilde d.
+\]
+Then the upper-bound condition becomes
+\[
+\sqrt{a(\widetilde e\,a+\widetilde f)}
+>
+a\widetilde k.
+\]
+
+If
+\[
+\widetilde k\le 0,
+\]
+then the right-hand side is nonpositive, while the square-root term is nonnegative.
+Thus the upper-bound condition is automatically satisfied whenever the square root is real and the denominator is positive.
+
+If
+\[
+\widetilde k>0,
+\]
+then squaring gives the equivalent condition
+\[
+a(\widetilde e\,a+\widetilde f)
+>
+a^2\widetilde k^2.
+\]
+Since \(a>0\), this is equivalent to
+\[
+\boxed{
+\widetilde f+a\left(\widetilde e-\widetilde k^2\right)>0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+That is,
+\[
+\boxed{
+\widetilde f+a\left(\widetilde e-(6\widetilde c-\widetilde d)^2\right)>0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\section{Standing reality and positivity conditions}
+
+The comparison inequalities are meaningful only under the following standing assumptions. To keep the functions real-valued on \(0<a\le\frac12\), one needs
+\[
+\boxed{
+ea+f\ge 0
+\qquad
+\text{and}
+\qquad
+\widetilde e\,a+\widetilde f\ge 0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+For the new function, this means
+\[
+\boxed{
+\widetilde e\,a+\widetilde f\ge 0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+The new denominator must also remain positive:
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}>0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\section{Consequences of assuming \(c<d\)}
+
+Now add the assumption
+\[
+\boxed{
+c<d.
+}
+\]
+For the old function
+\[
+H(a)
+=
+1+\frac{c}{da+\sqrt{a(ea+f)}},
+\]
+this assumption says that the coefficient in the numerator is smaller than the linear coefficient in the denominator.
+
+The ceiling comparison
+\[
+H(a)<1+\frac{1}{6a}
+\]
+is equivalent to
+\[
+\frac{c}{da+\sqrt{a(ea+f)}}<\frac{1}{6a}.
+\]
+Assuming positive denominators, this is equivalent to
+\[
+6ac<da+\sqrt{a(ea+f)}.
+\]
+Thus
+\[
+\boxed{
+\sqrt{a(ea+f)}>a(6c-d).
+}
+\]
+Set
+\[
+k=6c-d.
+\]
+Then the ceiling condition becomes
+\[
+\boxed{
+\sqrt{a(ea+f)}>ak.
+}
+\]
+
+\subsection*{Case 1: \(d\ge 6c\)}
+
+If
+\[
+\boxed{
+d\ge 6c,
+}
+\]
+then
+\[
+k=6c-d\le 0.
+\]
+The right-hand side \(ak\) is nonpositive for \(a>0\), while the square-root term is nonnegative.
+Therefore the ceiling condition is automatic, up to the already assumed real-valuedness and positivity conditions.
+
+More precisely, if \(d>6c\), then
+\[
+da>6ac,
+\]
+so
+\[
+da+\sqrt{a(ea+f)}>6ac
+\]
+for every \(a>0\).
+Hence
+\[
+\boxed{
+H(a)<1+\frac{1}{6a}
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+If \(d=6c\), then the inequality becomes
+\[
+\sqrt{a(ea+f)}>0.
+\]
+Thus strict inequality holds whenever
+\[
+ea+f>0.
+\]
+If the square-root term vanishes at some point, then the old function touches the ceiling at that point.
+
+\subsection*{Case 2: \(c<d<6c\)}
+
+If
+\[
+\boxed{
+c<d<6c,
+}
+\]
+then
+\[
+k=6c-d>0.
+\]
+In this case, \(c<d\) alone is not enough to guarantee that \(H\) lies below the ceiling.
+We must impose
+\[
+\sqrt{a(ea+f)}>a(6c-d).
+\]
+Squaring is valid because both sides are nonnegative.
+For \(a>0\), this gives
+\[
+a(ea+f)>a^2(6c-d)^2,
+\]
+or equivalently
+\[
+\boxed{
+f+a\left(e-(6c-d)^2\right)>0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+Therefore, under the assumption \(c<d<6c\), the old function remains strictly below the ceiling exactly when
+\[
+\boxed{
+f+a\left(e-(6c-d)^2\right)>0
+}
+\]
+throughout the interval, together with the standing real-valuedness and positivity assumptions.
+
+\subsection*{Endpoint contact}
+
+If
+\[
+f+a\left(e-(6c-d)^2\right)=0
+\]
+at some point \(a\), then
+\[
+H(a)=1+\frac{1}{6a}.
+\]
+Thus equality with the ceiling occurs exactly at the points where
+\[
+\boxed{
+a=
+\frac{f}{(6c-d)^2-e},
+}
+\]
+provided \(6c-d>0\) and the displayed value lies in the interval under consideration.
+
+\subsection*{Application to new parameters}
+
+The same analysis applies to the new function after replacing
+\[
+c,d,e,f
+\]
+by
+\[
+\widetilde c,\widetilde d,\widetilde e,\widetilde f.
+\]
+Thus, if
+\[
+\boxed{
+\widetilde d\ge 6\widetilde c,
+}
+\]
+then the new function automatically stays below the ceiling, subject to real-valuedness and positivity.
+If instead
+\[
+\boxed{
+\widetilde c<\widetilde d<6\widetilde c,
+}
+\]
+then the required ceiling condition is
+\[
+\boxed{
+\widetilde f
++
+a\left(\widetilde e-(6\widetilde c-\widetilde d)^2\right)>0
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\section{A clean sufficient strategy}
+
+A simple sufficient way to make the new function larger than the old one is to increase the numerator and reduce the denominator.
+For example, suppose
+\[
+\boxed{
+\widetilde c\ge c,
+}
+\]
+and
+\[
+\boxed{
+\widetilde d\le d,\qquad
+\widetilde e\le e,\qquad
+\widetilde f\le f,
+}
+\]
+with at least one inequality strict in a way that makes
+\[
+\frac{\widetilde c}{\widetilde S(a)}
+>
+\frac{c}{S(a)}
+\]
+on the full interval.
+
+This is only a sufficient strategy, not a necessary one.
+After making such a choice, one must still impose the ceiling condition
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+>
+6a\widetilde c
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+This prevents the new function from crossing above
+\[
+1+\frac{1}{6a}.
+\]
+
+\section{Specific initial choice: \(c=2,\ d=3,\ e=49,\ f=16\)}
+
+Now suppose the initial parameter choice is
+\[
+\boxed{
+c=2,\qquad d=3,\qquad e=49,\qquad f=16.
+}
+\]
+Then the old function is
+\[
+H(a)
+=
+1+\frac{2}{3a+\sqrt{a(49a+16)}}.
+\]
+Thus
+\[
+S(a)
+=
+3a+\sqrt{a(49a+16)}.
+\]
+
+The exact improvement and ceiling conditions for the new parameters become
+\[
+\boxed{
+6a\widetilde c
+<
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+<
+\frac{\widetilde c}{2}
+\left(
+3a+\sqrt{a(49a+16)}
+\right)
+}
+\]
+for every \(a\) in the interval under consideration.
+
+\subsection*{Endpoint behavior}
+
+Before choosing new parameters, one should check whether the old function is already strictly below the ceiling
+\[
+1+\frac{1}{6a}.
+\]
+The condition
+\[
+H(a)<1+\frac{1}{6a}
+\]
+is equivalent to
+\[
+\frac{2}{3a+\sqrt{a(49a+16)}}<\frac{1}{6a}.
+\]
+Therefore
+\[
+3a+\sqrt{a(49a+16)}>12a,
+\]
+or
+\[
+\sqrt{a(49a+16)}>9a.
+\]
+Squaring, for \(a>0\), gives
+\[
+49a^2+16a>81a^2,
+\]
+which is equivalent to
+\[
+16a>32a^2.
+\]
+Hence
+\[
+\boxed{
+H(a)<1+\frac{1}{6a}
+\quad\Longleftrightarrow\quad
+0<a<\frac12.
+}
+\]
+At the endpoint \(a=\frac12\), the old function touches the ceiling:
+\[
+\boxed{
+H\left(\frac12\right)
+=
+1+\frac{1}{6\cdot\frac12}.
+}
+\]
+
+If touching the ceiling at the endpoint is allowed, then this is acceptable boundary behavior.
+The strict comparison should then be imposed on the open interval
+\[
+\boxed{
+0<a<\frac12.
+}
+\]
+At the endpoint \(a=\frac12\), one may separately impose the non-strict ceiling condition
+\[
+\boxed{
+\widetilde H\left(\frac12\right)
+\le
+1+\frac{1}{6\cdot\frac12}.
+}
+\]
+In denominator form, this endpoint condition is
+\[
+\boxed{
+\widetilde S\left(\frac12\right)\ge 3\widetilde c.
+}
+\]
+Equivalently,
+\[
+\boxed{
+\frac{\widetilde d}{2}
++
+\sqrt{\frac12\left(\frac{\widetilde e}{2}+\widetilde f\right)}
+\ge
+3\widetilde c.
+}
+\]
+
+If one instead requires strict improvement
+\(\widetilde H(a)>H(a)\) also at \(a=\frac12\), while also requiring
+\(\widetilde H(a)\le 1+\frac{1}{6a}\) at \(a=\frac12\), then no such new function can exist, because \(H(\frac12)\) is already equal to the ceiling.
+
+\subsection*{Conditions for the new parameters on \(0<a<\frac12\)}
+
+On the open interval \(0<a<\frac12\), the new parameters must satisfy
+\[
+\boxed{
+6a\widetilde c
+<
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+<
+\frac{\widetilde c}{2}
+\left(
+3a+\sqrt{a(49a+16)}
+\right)
+}
+\]
+for every \(0<a<\frac12\).
+
+Equivalently, writing
+\[
+\widetilde S(a)
+=
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)},
+\]
+the condition is
+\[
+\boxed{
+6a\widetilde c
+<
+\widetilde S(a)
+<
+\frac{\widetilde c}{2}S(a)
+\qquad
+\text{for all }0<a<\frac12.
+}
+\]
+
+The left inequality is the ceiling condition. With
+\[
+\widetilde k=6\widetilde c-\widetilde d,
+\]
+it can be written as
+\[
+\sqrt{a(\widetilde e\,a+\widetilde f)}
+>
+a\widetilde k.
+\]
+If
+\[
+\widetilde k\le 0,
+\]
+then this condition is automatic whenever the square root is real and the denominator is positive.
+If
+\[
+\widetilde k>0,
+\]
+then it is equivalent to
+\[
+\boxed{
+\widetilde f
++
+a\left(\widetilde e-(6\widetilde c-\widetilde d)^2\right)
+>0
+\qquad
+\text{for all }0<a<\frac12.
+}
+\]
+
+The right inequality is the improvement condition:
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+<
+\frac{\widetilde c}{2}
+\left(
+3a+\sqrt{a(49a+16)}
+\right)
+\qquad
+\text{for all }0<a<\frac12.
+}
+\]
+This says that the new denominator must be small enough, relative to \(\widetilde c\), to make the new function larger than the old one.
+
+\subsection*{Real-valuedness}
+
+The new square root must be real on the interval, so one also needs
+\[
+\boxed{
+\widetilde e\,a+\widetilde f\ge 0
+\qquad
+\text{for all }0<a<\frac12.
+}
+\]
+The new denominator should remain positive:
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}>0
+\qquad
+\text{for all }0<a<\frac12.
+}
+\]
+
+\section{Summary}
+
+The exact conditions for
+\[
+H(a)<\widetilde H(a)<1+\frac{1}{6a}
+\]
+on the interval \(0<a\le\frac12\) are:
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+<
+\frac{\widetilde c}{c}
+\left(
+da+\sqrt{a(ea+f)}
+\right)
+}
+\]
+and
+\[
+\boxed{
+\widetilde d\,a+\sqrt{a(\widetilde e\,a+\widetilde f)}
+>
+6a\widetilde c
+}
+\]
+for every \(0<a\le\frac12\), together with the necessary real-valuedness and positivity assumptions.
+
+Equivalently, the new denominator must satisfy
+\[
+\boxed{
+6a\widetilde c
+<
+\widetilde S(a)
+<
+\frac{\widetilde c}{c}S(a)
+\qquad
+\text{for all }0<a\le\frac12.
+}
+\]
+
+\end{document}

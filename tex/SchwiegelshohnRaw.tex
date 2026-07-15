@@ -1,0 +1,758 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example}
+
+\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\Cmax}{C_{\max}}
+\newcommand{\Cmin}{C_{\max}^{\min}}
+
+\begin{document}
+
+\title{An Alternative Proof of the Kawaguchi--Kyan Bound for the
+Largest-Ratio-First Rule}
+\author{Uwe Schwiegelshohn\\
+\small Robotics Research Institute, TU Dortmund University, D-44221 Dortmund, Germany}
+\date{}
+\maketitle
+
+\begin{abstract}
+In a well-known paper from 1986, Kawaguchi and Kyan proved that the
+Largest-Ratio-First rule for total weighted completion time scheduling on
+identical parallel machines has a worst case ratio of
+\[
+        \frac12(1+\sqrt{2}).
+\]
+We provide an alternative and simple proof for this result.
+\end{abstract}
+
+\noindent\textbf{Keywords:}
+Total weighted completion time scheduling; worst case analysis; performance
+guarantee.
+
+\bigskip
+
+An instance of the scheduling problem
+\[
+        P\|\sum_j w_j C_j
+\]
+consists of $n$ jobs. Each job has a weight $w_j \in \mathbb{R}^+$ and a
+processing time $p_j \in \mathbb{R}^+$. The goal is to schedule the jobs on
+$m$ identical parallel machines such that the weighted sum of the resulting
+job completion times $C_j$ (total weighted completion time) is minimized.
+List scheduling is frequently applied to generate schedules for this type of
+problem: at time 0 or whenever a machine becomes idle, the available jobs are
+scanned in a previously established order to determine the first job that can
+be started on machines, idle at this time. Any list schedule for the
+$P\|\sum_j w_j C_j$ problem has no intermediate idle times as all jobs become
+available at time 0 and each job only requires a single machine. Delaying the
+execution of a job while a machine is idle increases the completion time of
+this job while it does not reduce the completion time of any other job.
+Hence, for each instance of the $P\|\sum_j w_j C_j$ problem, there is a job
+order such that the corresponding list schedule is an optimal schedule. An
+LRF (Largest-Ratio-First) schedule is a specific list schedule that uses a
+decreasing order of the ratio $w_j/p_j$ for the jobs. In a celebrated paper
+from 1986, Kawaguchi and Kyan~[1] showed that the total weighted completion
+time of an LRF schedule is at most a factor
+\[
+        \frac12(1+\sqrt{2})
+\]
+larger than the optimal total weighted completion time; furthermore this
+bound is tight.
+
+Unfortunately, the original proof by Kawaguchi and Kyan~[1] is rather long
+and involved. Therefore, this note provides an alternative and simpler
+version of this proof divided into four corollaries. Step by step,
+Corollaries 1, 3 and 5 simplify the performance analysis by reducing the set
+of instances that must be examined. First, Corollary 1 shows that the worst
+case performance occurs in an instance in which $w_j=p_j$ holds for all jobs.
+For these instances, Queyranne~[2] has given a simple expression to calculate
+the total weighted completion time in a single machine schedule without
+intermediate idle times. For the sake of completeness, we state this result
+in Corollary 2 and give a brief proof before extending the expression to
+parallel identical machines. For the purpose of our performance analysis, we
+show in Corollary 3 that it is sufficient to consider instances that contain
+at most $m-1$ so-called long jobs while the processing time of all other jobs
+is arbitrarily small. Finally, Corollary 5 enables us to additionally demand
+that all long jobs have the same processing time. As a result of these four
+corollaries, we can express the worst case performance with two functions of
+two variables each. Determining the maximum of these functions within the
+permitted ranges of the variables yields the performance guarantee of an LRF
+schedule.
+
+Before starting with the actual proof, we briefly point out the convexity of
+the square function as this property is repeatedly used in the rest of this
+note:
+\[
+        (x-z)^2+(y+z)^2
+        =
+        x^2+y^2-2z(x-y-z)
+        <
+        x^2+y^2
+\]
+for three positive numbers $x$, $y$, and $z$ with $x-y>z$. Therefore, for
+$k$ numbers $x_i$ with a fixed sum $\sum_{i=1}^k x_i$, the sum of squares
+$\sum_{i=1}^k x_i^2$ becomes minimal if
+\[
+        x_i=\frac1k\sum_{i=1}^k x_i
+\]
+holds for all $1\leq i\leq k$.
+
+We extend our previous definition of an instance $I$ for the
+$P\|\sum_j w_j C_j$ problem to additionally include an LRF order for all
+jobs. This LRF order produces the so-called primary LRF schedule
+$S_{\LRF}(I)$. Therefore, every instance has a unique primary LRF schedule
+$S_{\LRF}$ even if all jobs have the same $w_j/p_j$ ratio. Throughout the
+proof, we say that $C(I)$ is the total weighted completion time of
+$S_{\LRF}(I)$ while $C^*(I)$ is the total weighted completion time of an
+optimal schedule $S_{\OPT}(I)$ for instance $I$. Furthermore, we use the
+notation
+\[
+        \lambda(I)=\frac{C(I)}{C^*(I)}
+\]
+to describe the performance ratio between $S_{\LRF}(I)$ and $S_{\OPT}(I)$.
+
+\begin{corollary}
+For every instance $I$ of the $P\|\sum_j w_j C_j$ problem, there is an
+instance $I'$ of the problem $P\|\sum_j p_j C_j$ with
+$\lambda(I')\geq \lambda(I)$.
+\end{corollary}
+
+\begin{proof}
+Let $r_1>r_2>\cdots>r_d$ be the $d$ different $w_j/p_j$ ratios of an
+instance $I$ and $r_{d+1}=0$. Note that we can use the term
+\[
+        r_i=\sum_{k=i}^d (r_k-r_{k+1}).
+\]
+Furthermore, let $i(j)$ denote the index of the ratio for job $j$, that is
+$w_j/p_j=r_{i(j)}$. Then we write
+\[
+        w_j
+        =
+        r_{i(j)}p_j
+        =
+        \left(\sum_{k=i(j)}^d (r_k-r_{k+1})\right)p_j
+\]
+and use this term to express the total weighted completion time of an
+arbitrary schedule for instance $I$:
+\[
+\begin{aligned}
+        \sum_{j\in I} w_j C_j
+        &=
+        \sum_{j\in I}
+        \left(
+            \sum_{k=i(j)}^d (r_k-r_{k+1})
+        \right)p_j C_j                                     \\
+        &=
+        \sum_{k=1}^d (r_k-r_{k+1})
+        \sum_{j\in I\mid i(j)\leq k} p_j C_j .
+\end{aligned}
+\]
+Next, we define a sequence of instances
+\[
+        I_k=\{j\in I\mid i(j)\leq k\}
+\]
+for $1\leq k\leq d$ and set $w_j=p_j$ for every job in any $I_k$. Note that
+a job belongs to $I_k$ if it precedes a job $j\in I_k$ in any LRF order of
+instance $I$. For the jobs in any $I_k$, we use the LRF order of these jobs
+in instance $I$, as our weight selection allows every order of the jobs in
+$I_k$. Therefore, the completion times of any job $j\in I_k$ in
+$S_{\LRF}(I_k)$ and in $S_{\LRF}(I)$ are identical. With $C_j^*$ denoting the
+completion time of job $j$ in an optimal schedule for instance $I$, we have
+\[
+\begin{aligned}
+        \lambda(I)
+        &=
+        \frac{\sum_{k=1}^d (r_k-r_{k+1})C(I_k)}
+        {\sum_{k=1}^d
+        \left((r_k-r_{k+1})\sum_{j\in I_k}p_jC_j^*\right)}
+        \\
+        &\leq
+        \frac{\sum_{k=1}^d (r_k-r_{k+1})C(I_k)}
+        {\sum_{k=1}^d (r_k-r_{k+1})C^*(I_k)}
+        \leq
+        \max_k \lambda(I_k).
+        \qedhere
+\end{aligned}
+\]
+\end{proof}
+
+For single machine list schedules of instances in which $w_j=p_j$ holds for
+all jobs, Queyranne~[2] has presented a simple formula to determine the total
+weighted completion time with $\Cmax(S)$, denoting the maximum completion
+time or makespan of schedule $S$:
+
+\begin{corollary}
+For any schedule $S$ on a single machine without intermediate idle times,
+\[
+        \sum_{j\in I}p_j C_j
+        =
+        \frac12\left(\sum_{j\in I}p_j^2+(\Cmax(S))^2\right)
+\]
+holds.
+\end{corollary}
+
+\begin{proof}
+Remember the relation
+\[
+\begin{aligned}
+        \left(\sum_{i=1}^n a_i\right)^2
+        &=
+        \sum_{i=1}^n a_i\sum_{k=1}^n a_k                         \\
+        &=
+        \sum_{i=1}^n a_i^2
+        +2\sum_{i=2}^n a_i\sum_{k=1}^{i-1}a_k                    \\
+        &=
+        2\sum_{i=1}^n a_i\sum_{k=1}^{i}a_k-\sum_{i=1}^n a_i^2 .
+\end{aligned}
+\]
+Assume that in schedule $S$, the jobs in instance $I$ are scheduled in order
+of increasing index. Then, we have
+\[
+\begin{aligned}
+        \sum_{j=1}^n p_j C_j
+        &=
+        \sum_{j=1}^n p_j\sum_{k=1}^j p_k                         \\
+        &=
+        \frac12\sum_{j=1}^n p_j^2
+        +\frac12\left(\sum_{j=1}^n p_j\right)^2                  \\
+        &=
+        \frac12\left(\sum_{j\in I}p_j^2+(\Cmax(S))^2\right).
+        \qedhere
+\end{aligned}
+\]
+\end{proof}
+
+Using the notation $C_{\max}^i(S)$ to describe the last completion time or
+makespan of a list schedule $S$ on machine $i$ in the parallel identical
+machine scenario, we simply apply Corollary 2 to every machine separately and
+combine the squares of the processing times into a single term:
+\begin{equation}
+        \sum_{j\in I} p_j C_j
+        =
+        \frac12
+        \left(
+            \sum_{j\in I}p_j^2
+            +
+            \sum_{i=1}^m (C_{\max}^i(S))^2
+        \right).
+\end{equation}
+Furthermore, we introduce
+\[
+        \Cmin(S)=\min_i\{C_{\max}^i(S)\}
+\]
+to be the minimum value of the machine makespans in the parallel identical
+machine scenario. Note that in any list schedule $S$, no job can start and at
+most $m-1$ jobs can complete after $\Cmin(S)$.
+
+\begin{corollary}
+For every instance $I$ of the $P\|\sum_j p_j C_j$ problem, there is an
+instance $I'$ of the $P\|\sum_j p_j C_j$ problem such that
+$\lambda(I')\geq\lambda(I)$ holds and every job in instance $I'$ has an
+arbitrarily small processing time if it starts before
+$\Cmin(S_{\LRF}(I'))$.
+\end{corollary}
+
+\begin{proof}
+Assume an arbitrary list schedule $S(I)$ for an instance $I$ of the
+$P\|\sum_j p_j C_j$ problem. We generate an instance $J$ by taking a job
+$j_0$ from $I$ and replacing it in schedule $S(I)$ with two jobs $j_1$ and
+$j_2$ such that $p_{j_1}+p_{j_2}=p_{j_0}$, $C_{j_2}=C_{j_0}$, and
+$C_{j_1}=C_{j_0}-p_{j_2}$ hold. Note that this exchange does not alter the
+completion time of any other job in schedule $S(I)$. Therefore, we have
+\[
+        C_{\max}^i(S(I))=C_{\max}^i(S(J))
+\]
+for all $1\leq i\leq m$. Then Eq.~(1) produces
+\[
+        \sum_{j\in I}p_j C_j-\sum_{j\in J}p_j C_j
+        =
+        \frac12(p_{j_0}^2-p_{j_1}^2-p_{j_2}^2)
+        =
+        p_{j_1}p_{j_2}.
+\]
+If $C_{j_1}\leq \Cmin(S_{\LRF}(I))$ holds then the resulting schedule
+$S_{\LRF}(J)$ for instance $J$ is a list schedule. As any job order for
+instance $J$ is an LRF order, we can select an order for instance $J$ such
+that we have $S(J)=S_{\LRF}(J)$. As $S_{\OPT}(J)$ is also a list schedule, we
+have
+\[
+        1\leq \lambda(I)
+        =
+        \frac{C(I)}{C^*(I)}
+        \leq
+        \frac{C(I)-p_{j_1}p_{j_2}}{C^*(I)-p_{j_1}p_{j_2}}
+        \leq
+        \frac{C(J)}{C^*(J)}
+        =
+        \lambda(J).
+\]
+We repeat this job splitting until all jobs starting before
+$\Cmin(S_{\LRF}(I))$ have an arbitrarily small processing time. As at most
+$m-1$ jobs can start at $\Cmin(S_{\LRF}(I))$, all but at most $m-1$ jobs have
+an arbitrarily small processing time.
+\end{proof}
+
+Due to Corollaries 1 and 3, we consider from now on only instances $I$ in
+which $w_j=p_j$ holds for all jobs and all jobs have an arbitrarily small
+processing time with the exception of at most $m-1$ so-called long jobs that
+start at $\Cmin(S_{\LRF}(I))$. We use $L(I)\subseteq I$ to denote the set of
+these long jobs in instance $I$. Furthermore, we introduce the set
+$K(I)\subseteq L(I)$ of long jobs to be the largest set such that
+\[
+        p_j\geq \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+holds for all $j\in K(I)$. We obtain $K(I)$ by adding long jobs in decreasing
+order of their processing times and testing the property of $K(I)$. All jobs
+from $I\setminus L(I)$ are called small jobs. Note that an instance $I$ only
+contains small jobs if $\Cmin(S_{\LRF}(I))>0$ holds.
+
+As the processing time of each small job is arbitrarily small, we can ignore
+the term $\sum_{j\in I\setminus L(I)}p_j^2$ in Eq.~(1) for any list schedule
+$S(I)$ leading to
+\begin{equation}
+        \sum_{j\in I}p_j C_j
+        =
+        \frac12
+        \left(
+            \sum_{j\in L(I)}p_j^2
+            +
+            \sum_{i=1}^m(C_{\max}^i(S(I)))^2
+        \right)
+\end{equation}
+and
+\begin{equation}
+\begin{aligned}
+        C(I)
+        &=
+        \frac12\sum_{j\in L(I)}p_j^2
+        +
+        \frac12\sum_{j\in L(I)}
+            (p_j+\Cmin(S_{\LRF}(I)))^2                    \\
+        &\quad
+        +
+        \frac12\left((m-|L(I)|)(\Cmin(S_{\LRF}(I)))^2\right).
+\end{aligned}
+\end{equation}
+Note that Eq.~(3) is the application of Eq.~(2) to $S_{\LRF}(I)$.
+
+Next, we address the generation of an optimal schedule for our instances.
+Consider a job order for instance $I$ in which the long jobs precede all small
+jobs. In the corresponding list schedule $S_{\OPT}(I)$, all long jobs are
+started at time 0 due to $|L(I)|<m$. Clearly, we have
+\[
+        \Cmin(S_{\OPT}(I))
+        \leq
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j .
+\]
+If a small job $j_0$ finishes after
+\[
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j ,
+\]
+we apply job splitting to $j_0$ at time
+\[
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+as described in the proof of Corollary 3. In the list for schedule
+$S_{\OPT}(I)$, the first new job $j_1$ replaces $j_0$ and the other new job
+$j_2$ is put at the end of the list. After at most $m-|K(I)|-1$ such
+splitting steps,
+\[
+        C_{\max}^i(S_{\OPT}(I))
+        =
+        \Cmin(S_{\OPT}(I))
+        =
+        \frac1{m-|K(I)|}\sum_{j\in I\setminus K(I)}p_j
+\]
+holds if machine $i$ executes a small job. Therefore, every machine $i$ with
+$C_{\max}^i(S_{\OPT}(I))>\Cmin(S_{\OPT}(I))$ can only execute a single long
+job. Due to Eq.~(2) and the convexity of the square function, it is not
+possible to further reduce
+\[
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2
+\]
+by transferring any jobs. Hence, schedule $S_{\OPT}(I)$ is an optimal
+schedule for instance $I$.
+
+Now, we introduce a transformation that replaces a set $M$ of positive
+numbers with a number $p$ that is used $t$ times such that the following
+equations hold:
+\begin{align}
+        \sum_{i\in M} i &= t\cdot p, \\
+        \sum_{i\in M} i^2 &= t\cdot p^2 .
+\end{align}
+Eqs.~(4) and (5) lead to a unique solution with
+\[
+        t=\frac{\left(\sum_{i\in M}i\right)^2}{\sum_{i\in M}i^2}
+        \qquad\text{and}\qquad
+        p=\frac{\sum_{i\in M}i^2}{\sum_{i\in M}i}.
+\]
+In Eq.~(2), this transformation is either applied to the set $L(I)$ of long
+jobs or to some makespans. However, $t$ need not be an integer but may be a
+rational number with denominator $q$ resulting in an instance with a
+fractional number of jobs. To obtain an instance with an integral number of
+jobs, we simply replace each machine and each job of the original instance
+$I$ with $q$ identical copies. In the LRF order, all replicas of a job occur
+one after another. Therefore, the schedule of each machine is replicated for
+schedule $S_{\LRF}$. Replicating the schedule of each machine for schedule
+$S_{\OPT}$ also yields an optimal schedule for the same reasons discussed
+before. Hence, $C(I)$ and $C^*(I)$ are simply multiplied by $q$, and
+$\lambda(I)$ remains unchanged.
+
+The application of the transformation to the set $L(I)$ or to machine
+makespans of a list schedule $S(I)$ does not change
+$\sum_{i=1}^m C_{\max}^i(S(I))$ due to Eq.~(4). Furthermore, due to the
+convexity of the square function, we have
+\begin{equation}
+\begin{aligned}
+        t
+        &=
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}
+        {\sum_{j\in L(I)}p_j^2}                                      \\
+        &\leq
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}
+        {|L(I)|\left(\frac{\sum_{j\in L(I)}p_j}{|L(I)|}\right)^2}       \\
+        &=
+        \frac{|L(I)|\left(\sum_{j\in L(I)}p_j\right)^2}
+        {\left(\sum_{j\in L(I)}p_j\right)^2}
+        =
+        |L(I)|.
+\end{aligned}
+\end{equation}
+
+\begin{example}
+Consider a set $L(I)$ of six long jobs with processing times $5,5,4,3,2$,
+and $1$, respectively. Our transformation yields five long jobs, all with
+processing time $4$ producing
+\[
+        5\cdot 4=20=\sum_{j\in L(I)}p_j
+        \qquad\text{and}\qquad
+        5\cdot 4^2=80=\sum_{j\in L(I)}p_j^2 .
+\]
+\end{example}
+
+\begin{corollary}
+For every instance $I$ of the $P\|\sum_j p_j C_j$ problem, there is an
+instance $I'$ of the $P\|\sum_j p_j C_j$ problem with
+$\lambda(I')\geq\lambda(I)$ such that instance $I'$ contains at most $m-1$
+jobs with the same processing time while all its other jobs have an
+arbitrarily small processing time.
+\end{corollary}
+
+\begin{proof}
+Due to Corollary 3, assume schedule $S_{\LRF}(I)$ for instance $I$ in which
+only jobs with an arbitrarily small processing time start before
+$\Cmin(S_{\LRF}(I))$.
+
+We apply our transformation to the set $L(I)$ to generate an instance $I'$ in
+which all $t$ long jobs have the same processing time. In the LRF order of
+both instances, long jobs appear after all small jobs. Therefore, we have
+\[
+        \Cmin(S_{\LRF}(I))=\Cmin(S_{\LRF}(I')).
+\]
+We discuss the consequences of the transformation to the primary LRF schedule
+and an optimal schedule separately. Due to Eqs.~(3)--(5), we have
+\[
+\begin{aligned}
+        2C(I)
+        &=
+        \sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in L(I)}(p_j+\Cmin(S_{\LRF}(I)))^2                  \\
+        &\quad
+        +(m-|L(I)|)(\Cmin(S_{\LRF}(I)))^2                           \\
+        &=
+        \sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in L(I)}p_j^2
+        +
+        2\sum_{j\in L(I)}(p_j\cdot\Cmin(S_{\LRF}(I)))               \\
+        &\quad
+        +m(\Cmin(S_{\LRF}(I)))^2                                    \\
+        &=
+        t\cdot p^2+t\cdot p^2
+        +2t\cdot p\cdot\Cmin(S_{\LRF}(I'))
+        +m(\Cmin(S_{\LRF}(I')))^2                                  \\
+        &=
+        t\cdot p^2
+        +t(p+\Cmin(S_{\LRF}(I')))^2
+        +(m-t)(\Cmin(S_{\LRF}(I')))^2                              \\
+        &=
+        2C(I').
+\end{aligned}
+\]
+
+Next we address the optimal schedules for instances $I$ and $I'$. To show
+that $C^*(I')\leq C^*(I)$ holds, we consider two cases:
+
+\begin{enumerate}[label=(\arabic*)]
+\item
+$C_{\max}^i(S_{\OPT}(I'))=\Cmin(S_{\OPT}(I'))$ holds for all machines $i$.
+
+Remember that any list schedule $S(I')$ is optimal if
+$C_{\max}^i(S(I'))=\Cmin(S(I'))$ holds for all machines $i$ due to the
+convexity of the square function. Furthermore, the transformation does not
+change $\sum_{i=1}^m C_{\max}^i(S(I))$ for any list schedule $S(I)$.
+Therefore, Eqs.~(2) and (5) yield together with the convexity of the square
+function:
+\[
+\begin{aligned}
+        2C^*(I)
+        &=
+        \sum_{j\in L(I)}p_j^2
+        +
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2                 \\
+        &=
+        t\cdot p^2
+        +
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2                 \\
+        &\geq
+        t\cdot p^2
+        +
+        m(\Cmin(S_{\OPT}(I')))^2
+        =
+        2C^*(I').
+\end{aligned}
+\]
+
+\item
+$C_{\max}^i(S_{\OPT}(I'))>\Cmin(S_{\OPT}(I'))$ holds for some machines $i$.
+In the following sequence of equations, we show that $C^*(I')\leq C^*(I)$
+also holds for this case. The individual equations are later explained in
+detail.
+\begin{align}
+        2C^*(I)
+        &=
+        \sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in K(I)}p_j^2
+        +
+        (m-|K(I)|)(\Cmin(S_{\OPT}(I)))^2                         \tag{7}\\
+        &=
+        t\cdot p^2+t'\cdot(p')^2
+        +(m-|K(I)|-k)(\Cmin(S_{\OPT}(I)))^2                      \tag{8}\\
+        &\geq
+        t\cdot p^2+t'\cdot(p')^2
+        +(m-t')
+        \left(
+            \frac{m-|K(I)|-k}{m-t'}\Cmin(S_{\OPT}(I))
+        \right)^2                                                \tag{9}\\
+        &\geq
+        t\cdot p^2+t\cdot p^2
+        +(m-t)(\Cmin(S_{\OPT}(I')))^2
+        =
+        2C^*(I').                                                \tag{10}
+\end{align}
+
+First, we introduce the size
+\[
+        k=
+        \frac{\sum_{j\in L(I)\setminus K(I)}p_j}
+        {\Cmin(S_{\OPT}(I))}
+        \leq
+        |L(I)|-|K(I)|.
+\]
+If necessary, we use replication to guarantee an integral $k$. Eq.~(7) is
+the application of Eq.~(2) on schedule $S_{\OPT}(I)$ by using set $K(I)$.
+We apply our transformation twice to Eq.~(7):
+\begin{enumerate}[label=(\alph*)]
+\item on set $L(I)$ to transform $\sum_{j\in L(I)}p_j^2$;
+\item on the makespan of all machines that execute jobs in $K(I)$ and of
+$k$ additional machines with
+$C_{\max}^i(S_{\OPT}(I))=\Cmin(S_{\OPT}(I))$.
+\end{enumerate}
+The second transformation produces the values $t'$ and $p'$. Remember that
+we use replication to guarantee an integral $t'$. Due to the convexity of the
+square function and $0\leq p_j\leq \Cmin(S_{\OPT}(I))$ for all jobs
+$j\in L(I)\setminus K(I)$, we have
+\begin{align}
+        t'\cdot p'
+        &=
+        \sum_{j\in K(I)}p_j+k\cdot\Cmin(S_{\OPT}(I))
+        =
+        \sum_{j\in L(I)}p_j
+        =
+        t\cdot p,                                                \tag{11}\\
+        t'\cdot(p')^2
+        &=
+        \sum_{j\in K(I)}p_j^2+k(\Cmin(S_{\OPT}(I)))^2             \notag\\
+        &=
+        \sum_{j\in K(I)}p_j^2+k(\Cmin(S_{\OPT}(I)))^2
+        +(|L(I)|-|K(I)|-k)\cdot 0^2                              \notag\\
+        &\geq
+        \sum_{j\in K(I)}p_j^2
+        +
+        \sum_{j\in L(I)\setminus K(I)}p_j^2
+        =
+        \sum_{j\in L(I)}p_j^2
+        =
+        t\cdot p^2,                                              \tag{12}\\
+        &\Rightarrow
+        p'\geq p
+        \quad\text{and}\quad
+        t'\leq t.                                                \tag{13}
+\end{align}
+
+In Eq.~(8), the result of the second transformation to Eq.~(7) is shown.
+Note that both transformations are formally applied and do not produce a
+valid schedule. In particular, $|K(I)|+k-t'$ machines are not used in
+Eq.~(8) as $t'\leq |K(I)|+k$ holds due to Eq.~(6).
+
+In Eq.~(9), we evenly distribute the total load
+\[
+        (m-|K(I)|-k)\Cmin(S_{\OPT}(I))
+\]
+of all small jobs on $m-t'$ machines. This distribution reduces the total
+weighted completion time due to the convexity of the square function.
+
+Eq.~(10) shows schedule $S_{\OPT}(I')$. In this schedule, only
+$m-t\leq m-t'$ machines are available to execute the small jobs due to
+Eq.~(13). Therefore, we have
+\[
+        \frac{m-|K(I)|-k}{m-t'}\Cmin(S_{\OPT}(I))
+        \leq
+        C_{\max}^i(S_{\OPT}(I')).
+\]
+Due to this relation, Eqs.~(11)--(13), and the convexity of the square
+function, the total weighted completion time is reduced again.
+\end{enumerate}
+\end{proof}
+
+Due to Corollary 5, we can determine $\max_I\lambda(I)$ by examining only
+instances and schedules with the following properties:
+\begin{enumerate}[label=(\arabic*)]
+\item An instance contains $u<m$ long jobs with processing time $p$ and
+additional jobs with an arbitrary small processing time and a total workload
+$m$.
+\item For all jobs, $w_j=p_j$ holds.
+\item In schedule $S_{\LRF}$, all small jobs are executed in the interval
+$[0,1]$ while all long jobs are started at 1.
+\item In schedule $S_{\OPT}$, all long jobs are started at 0 and
+$C_{\max}^i(S_{\OPT})=\Cmin(S_{\OPT})$ holds for all machines that execute at
+least one small job.
+\end{enumerate}
+As every list schedule without small jobs is always optimal, such instances
+can be ignored. As we can divide the processing time of each job by a
+constant without changing $\lambda(I)$, we define the total workload of all
+small jobs to be $m$. As a result, we obtain a numerical optimization problem
+with two variables $p>0$ and $0<u/m<1$ for each case of the proof of
+Corollary 5. Note that Case 1 applies if and only if
+\[
+        m+u\cdot p\geq m\cdot p
+        \quad\Longleftrightarrow\quad
+        p\leq \frac1{1-u/m}.
+\]
+We solve the problems by determining the roots of the derivatives.
+
+\[
+\text{(1)}\qquad p\leq \frac1{1-u/m}.
+\]
+\[
+\begin{aligned}
+        \lambda(u,p)
+        &=
+        \frac{\frac12(u\cdot p^2+u\cdot(p+1)^2+m-u)}
+        {\frac12\left(u\cdot p^2
+        +m\left(\frac{u\cdot p+m}{m}\right)^2\right)}             \\
+        &=
+        \frac{2\frac{u}{m}p^2+2\frac{u}{m}p+1}
+        {\frac{u}{m}p^2+\left(\frac{u}{m}\right)^2p^2
+        +2\frac{u}{m}p+1}
+        =
+        f\left(\frac{u}{m},p\right).
+\end{aligned}
+\]
+As there is no common root of both derivatives
+$\partial f/\partial(u/m)$ and $\partial f/\partial p$ within the feasible
+area of the function, we examine the roots of the derivative on the
+boundaries
+\[
+        \left\{
+            p=0,\ \frac{u}{m}=0,\ \frac{u}{m}=1,\
+            p=\frac1{1-u/m}
+        \right\}
+\]
+of the feasible area. As we have $f(u/m,p)=1$ for
+$p=0$, $u/m=0$, and $u/m=1$, we must only consider
+\[
+        \frac{d f\left(u/m,\frac1{1-u/m}\right)}{d(u/m)}.
+\]
+This way, we obtain the maximum of
+\[
+        f\left(\frac{u}{m},p\right)=4-2\sqrt{2}
+\]
+for
+\[
+        \frac{u}{m}=\sqrt{2}-1
+        \qquad\text{and}\qquad
+        p=1+\frac{\sqrt{2}}2=\frac1{1-u/m}.
+\]
+
+\[
+\text{(2)}\qquad p>\frac1{1-u/m}.
+\]
+\[
+\begin{aligned}
+        \lambda(u,p)
+        &=
+        \frac{\frac12(u\cdot p^2+u\cdot(p+1)^2+m-u)}
+        {\frac12\left(2u\cdot p^2
+        +(m-u)\left(\frac{m}{m-u}\right)^2\right)}                 \\
+        &=
+        \frac{2\frac{u}{m}p^2+2\frac{u}{m}p+1}
+        {2\frac{u}{m}p^2+\frac1{1-u/m}}
+        =
+        f\left(\frac{u}{m},p\right).
+\end{aligned}
+\]
+Note that the value on the boundary $p=1/(1-u/m)$ is the same as in the
+first case while $f(u/m,p)=1$ holds for $p\to\infty$ and $u/m=0$.
+
+There is a single common root of the derivatives
+$\partial f/\partial(u/m)$ and $\partial f/\partial p$ at
+\[
+        \frac{u}{m}=1-\frac{\sqrt{2}}2
+        \qquad\text{and}\qquad
+        p=1+\sqrt{2}
+        >
+        \frac1{1-u/m}
+        =
+        \sqrt{2}.
+\]
+At this position, we obtain the maximum of
+\[
+        f\left(\frac{u}{m},p\right)
+        =
+        \frac12(1+\sqrt{2})
+        >
+        4-2\sqrt{2}.
+\]
+Finally note that the machine value $u/m=1-\sqrt{2}/2$ is not feasible as it
+is an irrational number. But we can get arbitrarily close to it by using a
+sufficiently large number of replications.
+
+\section*{Acknowledgements}
+
+The author thanks the referees for their valuable comments and suggestions
+that helped to improve this note significantly.
+
+\begin{thebibliography}{9}
+
+\bibitem{KawaguchiKyan1986}
+T. Kawaguchi, S. Kyan,
+Worst case bound of an LRF schedule for the mean weighted flow-time problem,
+\emph{SIAM Journal on Computing} 15 (4) (1986) 1119--1129.
+
+\bibitem{Queyranne1993}
+M. Queyranne,
+Structure of a simple scheduling polyhedron,
+\emph{Mathematical Programming} 58 (2) (1993) 263--285.
+
+\end{thebibliography}
+
+\end{document}

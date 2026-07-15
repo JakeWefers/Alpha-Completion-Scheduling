@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+
+\newtheorem{example}{Example}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\OPT}{\mathrm{OPT}}
+\newcommand{\Cmin}{C_{min}^{max}}
+
+\begin{document}
+
+Now, we introduce a transformation that replaces a set $M$ of positive
+numbers with a number $p$ that is used $t$ times such that the following
+equations hold:
+\begin{align}
+        \sum_{i\in M} i &= t\cdot p, \\
+        \sum_{i\in M} i^2 &= t\cdot p^2 .
+\end{align}
+Eqs.~(4) and (5) lead to a unique solution with
+\[
+        t=\frac{\left(\sum_{i\in M}i\right)^2}{\sum_{i\in M}i^2}
+        \qquad\text{and}\qquad
+        p=\frac{\sum_{i\in M}i^2}{\sum_{i\in M}i}.
+\]
+In Eq.~(2), this transformation is either applied to the set $L(I)$ of long
+jobs or to some makespans. However, $t$ need not be an integer but may be a
+rational number with denominator $q$ resulting in an instance with a
+fractional number of jobs. To obtain an instance with an integral number of
+jobs, we simply replace each machine and each job of the original instance
+$I$ with $q$ identical copies. In the LRF order, all replicas of a job occur
+one after another. Therefore, the schedule of each machine is replicated for
+schedule $S_{\LRF}$. Replicating the schedule of each machine for schedule
+$S_{\OPT}$ also yields an optimal schedule for the same reasons discussed
+before. Hence, $C(I)(\alpha)$ and $C^*(I)(\alpha)$ are simply multiplied by $q$, and
+$\lambda(I)$ remains unchanged.
+
+The application of the transformation to the set $L(I)$ or to machine
+makespans of a list schedule $S(I)$ does not change
+$\sum_{i=1}^m C_{\max}^i(S(I))$ due to (hint to Corr. 3) Furthermore, due to the
+convexity of the square function, we have
+\begin{equation}
+\begin{aligned}
+        t
+        &=
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}
+        {\sum_{j\in L(I)}p_j^2}                                      \\
+        &\leq
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}
+        {|L(I)|\left(\frac{\sum_{j\in L(I)}p_j}{|L(I)|}\right)^2}       \\
+        &=
+        \frac{|L(I)|\left(\sum_{j\in L(I)}p_j\right)^2}
+        {\left(\sum_{j\in L(I)}p_j\right)^2}
+        =
+        |L(I)|.
+\end{aligned}
+\end{equation}
+
+
+\begin{corollary}
+For every instance $I$ of the $P||\sum_j p_j C_j(\alpha)$ problem, there is an
+instance $I'$ of the $P||\sum_j p_j C_j(\alpha)$ problem with
+$\lambda(I')(\alpha)\geq\lambda(I)(\alpha) \, \forall \alpha \in [\frac12,1]$ such that instance $I'$ contains at most $m-1$
+jobs with the same processing time while all its other jobs have an
+arbitrarily small processing time.
+\end{corollary}
+
+\begin{proof}
+Due to Corollary 3, assume schedule $S_{\LRF}(I)$ for instance $I$ in which
+only jobs with an arbitrarily small processing time start before
+$\Cmin(S_{\LRF}(I))$.
+
+We apply our transformation to the set $L(I)$ to generate an instance $I'$ in
+which all $t$ long jobs have the same processing time. In the LRF order of
+both instances, long jobs appear after all small jobs. Therefore, we have
+\[
+        \Cmin(S_{\LRF}(I))=\Cmin(S_{\LRF}(I')).
+\]
+We discuss the consequences of the transformation to the primary LRF schedule
+and an optimal schedule separately. Due to Eqs.~(3)--(5), we have
+\[
+\begin{aligned}
+        2C(I)(\alpha)
+        &=
+        (2\alpha-1)\sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in L(I)}(p_j+\Cmin(S_{\LRF}(I)))^2                  \\
+        &\quad
+        +(m-|L(I)|)(\Cmin(S_{\LRF}(I)))^2                           \\
+        &=
+        (2\alpha-1)\sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in L(I)}p_j^2
+        +
+        2\sum_{j\in L(I)}(p_j\Cmin(S_{\LRF}(I)))               \\
+        &\quad
+        +m(\Cmin(S_{\LRF}(I)))^2                                    \\
+        &=
+        (2\alpha-1)tp^2+tp^2
+        +2tp\Cmin(S_{\LRF}(I'))
+        +m(\Cmin(S_{\LRF}(I')))^2                                  \\
+        &=
+        (2\alpha -1)tp^2
+        +t(p+\Cmin(S_{\LRF}(I')))^2
+        +(m-t)(\Cmin(S_{\LRF}(I')))^2                              \\
+        &=
+        2C(I')(\alpha).
+\end{aligned}
+\]
+
+Next we address the optimal schedules for instances $I$ and $I'$. To show
+that $C^*(I')\leq C^*(I)$ holds, we consider two cases:
+
+\begin{enumerate}[label=(\arabic*)]
+\item
+$C_{\max}^i(S_{\OPT}(I'))=\Cmin(S_{\OPT}(I'))$ holds for all machines $i$.
+
+Remember that any list schedule $S(I')$ is optimal if
+$C_{\max}^i(S(I'))=\Cmin(S(I'))$ holds for all machines $i$ due to the
+convexity of the square function. Furthermore, the transformation does not
+change $\sum_{i=1}^m C_{\max}^i(S(I))$ for any list schedule $S(I)$.
+Therefore, eqs. whaterber is needed here yield together with the convexity of the square
+function:
+\[
+\begin{aligned}
+        2C^*(I)(\alpha)
+        &=
+        (2\alpha-1)\sum_{j\in L(I)}p_j^2
+        +
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2                 \\
+        &=
+        (2\alpha-1)t\cdot p^2
+        +
+        \sum_{i=1}^m(C_{\max}^i(S_{\OPT}(I)))^2                 \\
+        &\geq
+        (2\alpha-1)t\cdot p^2
+        +
+        m(\Cmin(S_{\OPT}(I')))^2
+        =
+        2C^*(I')(\alpha).
+\end{aligned}
+\]
+
+\item
+$C_{\max}^i(S_{\OPT}(I'))>\Cmin(S_{\OPT}(I'))$ holds for some machines $i$.
+In the following sequence of equations, we show that $C^*(I')\leq C^*(I)$
+also holds for this case. The individual equations are later explained in
+detail.
+\begin{align}
+        2C^*(I)(\alpha)
+        &=
+        (2\alpha-1)\sum_{j\in L(I)}p_j^2
+        +
+        \sum_{j\in K(I)}p_j^2
+        +
+        (m-|K(I)|)(\Cmin(S_{\OPT}(I)))^2                         \tag{7}\\
+        &=
+        (2\alpha-1)t p^2+t'(p')^2
+        +(m-|K(I)|-k)(\Cmin(S_{\OPT}(I)))^2                      \tag{8}\\
+        &\geq
+        (2\alpha-1)tp^2+t'(p')^2
+        +(m-t')
+        \left(
+            \frac{m-|K(I)|-k}{m-t'}\Cmin(S_{\OPT}(I))
+        \right)^2                                                \tag{9}\\
+        &\geq
+        (2\alpha-1)tp^2+tp^2
+        +(m-t)(\Cmin(S_{\OPT}(I')))^2                               \\
+        &=
+        2\alpha tp^2+(m-t)(\Cmin(S_{\OPT}(I')))^2
+        =
+        2C^*(I')(\alpha).                                                \tag{10}
+\end{align}
+
+First, we introduce the size
+\[
+        k=
+        \frac{\sum_{j\in L(I)\setminus K(I)}p_j}
+        {\Cmin(S_{\OPT}(I))}
+        \leq
+        |L(I)|-|K(I)|.
+\]
+If necessary, we use replication to guarantee an integral $k$. Eq.~(7) is
+the application of Eq.~(2) on schedule $S_{\OPT}(I)$ by using set $K(I)$.
+We apply our transformation twice to Eq.~(7):
+\begin{enumerate}[label=(\alph*)]
+\item on set $L(I)$ to transform $\sum_{j\in L(I)}p_j^2$;
+\item on the makespan of all machines that execute jobs in $K(I)$ and of
+$k$ additional machines with
+$C_{\max}^i(S_{\OPT}(I))=\Cmin(S_{\OPT}(I))$.
+\end{enumerate}
+The second transformation produces the values $t'$ and $p'$. Remember that
+we use replication to guarantee an integral $t'$. Due to the convexity of the
+square function and $0\leq p_j\leq \Cmin(S_{\OPT}(I))$ for all jobs
+$j\in L(I)\setminus K(I)$, we have
+\begin{align}
+        t'\cdot p'
+        &=
+        \sum_{j\in K(I)}p_j+k\cdot\Cmin(S_{\OPT}(I))
+        =
+        \sum_{j\in L(I)}p_j
+        =
+        t\cdot p,                                                \tag{11}\\
+        t'\cdot(p')^2
+        &=
+        \sum_{j\in K(I)}p_j^2+k(\Cmin(S_{\OPT}(I)))^2             \notag\\
+        &=
+        \sum_{j\in K(I)}p_j^2+k(\Cmin(S_{\OPT}(I)))^2
+        +(|L(I)|-|K(I)|-k)\cdot 0^2                              \notag\\
+        &\geq
+        \sum_{j\in K(I)}p_j^2
+        +
+        \sum_{j\in L(I)\setminus K(I)}p_j^2
+        =
+        \sum_{j\in L(I)}p_j^2
+        =
+        t\cdot p^2,                                              \tag{12}\\
+        &\Rightarrow
+        p'\geq p
+        \quad\text{and}\quad
+        t'\leq t.                                                \tag{13}
+\end{align}
+
+In Eq.~(8), the result of the second transformation to Eq.~(7) is shown.
+Note that both transformations are formally applied and do not produce a
+valid schedule. In particular, $|K(I)|+k-t'$ machines are not used in
+Eq.~(8) as $t'\leq |K(I)|+k$ holds due to Eq.~(6).
+
+In Eq.~(9), we evenly distribute the total load
+\[
+        (m-|K(I)|-k)\Cmin(S_{\OPT}(I))
+\]
+of all small jobs on $m-t'$ machines. This distribution reduces the total
+weighted completion time due to the convexity of the square function.
+
+Eq.~(10) shows schedule $S_{\OPT}(I')$. In this schedule, only
+$m-t\leq m-t'$ machines are available to execute the small jobs due to
+Eq.~(13). Therefore, we have
+\[
+        \frac{m-|K(I)|-k}{m-t'}\Cmin(S_{\OPT}(I))
+        \leq
+        C_{\max}^i(S_{\OPT}(I')).
+\]
+Due to this relation, Eqs.~(11)--(13), and the convexity of the square
+function, the total weighted completion time is reduced again.
+\end{enumerate}
+\end{proof}
+
+\end{document}

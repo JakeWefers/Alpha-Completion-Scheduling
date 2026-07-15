@@ -1,0 +1,135 @@
+
+\documentclass{article}
+
+\usepackage{amsmath,amsthm}
+
+\newtheorem{corollary}{Corollary}
+\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\OPT}{\mathrm{OPT}}
+
+\begin{document}
+
+\begin{corollary}
+Let $\lambda(I)$ denote the performance ratio of the maximum cost WSPT schedule for an
+instance $I$ of $P||\sum_j w_j C_j(\alpha)$, with $ \alpha \in (0,1]$. That is,
+\[
+        \lambda(I)
+        =
+        \max_{\text{WSPT schedule }S\text{ of }I}\frac{\sum_{j\in I} w_j C_j(S(I))(\alpha)}
+             {\sum_{j\in I} w_j C_j^*(\alpha)},
+\]
+where $C_j(S(I))(\alpha)$ and $C_j^*(\alpha)$ are the $\alpha$-completion times of job $j$ in the WSPT
+schedule  $S$ and in an optimal schedule, respectively. Then for every instance
+$I$ of $P||\sum_j w_j C_j(\alpha)$, there is an instance $I'$ of
+$P||\sum_j p_j C_j(\alpha)$ with
+\[
+        \lambda(I')\geq \lambda(I).
+\]
+\end{corollary}
+
+\begin{proof}
+Let
+\[
+        r_1>r_2>\cdots>r_d
+\]
+be the distinct ratios $w_j/p_j$ occurring in instance $I$, and set $r_{d+1}=0$.
+
+Note that
+\[
+        r_i=\sum_{k=i}^d (r_k-r_{k+1}),
+\]
+Let $i(j)$ be the index  of the ratio for which
+\[
+        \frac{w_j}{p_j}=r_{i(j)}.
+\]
+
+Then it holds that
+\[
+        w_j
+        =
+        r_{i(j)}p_j
+        =
+        \left(\sum_{k=i(j)}^d (r_k-r_{k+1})\right)p_j .
+\]
+And thus for any schedule S of $I$,
+\[
+\begin{aligned}
+        \sum_{j\in I} w_j C_j(S(I))(\alpha)
+        &=
+        \sum_{j\in I}
+        \left(
+            \sum_{k=i(j)}^d (r_k-r_{k+1})
+        \right)p_j C_j(S(I))(\alpha)                                      \\
+        &\overset{(1)}{=}
+        \sum_{k=1}^d (r_k-r_{k+1})
+        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(S(I))(\alpha) .
+\end{aligned}
+\]
+
+Next we define
+\[
+        I_k=\{j\in I: i(j)\leq k\} \qquad \text{for } k=1,\ldots,d.
+\]
+Thus $I_k$ consists of exactly those jobs whose ratios are among the $k$
+largest ratios in $I$. Now regard each $I_k$ as an instance of
+$P||\sum_j p_j C_j(\alpha)$ by setting $w_j=p_j$ for every job $j\in I_k$.
+
+Let $C(I_k)(\alpha)$ be the value of a cost maximizing WSPT schedule for $I_k$, and
+let $C^*(I_k)(\alpha)$ be its optimal value.
+The $\alpha$-completion time of every job $j\in I_k$ is the same in this WSPT schedule for
+$I_k$ as in the WSPT schedule for $I$ as we have not altered any $p_j$.
+
+Using the decomposition above for the WSPT schedule and for an optimal
+schedule of $I$, we obtain
+\[
+\begin{aligned}
+        \lambda(I)
+        &=
+        \frac{
+        \sum_{k=1}^d (r_k-r_{k+1}) C(I_k)
+        }{
+        \sum_{k=1}^d
+        (r_k-r_{k+1})
+        \sum_{j\in I_k} p_j C_j^*
+        }                                                    \\
+        &\overset{(2)}{\le}
+        \frac{
+        \sum_{k=1}^d (r_k-r_{k+1}) C(I_k)
+        }{
+        \sum_{k=1}^d
+        (r_k-r_{k+1}) C^*(I_k)
+        }                                                    \\
+        &\leq
+        \max_{1\leq k\leq d}
+        \frac{C(I_k)}{C^*(I_k)}
+        =
+        \max_{1\leq k\leq d}\lambda(I_k).
+\end{aligned}
+\]
+Therefore, choosing an index $k$ maximizing $\lambda(I_k)$ and setting
+$I'=I_k$ gives an instance of $P\|\sum_j p_j C_j$ with
+$\lambda(I')\geq \lambda(I)$.
+
+It remains to show (1) and (2) in detail.
+Regarding (1), we show
+\[
+        \sum_{j\in I}
+        \left(
+            \sum_{k=i(j)}^d (r_k-r_{k+1})
+        \right)p_j C_j(S(I))(\alpha)
+        =
+        \sum_{k=1}^d \left((r_k-r_{k+1})
+        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(S(I))(\alpha) \right).
+\]
+
+by induction on the number of jobs $n = |I|$.
+
+(possibly add this depending on waht maxi says regarding detail)
+
+Regarding (2):
+
+(possibly add this depending on waht maxi says regarding detail)
+
+\end{proof}
+
+\end{document}
