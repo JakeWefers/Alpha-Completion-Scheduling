@@ -36,7 +36,7 @@
     "**/*.toc": true
   },
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/pdf",
-  "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/.latex-build",
+  "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/pdf",
   "latex-workshop.latex.autoBuild.run": "onFileChange",
   "latex-workshop.latex.autoBuild.interval": 1000,
   "latex-workshop.latex.watch.files.ignore": [
@@ -77,7 +77,6 @@
         "-file-line-error",
         "-pdf",
         "-outdir=%OUTDIR%",
-        "-auxdir=%AUXDIR%",
         "%DOC%"
       ],
       "cwd": "%WORKSPACE_FOLDER%"

@@ -1,5 +1,9 @@
 .auctex-auto/*
 .latex-build/*
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
 *.aux
 *.bbl
 *-blx.bib

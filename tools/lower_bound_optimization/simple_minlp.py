@@ -6,7 +6,7 @@ from pathlib import Path
 from pprint import pprint
 
 # Use the Thesis-Template project's Python environment automatically.
-project_python = Path(__file__).resolve().parent.parent / ".venv" / "bin" / "python"
+project_python = Path(__file__).resolve().parents[2] / ".venv" / "bin" / "python"
 project_environment = project_python.parent.parent
 if Path(sys.prefix).resolve() != project_environment.resolve():
     if not project_python.exists():

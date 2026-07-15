@@ -1,10 +1,9 @@
 $out_dir = 'pdf';
-$aux_dir = '.latex-build';
+$aux_dir = $out_dir;
 
-# Keep generated LaTeX state disposable. Interrupted editor builds can leave
-# truncated .aux/.bcf files or a stale synctex(busy) marker, which then makes
-# later builds look like they are stuck. Rebuild master from clean generated
-# state each time; the final PDF remains in pdf/.
+# This TeX Live version does not support pdflatex's newer -aux-directory
+# option, so auxiliary state and final PDFs both go to pdf/. Git ignores the
+# auxiliary extensions, while latexmk retains them for fast incremental builds.
 use File::Find;
 use File::Path qw(make_path);
 
@@ -18,13 +17,6 @@ find(
     },
     '.'
 );
-
-for my $dir ($aux_dir, '.') {
-    for my $ext (qw(aux bbl bcf blg fdb_latexmk fls lof log lot out run.xml synctex synctex.gz toc)) {
-        my $file = "$dir/master.$ext";
-        unlink $file if -e $file;
-    }
-}
 
 $pdf_mode = 1;
 $pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
