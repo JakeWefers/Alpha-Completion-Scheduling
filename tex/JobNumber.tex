@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\begin{document}
+
+Fix any $m \ge 2$ and define
+\[
+ \lambda^{m}_{\alpha} \coloneq \max_{\left\{ I \mid I \text{ has } m \text{ machines} \right\}}\lambda_{\alpha}(I).
+\]
+\newline
+$\lambda^{m}_{\alpha}$ is well defined, since: 
+\begin{itemize}
+     \item $m$ is fixed and thus bounded
+     \item $n \le m^2$ for the relevant set of instances we maximize over. 
+     \item We may assume, without loss of generality, that the job lengths are within a compact set $p_j \in [0,1]$
+\end{itemize}
+We are thus determining the maximum of a continous function over a compact set. 
+Note, that we allow jobs of size \(p_j=0\) solely to work with a closed set.
+If this is the case for some job $j$, we simply delete it from the instance. 
+
+\begin{theorem}[Job Bound]\label{thm:job-bound}
+Let $I$ be a $\lambda_{\alpha}^{m}$ maximizing instance.  Then
+\[
+  n\leq3m-2.
+\]
+\end{theorem}
+
+
+
+\begin{proof}
+Consider an arbitrary assigment of jobs from an instance $I$ onto its machines. We denote this as a partition of the jobs into $m$
+sets $P(I)=(P_1,\ldots,P_m)$.
+Write
+\[
+    L^{i}(P(I)):=\sum_{j\in P_i}p_j,
+ \qquad L^{min}(P(I)):=\min_i L^i(P(I)),
+ \qquad M_i(P(I)):=\max_{j\in P_i}p_j,
+\]
+where $M_i=0$ if $P_i$ is empty. 
+We say that a schedule $S$ agrees with or corresponds to a partition $P(I)$ and vice versa, if the assigment of jobs to machines is the same for $P(I)$ and $\sigma(I)$.
+We now put a condition on when this is the case for $P(I)$.
+$P(I)$ corresponds to a list schedule, iff 
+
+\begin{equation}
+    L^{i}(P(I))-M_{i}(P(I)) \le L^{\min}(P(I)).
+    \label{eq:list-characterization}
+\end{equation}
+
+
+Indeed, if a list produces $P(I)$, consider the last job assigned to
+machine $i$.  Immediately before that assignment, machine $i$ has load
+at least $L^{i}(P(I))-M_i(P(I))$ and is a least-loaded machine.  A machine of final
+load $L^{min}(P(I))$ has current load at most $L^{min}(P(I))$, so necessarily $L^{i}(P(I))-M_{i}(P(I)) \le L^{min}(P(I))$ for
+a list schedule.
+
+Conversely, given a partition $P(I)$ such that \ref{eq:list-characterization} holds,
+choose a largest job on every machine and place it last in that
+machines processing order. Order every other job arbitrarily on its
+machine. 
+Every start time is at most
+$L^i(P(I))-M_i(P(I))\leq L^{min}(P(I))$. Create a list by ordering the jobs in order
+of nondecreasing start time. Break ties arbitrarily. We now schedule according to this list: 
+\newline
+Whenever a job of prescribed start time $s$ is selected from the list,
+every machine with an unassigned job has current load at least $s$, and
+every machine that already has all of its jobs assigned, has final load at least $ L^{min}(P(I))\geq s$.  Hence the
+designated machine is currently least loaded, and the order is a
+list agreeing with the partition $P(I)$.
+
+Let $I$ be an instance with $m$ machines, that attains $\lambda_{\alpha}^m$
+
+Choose a cost-maximizing list partition $P^{W}(I)$ and a minimizing
+partition $P^*(I)$. A cost maximizing/minimzing list partition is a partition such that, 
+there exists a cost maximizing/minimzing list schedule $S^*(I)$/$\sigma^{W}(I)$ that agrees with $P^*(I)$/$P^{W}(I)$. 
+ 
+
+Form a bipartite undirected graph $G$: its left vertices are
+the $m$ machines of $P^{*}(I)$, its right vertices are the $m$ machines of
+$P^W(I)$, and every job $j$ corresponds to an edge, of weight $p_j$, incident to the two machine 
+nodes to which it is assigned in $P^{W}$/$P^{*}$.
+
+For a right vertex $v$, write
+\[
+ w_v:=L^v(P^W(I)),
+ \qquad L^{min}(P^W(I)):=\min_v w_v,
+ \qquad M_v(P^W(I)):=\max_{e\ni v} p_e.
+\]
+$M_v(P^W(I))$ is of course just the maximal processing time of a job assigned to machine $v$.
+We call an edge $e_v$ \emph{tight}, if
+\begin{enumerate}
+     \item $ w_v-M_v(P^W(I))=L^{min}(P^{W}(I))$ \label{eq:critical}
+     \item $e_v$ is the unique edge of weight $M_v$ incident with $v$
+\end{enumerate}
+
+
+Let $C$ be the set of tight edges.
+We show that every cycle of $G$ contains an edge of $C$.  Suppose to the
+contrary that a cycle $Z$ avoids $C$. Starting arbitrarily, give the successive edges of $Z$
+alternating signs $d_e\in\{+1,-1\}$ and set $d_e=0$ for any edge not in the cycle.
+We perturb the processing times:
+\[
+ p_e(t):=p_e+t d_e.
+\]
+For all sufficiently small $t$, every processing time remains
+positive. We will denote the instance that results from these perturbations by
+$I(t)$. At every vertex of the cycle, one incident edge increases
+and one decreases.  Hence all loads in both partitions $P^{*}(I(t))$ and
+$P^W(I(t))$ remain unchanged.
+
+The partition $P^W(I(t))$ remains list-realizable for both sufficiently
+small signs of $t$.  This follows from
+\eqref{eq:list-characterization}.
+If the inequality is tight and the largest incident edge is unique,
+that edge is tight, hence it is not on $Z$ and remains
+unchanged by perturbation. If the maximum $M_i(P^W(I))$ is attained by several incident edges, then
+either an unchanged maximum remains (if it is not part of the cycle) and thus the maximum does not
+fall below $M_v(P(I))$ after perturbation which implies that $w_v-M_v(P(I(t)))\leq L^{min}(P^{W}(I(t)))$ remains true, or the two cycle edges are all the
+maximizers. In this case, one of them increases for either nonzero
+sign of $t$.  In all cases
+$w_v-M_v(P(I(t)))\leq L^{min}(P^{W}(I(t)))$ is true. 
+Thus our pertubed instance and the partitions we chose for $I$ still correspond to list schedules.
+
+Define
+\[
+Q(I)\coloneq \sum_{j=1}^{n} p^2_j
+\]
+
+The job-square sum  of the pertubed instance satisfies
+\begin{equation}\label{eq:Q-perturbation}
+ Q(I(t)) \coloneq \sum_{j=1}^{n} (p_j(t))^2 = \sum_{j=1}^{n} (p_j+t d_j)^2 = \sum_{j=1}^{n}p_j^2+ \sum_{i=1}^{n}2tp_jd_j + t^2 \sum_{i=1}^{n}d_j^2.
+\end{equation}
+For at least one of the two signs of every sufficiently small nonzero $t$, this
+is strictly larger than $Q(I)$.
+
+Let
+\[
+ A^W:=\sum_{i=1}^{m} L_i(P^{W}(I))^2,
+ \qquad A^{*}:=\sum_{i=1}^{m} L_i(P^{*}(I))^2.
+\]
+Since we consider only instances that attain the nontrivial ratio
+$\lambda^{m}_{\alpha}>1$, we must have
+$A^{W}>A^{*}$.
+
+
+Consider now a cost maximizing schedule $S^W(I)$ that agrees with the partition $P^W(I)$. 
+aswell as  a optimal schedule $\sigma^{*}(I)$ that agrees with the partition $P^{*}(I)$
+It holds for these, that
+
+\[
+\lambda_{\alpha}^{m}=
+\frac{\gamma_{\alpha}(S^W(I))}{\gamma_{\alpha}(\sigma^{*}(I))}
+<
+\frac{\gamma_{\alpha}(S^W(I(t)))}{\gamma_{\alpha}(\sigma^{*}(I(t)))} \le \lambda_{\alpha}^m
+\]
+
+Where we choose in \eqref{eq:Q-perturbation} the sign that increases $Q(I(t))$.
+The inequality follows from a expansion; see Appendix~\eqref{app:ratio-calculation}
+This contradicts the definition of
+$\lambda_{\alpha}^m$.  Therefore every cycle contains a tight
+edge, or equivalently,
+\begin{equation}\label{eq:forest}
+ G-C\quad\text{is a forest}.
+\end{equation}
+
+There is at most one tight edge at each right vertex.  Moreover, a right
+vertex of minimum load cannot have a positive tight edge.
+\begin{equation}\label{eq:C-bound}
+ |C|\leq m-1.
+\end{equation}
+
+The bipartite graph has $2m$ vertices.  By
+\eqref{eq:forest}, its non-tight part has at most $2m-1$ edges.
+Every job is one edge of $G$, so
+\[
+ n=|E(G-C)|+|C|
+ \leq(2m-1)+(m-1)=3m-2.
+\]
+\end{proof}
+
+For Appendix: 
+\begin{equation} \label{app:ratio-calculation}
+\begin{aligned}
+&
+\frac{A^W+(2\alpha-1)Q(t)}
+     {A^*+(2\alpha-1)Q(t)}
+-
+\frac{A^W+(2\alpha-1)Q}
+     {A^*+(2\alpha-1)Q}
+\\[1mm]
+&=
+\frac{
+\bigl(A^W+(2\alpha-1)Q(t)\bigr)
+\bigl(A^*+(2\alpha-1)Q\bigr)}
+{\bigl(A^*+(2\alpha-1)Q(t)\bigr)
+ \bigl(A^*+(2\alpha-1)Q\bigr)}
+-
+\frac{
+\bigl(A^W+(2\alpha-1)Q\bigr)
+\bigl(A^*+(2\alpha-1)Q(t)\bigr)}
+{\bigl(A^*+(2\alpha-1)Q(t)\bigr)
+ \bigl(A^*+(2\alpha-1)Q\bigr)}
+\\[1mm]
+&=
+\frac{
+(2\alpha-1)A^WQ
++(2\alpha-1)A^*Q(t)
+-(2\alpha-1)A^WQ(t)
+-(2\alpha-1)A^*Q}
+{\bigl(A^*+(2\alpha-1)Q(t)\bigr)
+ \bigl(A^*+(2\alpha-1)Q\bigr)}
+\\[1mm]
+&=
+\frac{
+(2\alpha-1)
+\bigl(Q(t)-Q\bigr)
+\bigl(A^*-A^W\bigr)}
+{\bigl(A^*+(2\alpha-1)Q(t)\bigr)
+ \bigl(A^*+(2\alpha-1)Q\bigr)}
+\\[1mm]
+&=
+\frac{
+(1-2\alpha)
+\bigl(Q(t)-Q\bigr)
+\bigl(A^W-A^*\bigr)}
+{\bigl(A^*+(2\alpha-1)Q(t)\bigr)
+ \bigl(A^*+(2\alpha-1)Q\bigr)} > 0.
+\end{aligned}
+\end{equation}
+
+The strict inequality holds because
+\[
+1-2\alpha>0,\qquad
+Q(t)-Q>0,\qquad
+A^W-A^*>0,
+\]
+and
+\[
+A^*+(2\alpha-1)Q(t)>0,
+\qquad
+A^W+(2\alpha-1)Q(t)>0.
+\]
+\end{document}

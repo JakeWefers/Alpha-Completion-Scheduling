@@ -10,9 +10,6 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
 
-\newcommand{\LS}{\mathrm{LS}}
-\newcommand{\OPT}{\mathrm{OPT}}
-
 \title{A m dependant Upper Bound}
 \author{}
 \date{}
@@ -99,7 +96,7 @@ and, for every schedule \(S\),
  P_{W}:=P(S_{WORST}),\qquad P^*:=P(S_{OPT}).
 \]
 
-Because \(\OPT\) has one single scheduled job and every machine
+Because \(\mathrm{OPT}\) has one single scheduled job and every machine
 contains at most \(m\) jobs,
 \[
  n\le 1+m(m-1).
@@ -276,20 +273,20 @@ over those placements and adding (10), we obtain
  &=C_m\sqrt{QP^*}.
 \end{aligned}
 \]
-Finally \(P_{\LS}-P^*\le P_{\LS}\), proving (3).
+Finally \(P_{\mathrm{LS}}-P^*\le P_{\mathrm{LS}}\), proving (3).
 \end{proof}
 
 \section{The upper bound}
 
 Expanding the established result for $\alpha = \frac12$ by means of (1) gives
 \[
- \frac12Q+P_{\LS}
+ \frac12Q+P_{\mathrm{LS}}
  \le
  \frac43\left(\frac12Q+P^*\right),
 \]
 and hence
 \[
- P_{\LS}-P^*\le\frac16Q+\frac13P^*.
+ P_{\mathrm{LS}}-P^*\le\frac16Q+\frac13P^*.
 \tag{11}
 \]
 We now translate these two bounds on the additive cost difference into

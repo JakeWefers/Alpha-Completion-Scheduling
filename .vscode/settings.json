@@ -17,6 +17,9 @@
     "**/*.synctex.gz": true,
     "**/*.toc": true
   },
+  "files.associations": {
+    "*.aux": "plaintext"
+  },
   "search.exclude": {
     "**/.latex-build": true,
     "**/*.aux": true,
@@ -37,8 +40,7 @@
   },
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/pdf",
   "latex-workshop.latex.auxDir": "%WORKSPACE_FOLDER%/pdf",
-  "latex-workshop.latex.autoBuild.run": "onFileChange",
-  "latex-workshop.latex.autoBuild.interval": 1000,
+  "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.watch.files.ignore": [
     "**/.latex-build/**",
     "**/pdf/**",
@@ -70,13 +72,8 @@
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
-      "command": "latexmk",
+      "command": "./tools/latexmk_atomic.sh",
       "args": [
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "-pdf",
-        "-outdir=%OUTDIR%",
         "%DOC%"
       ],
       "cwd": "%WORKSPACE_FOLDER%"

@@ -3,10 +3,165 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
-
+\usepackage{tikz}
+\usepackage{subcaption}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
+\definecolor{jobhighlight}{HTML}{9ABCE4}
+\newcommand{\machinerow}[2]{%
+    \node[machine, anchor=east] at (-0.3,-#1+0.5) {$M_{#2}$};
+}
+
+\newcommand{\dotsrow}[1]{%
+    \foreach \dy in {-0.18,0,0.18} { % chktex 1
+        \fill (-0.6,{-#1+0.5+\dy}) circle[radius=0.025];
+        \fill (2,{-#1+0.5+\dy}) circle[radius=0.025];
+    }
+}
+
+\newcommand{\jobblock}[5][white]{%
+    \draw[job, fill=#1] (#3,-#2) rectangle ++(#4,1);
+    \node at ({#3 + #4/2},{-#2 + 0.5}) {$#5$}; % chktex 1
+}
+
+\newcommand{\schedulethreemaxone}{
+\begin{tikzpicture}[
+    x=0.7cm,
+    y=0.7cm,
+    job/.style={
+        draw,
+        thick,
+        fill=white,
+        font=\small
+    },
+    machine/.style={font=\small}
+]
+
+% Displayed machine rows
+\machinerow{1}{1}
+\machinerow{2}{2}
+\machinerow{3}{3}
+
+
+% Edit the second schedule here.
+
+\jobblock{1}{0}{4}{t_{\alpha}}
+\jobblock{1}{4}{2}{\frac{t_{\alpha}}{2}}
+
+
+
+\jobblock{2}{0}{4}{t_{\alpha}}
+\jobblock{2}{4}{2}{\frac{t_{\alpha}}{2}}
+
+\jobblock{3}{0}{10}{1}
+\end{tikzpicture}
+}
+
+\newcommand{\schedulethreemaxtwo}{
+\begin{tikzpicture}[
+    x=0.7cm,
+    y=0.7cm,
+    job/.style={
+        draw,
+        thick,
+        fill=white,
+        font=\small
+    },
+    machine/.style={font=\small}
+]
+
+% Displayed machine rows
+\machinerow{1}{1}
+\machinerow{2}{2}
+\machinerow{3}{3}
+
+
+% Edit the second schedule here.
+\jobblock{1}{0}{4}{t_{\alpha}}
+
+
+
+\jobblock{2}{0}{4}{t_{\alpha}}
+
+\jobblock{3}{0}{2}{\frac{t_{\alpha}}{2}}
+\jobblock{3}{2}{2}{\frac{t_{\alpha}}{2}}
+
+\jobblock{3}{4}{6}{1}
+
+\end{tikzpicture}
+}
+\newcommand{\schedulethreeone}{
+\begin{tikzpicture}[
+    x=0.7cm,
+    y=0.7cm,
+    job/.style={
+        draw,
+        thick,
+        fill=white,
+        font=\small
+    },
+    machine/.style={font=\small}
+]
+
+% Displayed machine rows
+\machinerow{1}{1}
+\machinerow{2}{2}
+\machinerow{3}{3}
+
+
+% Edit the second schedule here.
+
+\jobblock{1}{0}{2}{p_1}
+\jobblock{1}{2}{2.5}{p_2}
+\jobblock{1}{4.5}{2}{p_3}
+
+
+
+\jobblock{2}{0}{2}{p_4}
+\jobblock{2}{2}{2}{p_5}
+\jobblock{2}{4}{1.5}{p_6}
+
+\jobblock{3}{0}{6}{p_7}
+\end{tikzpicture}
+}
+
+\newcommand{\schedulethreetwo}{
+\begin{tikzpicture}[
+    x=0.7cm,
+    y=0.7cm,
+    job/.style={
+        draw,
+        thick,
+        fill=white,
+        font=\small
+    },
+    machine/.style={font=\small}
+]
+
+% Displayed machine rows
+\machinerow{1}{1}
+\machinerow{2}{2}
+\machinerow{3}{3}
+
+
+% Edit the second schedule here.
+
+\jobblock{1}{0}{2}{p_1}
+\jobblock{1}{2}{2}{p_4}
+
+
+
+\jobblock{2}{0}{2.5}{p_2}
+\jobblock{2}{2.5}{2}{p_5}
+
+
+\jobblock{3}{0}{2}{p_3}
+\jobblock{3}{2}{1.5}{p_6}
+\jobblock{3}{3.5}{6}{p_7}
+
+\end{tikzpicture}
+}
 
 \DeclareMathOperator*{\supremum}{sup}
 
@@ -17,74 +172,136 @@
 \date{}
 \maketitle
 
-\section{Problem Introduction}
+\section{Problem Introduction} 
+
+\begin{lemma}[m=3]
+
+    The approximation ratio of the $\mathrm{WSPT}$-rule for $3||\sum_{j} w_j C^{\alpha}_j$ is
+
+   \[
+\lambda_{\alpha}
+=
+\begin{cases}
+1+
+\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha} & \alpha\in (0,\frac12],\\[1.2ex]
+\infty,
+& \alpha=0.
+\end{cases}
+\]
+\end{lemma}
+
+
+The proof can be found in the Appendix ...
+
+\begin{proof}
+We know, from Singleton Job and Job Number bound, that we must only consider instances
+with $n\le 3m-2=7$ jobs. Furthermore, we know that there is a singleton in $\sigma^*(I)$. 
+The remaining instances can be expressed as follows: 
 
 Let
 \[
 0\le \alpha\le \frac12 \quad\text{and}\quad
-a,b,c,d,e,f,p>0.
+p_1,p_2,p_3,p_4,p_5,p_6,p_7>0.
 \]
 Set
 \[
-S:=a^2+b^2+c^2+d^2+e^2+f^2+p^2.
+S:=p_1^2+p_2^2+p_3^2+p_4^2+p_5^2+p_6^2+p_7^2.
 \]
-Consider the function
+
+The structural results... 
+make it possible for us to express $\lambda_{\alpha}$ explicitly.
+
 \[
-\lambda(a,b,c,d,e,f,p)(\alpha)
+\lambda_{\alpha}(I)
 =
 \frac{
-(a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S
+(p_1+p_4)^2+(p_2+p_5)^2+(p_3+p_6+p_7)^2+(2\alpha-1)S
 }{
-(a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S
+(p_1+p_2+p_3)^2+(p_4+p_5+p_6)^2+p_7^2+(2\alpha-1)S
 }
 \]
 subject to
+\begin{align}
+p_1+p_2+p_3&\ge p_4+p_5,
+    \label{con:m3-load-123}\\
+p_4+p_5+p_6&\ge p_1+p_2,
+    \label{con:m3-load-456}\\
+p_7&\ge p_1+p_2,
+    \label{con:m3-p7-12}\\
+p_7&\ge p_4+p_5,
+    \label{con:m3-p7-45}\\
+p_1+p_4&\ge p_3+p_6,
+    \label{con:m3-p14-36}\\
+p_2+p_5&\ge p_3+p_6,
+    \label{con:m3-p25-36}\\
+p_1+p_4&\ge p_2,
+    \label{con:m3-p14-2}\\
+p_2+p_5&\ge p_1,
+    \label{con:m3-p25-1}\\
+p_3+p_6+p_7&\ge p_1,
+    \label{con:m3-p367-1}\\
+p_3+p_6+p_7&\ge p_2.
+    \label{con:m3-p367-2}
+\end{align}
+
+Where equations \eqref{con:m3-load-123} - \eqref{con:m3-p7-45} are sufficient conditions for 
+$\sigma^{*}(I)$ to be list schedule, and \eqref{con:m3-p14-36} - \eqref{con:m3-p367-2} are sufficient 
+for $\sigma^{W}(I)$ to be list schedule.
+
+
+\begin{figure}[htbp]
+\centering
+\setlength{\fboxsep}{6pt}
+\fbox{%
+\begin{minipage}{0.94\textwidth}
+    \begin{minipage}[t]{0.47\linewidth}
+        \centering
+        \scalebox{0.8}{\schedulethreeone}
+        \par\smallskip
+        \small(a) \(\sigma^{*}(I_1)\)
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.47\linewidth}
+        \centering
+        \scalebox{0.8}{\schedulethreetwo}
+        \par\smallskip
+        \small(b) \(\sigma^{W}(I_1)\)
+    \end{minipage}
+\end{minipage}%
+}
+\caption{Schedules for case (1)}
+\label{figure-schedulecaseone}
+\end{figure}
+
+
+We will normalize the problem by setting
+$p_7=1$
+but keep $p_7$ as is for the moment for better readability of our calculations.
+
+Constraints \eqref{con:m3-p367-1} and \eqref{con:m3-p367-2} are redundant. Indeed, since
 \[
-\begin{aligned}
-a+b+c&\ge d+e,\\
-d+e+f&\ge a+b,\\
-p&\ge a+b,\\
-p&\ge d+e,\\
-a+d&\ge c+f,\\
-b+e&\ge c+f,\\
-a+d&\ge b,\\
-b+e&\ge a,\\
-c+f+p&\ge a,\\
-c+f+p&\ge b.
-\end{aligned}
+p_7\ge p_1+p_2
 \]
-
-
-\section{First Simplification}
-
-We normalize the problem by setting
-\[p=1.
-\]
-
-The final two constraints are redundant. Indeed, since
+and \(p_1,p_2>0\), we have \(p_7\ge p_1\) and \(p_7\ge p_2\). Hence
 \[
-p\ge a+b
+p_3+p_6+p_7\ge p_1,\qquad p_3+p_6+p_7\ge p_2
 \]
-and \(a,b>0\), we have \(p\ge a\) and \(p\ge b\). Hence
-\[
-c+f+p\ge a,\qquad c+f+p\ge b
-\]
-hold "automatically".
+hold automatically.
 
-\section{Expansion of the Ratio}
+
 
 Define
 \[
-L:=ab+ac+bc+de+df+ef
+L:=p_1p_2+p_1p_3+p_2p_3+p_4p_5+p_4p_6+p_5p_6
 \quad \text{and}\quad
-Q:=ad+be+cf+p(c+f).
+Q:=p_1p_4+p_2p_5+p_3p_6+p_7(p_3+p_6).
 \]
-Expanding the denominator of $\lambda$ gives
+Expanding the denominator of $\lambda_{\alpha}(I)$ gives
 \[
 \begin{aligned}
-& (a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S\\
+& (p_1+p_2+p_3)^2+(p_4+p_5+p_6)^2+p_7^2+(2\alpha-1)S\\
 &=
-2\alpha S+2(ab+ac+bc+de+df+ef)\\
+2\alpha S+2(p_1p_2+p_1p_3+p_2p_3+p_4p_5+p_4p_6+p_5p_6)\\
 &=
 2(\alpha S+L).
 \end{aligned}
@@ -92,16 +309,16 @@ Expanding the denominator of $\lambda$ gives
 Similarly for the numerator,
 \[
 \begin{aligned}
-& (a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S\\
+& (p_1+p_4)^2+(p_2+p_5)^2+(p_3+p_6+p_7)^2+(2\alpha-1)S\\
 &=
-2\alpha S+2(ad+be+cf+p(c+f))\\
+2\alpha S+2(p_1p_4+p_2p_5+p_3p_6+p_7(p_3+p_6))\\
 &=
 2(\alpha S+Q).
 \end{aligned}
 \]
 Thus
 \[
-\lambda(a,b,c,d,e,f,p)(\alpha)
+\lambda_{\alpha}(I)
 =
 \frac{\alpha S+Q}{\alpha S+L}
 =
@@ -112,40 +329,39 @@ Therefore the problem is equivalent to maximizing
 \frac{Q-L}{\alpha S+L}.
 \]
 
-Only one term in \(Q\) involves \(p\), namely
+Only one term in \(Q\) involves \(p_7\), namely
 \[
-p(c+f).
+p_7(p_3+p_6).
 \]
 The denominator contains the compensating term
 \[
-\alpha p^2.
+\alpha p_7^2.
 \]
-Thus, making \(p\) large cannot make the ratio
+Thus, making \(p_7\) large cannot make the ratio
 arbitrarily large.
 
 Let
 \[
-x=c+f.
+x=p_3+p_6.
 \]
 The constraints
 \[
-a+d\ge x,\qquad b+e\ge x
+p_1+p_4\ge x,\qquad p_2+p_5\ge x
 \]
-say that the two sums \(a+d\) and \(b+e\) must each carry at least the
+say that the two sums \(p_1+p_4\) and \(p_2+p_5\) must each carry at least the
 mass \(x\).  We do not set these inequalities tight at this point.
 Instead, the next section derives the active boundary algebraically and
 only then checks that any slack in these two inequalities lowers the
-ratio on that reduced face.
-The same applies to the constraint \(b+e\ge a\): it is not assumed
-active here.  After \(a+d=b+e=x\) and \(c=f=x/2\) have been reduced to,
-the remaining dependence is through \(y=a+b\), and the numerator
+ratio.
+The same applies to the constraint \(p_2+p_5\ge p_1\): it is not assumed
+tight.  After \(p_1+p_4=p_2+p_5=x\) and \(p_3=p_6=x/2\) have been reduced to,
+the remaining dependence is through \(y=p_1+p_2\), and the numerator
 \[
-px-\frac74x^2+2xy-y^2
+p_7x-\frac74x^2+2xy-y^2
 \]
-is maximized at \(y=x\); the denominator then forces \(ab=0\), so on
-the symmetric branch \(a=x,b=0,e=x\), giving \(b+e=a\).
+is maximized at \(y=x\); the denominator then forces \(p_1p_2=0\), so on
+the symmetric branch \(p_1=x,p_2=0,p_5=x\), giving \(p_2+p_5=p_1\).
 
-\section{Constraint Reduction}
 
 We now record the algebraic reduction leading to the active boundary.
 
@@ -155,14 +371,15 @@ For \(0<\alpha\le \frac12\),
 \frac{Q-L}{\alpha S+L}
 \le
 \sup_{t>0}
-\frac{t-\frac34t^2}{\alpha+\left(1+\frac52\alpha\right)t^2}.
+\frac{t-\frac34t^2}
+{\alpha+\left(1+\frac52\alpha\right)t^2}.
 \]
 \end{lemma}
 
 \begin{proof}
 Introduce the sums
 \[
-u=a+d,\qquad v=b+e,\qquad x=c+f.
+u=p_1+p_4,\qquad v=p_2+p_5,\qquad x=p_3+p_6.
 \]
 The constraints include
 \[
@@ -170,139 +387,143 @@ u\ge x,\qquad v\ge x.
 \]
 Also put
 \[
-m=a+b,\qquad n=d+e.
+m=p_1+p_2,\qquad n=p_4+p_5.
 \]
 The constraints
 \[
-p\ge a+b,\qquad p\ge d+e
+p_7\ge p_1+p_2,\qquad p_7\ge p_4+p_5
 \]
 become
 \[
-p\ge m,\qquad p\ge n.
+p_7\ge m,\qquad p_7\ge n.
 \]
 Finally,
 \[
-a+d\ge b,\qquad b+e\ge a
+p_1+p_4\ge p_2,\qquad p_2+p_5\ge p_1
 \]
 become
 \[
-u\ge b,\qquad v\ge a.
+u\ge p_2,\qquad v\ge p_1.
 \]
 
-For fixed \(p\) and \(x=c+f\), expanding \(Q-L\) in the variables
-\(u,v,m,c\) gives
+For fixed \(p_7\) and \(x=p_3+p_6\), expanding \(Q-L\) in the variables
+\(u,v,m,p_3\) gives
 \[
 \begin{aligned}
 Q-L
-={}&px-c^2+c(u+v+x-2m)-m^2\\
+={}&p_7x-p_3^2+p_3(u+v+x-2m)-m^2\\
 &+m(u+v+x)-uv-x(u+v).
 \end{aligned}
 \]
 As we set
 \[
-a+d=x,\qquad b+e=x.
+p_1+p_4=x,\qquad p_2+p_5=x,
 \]
-we can analyze the remaining constraint \(b+e\ge a\). Choose the maximizing "split"
+we can analyze the remaining constraint \(p_2+p_5\ge p_1\). Choose the
+maximizing ``split''
 \[
-c=f=\frac x2,
+p_3=p_6=\frac{x}{2},
 \]
-which is the maximal feasible choice for fixed \(x\), since it maximizes \(cf\) (numerator)
-and minimizes \(c^2+f^2\) (denominator).  Then
+which is the maximal feasible choice for fixed \(x\), since it maximizes
+\(p_3p_6\) (numerator) and minimizes \(p_3^2+p_6^2\) (denominator).
+Then
 \[
-d=x-a,\qquad e=x-b,
+p_4=x-p_1,\qquad p_5=x-p_2.
 \]
-put
+Put
 \[
-y=a+b.
+y=p_1+p_2.
 \]
 Then inserting gives
 \[
 Q-L
 =
-px-\frac74x^2+2xy-y^2.
+p_7x-\frac74x^2+2xy-y^2.
 \]
-For fixed \(x\) and \(p\), this quadratic in \(y\) is maximized at
+For fixed \(x\) and \(p_7\), this quadratic in \(y\) is maximized at
 \[
 y=x.
 \]
-(as can be seen by differentiation).
+This can be seen by differentiation.
 
-Thus the maximizing satisfies
+Thus the maximizing point satisfies
 \[
-a+b=x.
+p_1+p_2=x.
 \]
 Here, the denominator is
 \[
 \alpha S+L
 =
-\alpha p^2+\left(1+\frac52\alpha\right)x^2
-+(2-4\alpha)ab.
+\alpha p_7^2
++\left(1+\frac52\alpha\right)x^2
++(2-4\alpha)p_1p_2.
 \]
 Since \(0<\alpha\le \frac12\), the coefficient \(2-4\alpha\) is
-nonnegative.  Hence the denominator is minimized by
+nonnegative. Hence the denominator is minimized by
 \[
-ab=0.
+p_1p_2=0.
 \]
-Consequently either
+Consequently, either
 \[
-(a,b)=(x,0)
+(p_1,p_2)=(x,0)
 \qquad\text{or}\qquad
-(a,b)=(0,x).
+(p_1,p_2)=(0,x).
 \]
-The two cases are symmetric.  We choose the first one, which implies:
+The two cases are symmetric. We choose the first one, which implies
 \[
-e=x,\qquad b+e=x=a.
+p_5=x,\qquad p_2+p_5=x=p_1.
 \]
-Thus, on this symmetric branch, the constraint \(b+e\ge a\) is tight.
+Thus, the constraint
+\(p_2+p_5\ge p_1\) is tight.
 
 Finally, we need to check that this does not benefit from slack in
 \(u\ge x\) or \(v\ge x\). We write
 \[
-u=x+r,\qquad v=x+s,
-\qquad r,s\ge0.
+u=x+r,\qquad v=x+s,\qquad r,s\ge0.
 \]
-this gives
+This gives
 \[
-(a,b,c,d,e,f,p)
+(p_1,p_2,p_3,p_4,p_5,p_6,p_7)
 =
-\left(x,s,\frac x2,r,x,\frac x2,p\right),
+\left(x,s,\frac{x}{2},r,x,\frac{x}{2},p_7\right),
 \]
 so that
 \[
-a+d=x+r,\qquad b+e=x+s,\qquad c+f=x.
+p_1+p_4=x+r,\qquad
+p_2+p_5=x+s,\qquad
+p_3+p_6=x.
 \]
 For this family the excess numerator is
 \[
-\begin{aligned}
 Q-L
-&=px-\frac34x^2-\frac{x}{2}(r+s),
-\end{aligned}
+=
+p_7x-\frac34x^2-\frac{x}{2}(r+s),
 \]
 whereas the denominator is
 \[
-\begin{aligned}
 \alpha S+L
-&=
-\alpha p^2+\left(1+\frac52\alpha\right)x^2
-+\frac{3x}{2}(r+s)+\alpha(r^2+s^2).
-\end{aligned}
+=
+\alpha p_7^2
++\left(1+\frac52\alpha\right)x^2
++\frac{3x}{2}(r+s)
++\alpha(r^2+s^2).
 \]
 Thus every positive slack \(r\) or \(s\) subtracts from the numerator
-and adds to the denominator.  Consequently, for fixed \(x\) and \(p\),
+and adds to the denominator. Consequently, for fixed \(x\) and \(p_7\),
 the largest value in this slack family is attained at
-$
+\[
 r=s=0.
-$
+\]
 
 Substituting the active equalities gives
 \[
-(a,b,c,d,e,f,p)
+(p_1,p_2,p_3,p_4,p_5,p_6,p_7)
 =
-\left(x,0,\frac x2,0,x,\frac x2,p\right).
+\left(x,0,\frac{x}{2},0,x,\frac{x}{2},p_7\right).
 \]
-We normalize p to get
+We normalize \(p_7\) to get
 \[
-\left(t,0,\frac t2,0,t,\frac t2,1\right).
+\left(t,0,\frac{t}{2},0,t,\frac{t}{2},1\right).
 \]
 On this boundary,
 \[
@@ -318,12 +539,12 @@ Therefore every feasible point is bounded above by the one-variable
 problem
 \[
 \sup_{t>0}
-\frac{t-\frac34t^2}{\alpha+\left(1+\frac52\alpha\right)t^2}.
+\frac{t-\frac34t^2}
+{\alpha+\left(1+\frac52\alpha\right)t^2}.
 \]
 \end{proof}
-
-\section{Max t}
-
+\noindent
+We continue by maximzing the one-variable function $f_{\alpha}$
 Define
 \[
 f_\alpha(t)
@@ -397,208 +618,49 @@ So the supremum over the reduced one-variable problem is
 \]
 
 
-\section{Approaching family}
+The maximizing boundary point is only infeasible since in this instance we enfore 
+there to be seven nonzero jobs. 
+Therefore the expression above is only a supremum which can be approached by the family
 
-The maximizing boundary point has zero coordinates:
-\[
-\left(
-t_\alpha,0,\frac{t_\alpha}{2},0,t_\alpha,\frac{t_\alpha}{2},1
-\right).
-\]
-Thus it is not feasible in the original strictly positive region.
-It is feasible only in the closure of that region.
-
-For actual feasible points, first note that
-\[
-0<t_\alpha<1.
-\]
-Indeed, positivity is immediate from
-\(\sqrt{\alpha(16+49\alpha)}>3\alpha\), and the upper bound follows from
-\[
-\sqrt{\alpha(16+49\alpha)}<4+13\alpha,
-\]
-which gives
-\[
-t_\alpha
-=
-\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha}
-<1.
-\]
-Hence, for every
-\[
-0<\varepsilon<1-t_\alpha,
-\]
-the point
 \[
 \left(
 t_\alpha,\varepsilon,\frac{t_\alpha}{2},
 \varepsilon,t_\alpha,\frac{t_\alpha}{2},1
 \right)
 \]
-is strictly positive and feasible.  Its value converges to
-\[
-1+
-\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha}
-\]
-as \(\varepsilon\to0\).  Therefore the displayed value is the supremum
-over the original strictly positive feasible region, but it is not
-attained there.
+and $\varepsilon \rightarrow 0$.
 
-\section{Direct evaluation of the approaching family}
 
-We now insert the approaching family directly into the original
-definition of \(\lambda\).  Fix
+Indeed though, taking the limit and deleting all jobs with processing time zero leaves us with a 
+feasible instance that achieves the established $\lambda$-bound.
 \[
-t=t_\alpha
-\]
-and set
-\[
-(a,b,c,d,e,f,p)
-=
 \left(
-t,\varepsilon,\frac t2,
-\varepsilon,t,\frac t2,1
+t_\alpha,\frac{t_\alpha}{2},t_\alpha,\frac{t_\alpha}{2},1
 \right).
 \]
-Then
-\[
-S
-=
-t^2+\varepsilon^2+\frac{t^2}{4}
-+\varepsilon^2+t^2+\frac{t^2}{4}+1
-=
-1+\frac52t^2+2\varepsilon^2.
-\]
-The numerator of the original ratio is
-\[
-\begin{aligned}
-N_\varepsilon
-&=
-(a+d)^2+(b+e)^2+(c+f+p)^2+(2\alpha-1)S\\
-&=
-(t+\varepsilon)^2+(\varepsilon+t)^2+(t+1)^2
-+(2\alpha-1)\left(1+\frac52t^2+2\varepsilon^2\right)\\
-&=
-2\alpha+2t+\left(\frac12+5\alpha\right)t^2
-+4t\varepsilon+4\alpha\varepsilon^2\\
-&=
-2\left(
-\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
-+2t\varepsilon+2\alpha\varepsilon^2
-\right).
-\end{aligned}
-\]
-The denominator is
-\[
-\begin{aligned}
-D_\varepsilon
-&=
-(a+b+c)^2+(d+e+f)^2+p^2+(2\alpha-1)S\\
-&=
-\left(\frac32t+\varepsilon\right)^2
-+\left(\frac32t+\varepsilon\right)^2+1
-+(2\alpha-1)\left(1+\frac52t^2+2\varepsilon^2\right)\\
-&=
-2\alpha+(2+5\alpha)t^2+6t\varepsilon
-+4\alpha\varepsilon^2\\
-&=
-2\left(
-\alpha+\left(1+\frac52\alpha\right)t^2
-+3t\varepsilon+2\alpha\varepsilon^2
-\right).
-\end{aligned}
-\]
-Hence
-\[
-\lambda_\varepsilon
-=
-\frac{
-\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
-+2t\varepsilon+2\alpha\varepsilon^2
-}{
-\alpha+\left(1+\frac52\alpha\right)t^2
-+3t\varepsilon+2\alpha\varepsilon^2
-}.
-\]
-Letting \(\varepsilon\to0\) gives
-\[
-\lim_{\varepsilon\to0}\lambda_\varepsilon
-=
-\frac{
-\alpha+t+\left(\frac14+\frac52\alpha\right)t^2
-}{
-\alpha+\left(1+\frac52\alpha\right)t^2
-}.
-\]
-With
-\[
-\beta=1+\frac52\alpha,
-\]
-this becomes
-\[
-\begin{aligned}
-\lim_{\varepsilon\to0}\lambda_\varepsilon
-&=
-\frac{\alpha+\beta t^2+t-\frac34t^2}
-{\alpha+\beta t^2}\\
-&=
-1+
-\frac{t-\frac34t^2}{\alpha+\beta t^2}.
-\end{aligned}
-\]
-Now use \(t=t_\alpha\).  From the critical point equation
-\[
-\beta t^2+\frac32\alpha t-\alpha=0
-\]
-we have
-\[
-\beta t^2=\alpha-\frac32\alpha t.
-\]
-Therefore
-\[
-\begin{aligned}
-\frac{t-\frac34t^2}{\alpha+\beta t^2}
-&=
-\frac{t\left(1-\frac34t\right)}
-{\alpha+\alpha-\frac32\alpha t}\\
-&=
-\frac{t\left(1-\frac34t\right)}
-{\alpha\left(2-\frac32t\right)}\\
-&=
-\frac{t}{2\alpha}.
-\end{aligned}
-\]
-Finally, since
-\[
-t_\alpha
-=
-\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}{4+10\alpha},
-\]
-we get
-\[
-\begin{aligned}
-\frac{t_\alpha}{2\alpha}
-&=
-\frac{\sqrt{\alpha(16+49\alpha)}-3\alpha}
-{2\alpha(4+10\alpha)}\\
-&=
-\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha},
-\end{aligned}
-\]
-because
-\[
-\left(\sqrt{\alpha(16+49\alpha)}-3\alpha\right)
-\left(\sqrt{\alpha(16+49\alpha)}+3\alpha\right)
-=
-4\alpha(4+10\alpha).
-\]
-Thus the strictly positive approaching family satisfies
-\[
-\lim_{\varepsilon\to0}\lambda_\varepsilon
-=
-1+
-\frac{2}{\sqrt{\alpha(16+49\alpha)}+3\alpha},
-\]
-which is exactly the supremum found above.
 
+\begin{figure}[htbp]
+\centering
+\setlength{\fboxsep}{6pt}
+\fbox{%
+\begin{minipage}{0.94\textwidth}
+    \begin{minipage}[t]{0.47\linewidth}
+        \centering
+        \scalebox{0.8}{\schedulethreemaxone}
+        \par\smallskip
+        \small(a) \(\sigma^{*}(I_1)\)
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.47\linewidth}
+        \centering
+        \scalebox{0.8}{\schedulethreemaxtwo}
+        \par\smallskip
+        \small(b) \(\sigma^{W}(I_1)\)
+    \end{minipage}
+\end{minipage}%
+}
+\caption{Maximzing Schedule}
+\label{figure-sometjing}
+\end{figure}
+\end{proof}
 \end{document}

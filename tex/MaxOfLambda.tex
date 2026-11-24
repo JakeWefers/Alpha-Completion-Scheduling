@@ -4,10 +4,9 @@
 \usepackage{amsmath,amssymb}
 \usepackage{enumitem}
 
-\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\WSPT}{\mathrm{WSPT}}
 \newcommand{\OPT}{\mathrm{OPT}}
-\newcommand{\maxi}{\max}
-\newcommand{\mini}{\min}
+
 
 \title{Maximums of $\lambda$ for $\alpha \ge \frac12$}
 \author{}
@@ -21,10 +20,10 @@ We consider only instances with:
     \item $u < m$ long jobs, where $m$ is the number of machines, with processing time $p$.
     \item Additional short jobs have total workload $m$.
     \item $w_j = p_j$ for all $j$.
-    \item $S_{\LRF}$ schedules all small jobs in $[0,1]$ and all long jobs start at $1$.
+    \item $S_{\WSPT}$ schedules all small jobs in $[0,1]$ and all long jobs start at $1$.
     \item $S_{\OPT}$ schedules all long jobs at time $0$, and all machines $i$ that execute a small job have the property
     \[
-        C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\mini}(S_{\OPT}(I)).
+        C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\min}(S_{\OPT}(I)).
     \]
 \end{enumerate}
 
@@ -32,7 +31,7 @@ We consider only instances with:
 
 For case (1) of Corollary 5,(REFERENCE MISSING)
 \[
-    C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\mini}(S_{\OPT}(I))
+    C_{\max}^i(S_{\OPT}(I)) = C_{\max}^{\min}(S_{\OPT}(I))
     \qquad \forall i.
 \]
 Moreover,
@@ -60,18 +59,18 @@ Thus,
     \right).
 \end{align*}
 
-\section*{The Schedule $S_{\LRF}$}
+\section*{The Schedule $S_{\WSPT}$}
 
-For $S_{\LRF}$,
+For $S_{\WSPT}$,
 \begin{align*}
-    C_{\LRF}(I)(\alpha)
+    C_{\WSPT}(I)(\alpha)
     &=
     \frac12 \left(
         \bigl(2\alpha-1\bigr)
         \sum_{j \in L(I)} p_j^2
         +
         \sum_{i=1}^m
-        \bigl(C_{\max}^i(S_{\LRF}(I))\bigr)^2
+        \bigl(C_{\max}^i(S_{\WSPT}(I))\bigr)^2
     \right) \\
     &=
     \frac12 \left(
@@ -152,7 +151,7 @@ and
 
 Now for case (2) of Corollary 5:
 \[
-    C_{\max}^i(S_{\OPT}(I')) > C_{\max}^{\mini}(S_{\OPT}(I'))
+    C_{\max}^i(S_{\OPT}(I')) > C_{\max}^{\min}(S_{\OPT}(I'))
     \qquad \text{for some } i.
 \]
 Again,
@@ -171,7 +170,7 @@ For $S_{\OPT}$,
         \sum_{j \in L(I)} p_j^2
         +
         \sum_{i=1}^m
-        \bigl(C_{\max}^i(S(I))\bigr)^2
+        \bigl(C_{\max}^i(\sigma(I))\bigr)^2
     \right) \\
     &=
     \frac12 \left(
@@ -189,7 +188,7 @@ For $S_{\OPT}$,
     \right).
 \end{align*}
 
-The value of $S_{\LRF}$ stays unchanged, so
+The value of $S_{\WSPT}$ stays unchanged, so
 \begin{align*}
     \lambda(I)
     &=

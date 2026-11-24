@@ -41,6 +41,24 @@ VS Code users can use the included LaTeX Workshop recipe. Generated auxiliary
 files, local virtual environments, and operating-system metadata are ignored
 by Git.
 
+Automatic VS Code builds run on save, rather than on every edit. They compile
+in `.latex-build/` and publish to `pdf/` only after a successful run, so an
+interrupted build cannot replace the last complete PDF with a partial file.
+The same atomic build is available from the command line:
+
+```bash
+./tools/latexmk_atomic.sh master.tex
+```
+
+On Apple Silicon, this script extracts and caches a native copy of universal
+Biber in `.latex-build/bin/`. This avoids the obsolete `lipo -extract_family`
+startup call in older Biber packages without changing the TeX installation.
+Use the atomic build command (or the VS Code recipe) to apply this workaround.
+
+If LaTeX/Biber starts rerunning because the staged auxiliary state is
+incomplete, reset only that state with `latexmk -norc -C
+-outdir=.latex-build master.tex` and run the atomic build again.
+
 ## Working conventions
 
 - Keep thesis prose and structure in `master.tex`.

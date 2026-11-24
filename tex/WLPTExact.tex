@@ -1,0 +1,1074 @@
+% Self-contained proof of the exact fixed-alpha worst-list bound.
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\OPT}{\operatorname{OPT}}
+\newcommand{\WLPT}{\operatorname{WLPT}}
+
+\title{The Exact Worst-List Bound for
+\texorpdfstring{$P\,\|\,\sum_j p_j C_j(\alpha)$}
+{P || sum p_j Cj(alpha)}
+for \texorpdfstring{$0<\alpha\leq\tfrac12$}{0 < alpha <= 1/2}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For jobs of weight $w_j=p_j$ on identical parallel machines, let
+$C_j(\alpha)=S_j+\alpha p_j$, where $0<\alpha\leq1/2$.  This note
+proves, self-containedly, that the exact worst-list approximation ratio is
+\[
+ 1+\frac{1}{2\alpha H(\alpha)},\qquad
+ H(\alpha)=\min_{k\geq2}\left\{
+ \frac{k+1}{2k}+
+ \sqrt{\left(\frac{k+1}{2k}\right)^2+
+ k+\frac1k+\frac1\alpha}\right\}.
+\]
+It is strictly smaller than $1+1/(6\alpha)$ for
+$0<\alpha<1/2$ and equals the tight value $4/3$ for this worst-list
+rule at $\alpha=1/2$.  A finite matching instance is given for every
+$\alpha$.
+\end{abstract}
+
+\section{Model, convention, and upper-bound theorem}
+
+All jobs have processing time $p_j>0$, weight $w_j=p_j$, release time
+zero, and are processed nonpreemptively on identical machines.  In this
+note, the symbol \emph{WLPT} is used nonstandardly for the worst
+admissible list realization: jobs are taken from an arbitrary list and
+each next job is assigned to a least-loaded machine.  Thus
+\[
+ \WLPT_\alpha(I):=\max_W\sum_jp_jC_j^W(\alpha),
+ \qquad
+ \OPT_\alpha(I):=\min_S\sum_jp_jC_j^S(\alpha),
+\]
+where the maximum includes minimum-load tie choices.  This convention is
+natural here because all Smith ratios $w_j/p_j$ are equal, so the
+unrestricted priority-tie family of the WSPT/Smith rule is exactly the
+family of all lists.  The upper bound below applies to every individual
+list and every tie choice.
+
+\begin{theorem}\label{thm:exact-wlpt-alpha}
+Consider finitely many jobs with processing times \(p_j>0\), zero release
+times, and nonpreemptive processing on identical parallel machines.  Write
+\[
+ C_j(\alpha):=S_j+\alpha p_j,\qquad 0<\alpha\leq\frac12,
+\]
+where \(S_j\) is the start time.  A \emph{list schedule} processes an
+arbitrary ordered list of the jobs and assigns each successive job to a
+machine of minimum current load; any minimum-load machine may be chosen
+when there is a tie.  For $k\in\mathbb N$, put
+\[
+ b_k:=\frac{k+1}{2k},\qquad
+ h_k:=b_k+\sqrt{b_k^2+k+\frac1k+\frac1\alpha},
+ \qquad
+ \rho_k:=1+\frac{1}{2\alpha h_k},
+\]
+and let
+\[
+ H(\alpha):=\min_{k\geq2}h_k,
+ \qquad
+ \rho=\rho(\alpha):=\max_{k\geq1}\rho_k
+ =1+\frac{1}{2\alpha H(\alpha)}.
+\]
+Then every such list schedule $W$ satisfies
+\[
+ \sum_jp_jC_j^W(\alpha)
+ \leq \rho(\alpha)\min_S\sum_jp_jC_j^S(\alpha).
+\]
+The maximum in the definition of $\rho$ is attained.
+\end{theorem}
+
+\begin{proof}
+All schedules below are taken to be left-justified.  This is automatic for
+a list schedule, and an optimum can be left-shifted without increasing its
+objective.  For a left-justified assignment $S$, write
+\[
+ Q_J:=\sum_jp_j^2,
+ \qquad
+ C(S):=\sum_i\sum_{\{j,\ell\}\subseteq S_i}p_jp_\ell.
+\]
+The order of the jobs on a fixed machine does not affect the objective,
+because every unordered pair on that machine contributes its product
+exactly once.  Consequently,
+\begin{equation}\label{eq:objective-pair-form}
+ \gamma_{\alpha}(S):=\sum_jp_jC_j^S(\alpha)=\alpha Q_J+C(S).
+\end{equation}
+If $L_i(S)$ is the load of machine $i$, then
+$C(S)=\tfrac12(\sum_iL_i(S)^2-Q_J)$, and hence also
+\begin{equation}\label{eq:objective-load-form}
+ \gamma_{\alpha}(S)
+ =\frac12\sum_iL_i(S)^2+
+   \left(\alpha-\frac12\right)Q_J.
+\end{equation}
+
+Since $h_k\to\infty$, one has $\rho_k\to1$; hence the maximum of
+the sequence $\{\rho_k\}$ is attained.  Choose an index $n$ attaining
+it, and define
+\begin{equation}\label{eq:main-parameters}
+ h:=h_n,
+ \quad D:=(\rho-1)\alpha=\frac1{2h},
+ \quad a:=\frac\rho2,
+ \quad A:=\frac12+D,
+ \quad \beta:=a-A=(\rho-1)\left(\frac12-\alpha\right)\geq0,
+\end{equation}
+as well as
+\begin{equation}\label{eq:C0-M-K0}
+ C_0:=\rho-\frac12-\frac1{4D},
+ \qquad M:=-C_0,
+ \qquad K_0:=\frac1{4D}-D.
+\end{equation}
+For a fixed comparison assignment $O$, proving the theorem is
+equivalent, by \eqref{eq:objective-pair-form}, to proving
+\begin{equation}\label{eq:support-functional}
+ \mathcal H:=C(W)-\rho C(O)-DQ_J\leq0.
+\end{equation}
+
+We first collect the parameter facts used below.
+
+\medskip
+\noindent
+\textbf{Parameter facts.}
+For every $k\geq1$, direct substitution of $D=1/(2h)$ gives
+\begin{align}
+ 2h\left(C_0+Dk+\frac Ak\right)
+ &=-\left[h^2-\left(1+\frac1k\right)h
+              -\left(k+\frac1k+\frac1\alpha\right)\right].
+ \label{eq:canonical-envelope-calculation}
+\end{align}
+The positive root of the quadratic in brackets is $h_k$.  Because
+$h=h_n=\min_kh_k$, it follows that
+\begin{equation}\label{eq:canonical-envelope}
+ C_0+Dk+\frac Ak\geq0\quad(k\geq1),
+ \qquad
+ M=Dn+\frac An=\min_{k\geq1}\left(Dk+\frac Ak\right).
+\end{equation}
+For $\alpha\leq\tfrac12$, $h_2<h_1$, so $n\geq2$.  Indeed,
+with $t=1/\alpha\geq2$,
+\[
+ h_1=1+\sqrt{t+3},\qquad
+ h_2=\frac34+\sqrt{t+\frac{49}{16}},
+\]
+and the difference of the two square roots is less than $1/4$.
+Moreover, $h_k\geq3$ for every $k$: evaluating the defining
+quadratic at $3$ gives
+\[
+ 3^2-3\left(1+\frac1k\right)
+   -\left(k+\frac1k+\frac1\alpha\right)
+ \leq4-k-\frac4k\leq0.
+\]
+Thus
+\begin{equation}\label{eq:D-basic-range}
+ 0<D\leq\frac16.
+\end{equation}
+
+The condition that $n$ minimizes $Dk+A/k$, together with
+\eqref{eq:D-basic-range}, yields
+\begin{equation}\label{eq:active-D-range}
+ \frac1{10}\leq D\leq\frac16\quad(n=2),
+\end{equation}
+and, for $n\geq3$,
+\begin{equation}\label{eq:active-D-range-large-n}
+ \frac1{2(n(n+1)-1)}\leq D
+ \leq\frac1{2(n(n-1)-1)}.
+\end{equation}
+For example, $Dn+A/n\leq D(n+1)+A/(n+1)$ is equivalent to
+$D\geq1/[2(n(n+1)-1)]$, and comparison with $n-1$ gives the
+upper endpoint.  For $n=2$, comparison with $3$ gives $D\geq1/10$,
+while \eqref{eq:D-basic-range} gives the stated upper endpoint.
+
+The equality in \eqref{eq:canonical-envelope} also gives
+\begin{equation}\label{eq:a-explicit}
+ a=\frac{n-1}{4n}+\frac1{8D}
+       -\frac D2\left(n+\frac1n\right).
+\end{equation}
+Set
+\begin{equation}\label{eq:R-def}
+ R:=\sqrt{\frac aD},\qquad \tau:=\frac1R=\sqrt{\frac Da}.
+\end{equation}
+We shall use
+\begin{equation}\label{eq:R-sandwich}
+ n\leq R\leq\frac{an}{A}.
+\end{equation}
+Here are full algebraic checks.  From \eqref{eq:a-explicit},
+\begin{align}
+ 8Dn(a-Dn^2)
+ &=n+2D(n-1)-4D^2(2n^3+n^2+1),\label{eq:R-lower-poly}\\
+ 8(aDn^2-A^2)
+ &=n^2-2+2D(n(n-1)-4)-4D^2(n^3+n+2).
+ \label{eq:R-upper-poly}
+\end{align}
+For $n=2$, the right sides are respectively $2+2D-84D^2$
+and $2-4D-48D^2$.  Both are decreasing on
+$[1/10,1/6]$ and both vanish at \(D=1/6\), so they are nonnegative
+throughout that interval.  For $n\geq3$, put $B=n^2-n-1$.  Since
+$D\leq1/(2B)$, the right side of \eqref{eq:R-lower-poly} is at least
+\[
+ n-\frac{2n^3+n^2+1}{B^2}\geq0,
+\]
+because
+\[
+ nB^2-(2n^3+n^2+1)
+ =n^5-2n^4-3n^3+n^2+n-1
+ =n^3(n-3)(n+1)+n^2+n-1>0.
+\]
+Likewise, the right side of \eqref{eq:R-upper-poly} is at least
+\[
+ n^2-2-\frac{n^3+n+2}{B^2}\geq0;
+\]
+after multiplication by $B^2$, the last inequality is
+\[
+ n^6-2n^5-3n^4+5n^3+3n^2-5n-4>0,
+\]
+which is immediate from
+$n^4(n-3)(n+1)\geq0$ and
+$5n^3+3n^2-5n-4>0$.  The first inequality in
+\eqref{eq:R-sandwich} is equivalent to
+$a-Dn^2\geq0$; the second, after squaring, is equivalent to
+$aDn^2-A^2\geq0$.  This proves \eqref{eq:R-sandwich}.
+
+We shall also use
+\begin{equation}\label{eq:remaining-parameter-inequalities}
+ M\leq A,\qquad
+ \frac1n+\frac{D(n-1)}A\leq\frac34,\qquad
+ 4Da<1.
+\end{equation}
+For $n=2$, the first two inequalities follow directly from
+$D\leq1/6$.  For $n\geq3$, the upper active-range inequality is
+equivalent to $D\leq A/[n(n-1)]$.  It gives
+\[
+ \frac1n+\frac{D(n-1)}A\leq\frac2n\leq\frac23
+\]
+and
+\[
+ Dn\leq\frac A{n-1}\leq\frac{A(n-1)}n,
+\]
+the latter being $M=Dn+A/n\leq A$.  Finally,
+\eqref{eq:a-explicit} gives
+\[
+ 4Da=\frac12+\frac{D(n-1)}n
+        -2D^2\left(n+\frac1n\right)
+ <\frac12+D\leq\frac23.
+\]
+
+\medskip
+\noindent
+\textbf{1. Threshold decomposition and cell merging.}
+Let $T$ be the minimum final machine load in $W$.  If $T=0$,
+then, after zero-size jobs are discarded, there are fewer jobs than
+machines and every job is alone in $W$; this assignment is optimal.
+Thus assume $T>0$ and scale all processing times so that $T=1$.
+
+On every $W$-machine whose final load is greater than $1$, designate
+the last job assigned to that machine as its \emph{tail}.  If its size is
+$p$ and the preceding load on that machine is $s$, then $s\leq1$:
+when the tail was assigned, that machine had minimum current load.  The
+machine whose final load is $1$ had current load at most $1$ at that
+moment, so the minimum current load, and hence $s$, was at most $1$.
+Call the preceding jobs the prefix of that row.  A row of final load
+exactly $1$ is called a base row and all its jobs are base jobs.
+
+Represent prefix and base jobs by the intersections of their $W$-rows
+and their $O$-machines.  If two such jobs of sizes $u,v$ occupy the
+same intersection, replace them algebraically by a single job of size
+$u+v$.  The collision terms $C(W)$ and $C(O)$ both decrease by
+$uv$, while $Q_J$ increases by $2uv$.  Hence $\mathcal H$ changes by
+\begin{equation}\label{eq:cell-merge-change}
+ (-uv)-\rho(-uv)-2Duv
+ = (\rho-1-2D)uv=2\beta uv\geq0.
+\end{equation}
+We are maximizing a relaxation of $\mathcal H$, so it is harmless that the
+merged algebraic configuration need no longer be generated by the
+original list.  After all such mergers, every prefix/base intersection
+contains at most one cell.
+
+\medskip
+\noindent
+\textbf{2. Flattening all prefixes.}
+Fix an overloaded row, condition on every other variable, and write its
+prefix cell vector as $sv$, where $v\geq0$ and
+$\sum_gv_g=1$.  If the current prefix load is $s=0$, choose any
+probability vector $v$; the original point is still represented, and
+the ensuing maximization is a valid relaxation.  Let $\tau_0$ be the
+$O$-machine containing the
+tail, put $x=v_{\tau_0}$, let $z\geq0$ be the total size of all other
+jobs in that $O$-machine, and let
+$d=\sum_gv_gd_g\geq0$, where $d_g$ is the load of the other jobs in
+$O$-machine $g$.  Up to terms independent of $s,p$, the support
+functional equals
+\begin{equation}\label{eq:Jsp}
+ J(s,p)=-Dp^2+sp(1-\rho x)-\rho zp-\rho ds
+ +s^2\left(\frac12-A\lVert v\rVert_2^2\right),
+ \qquad 0\leq s\leq1,\qquad p\geq1-s.
+\end{equation}
+For fixed $s$, the unconstrained maximizer in $p$ is
+\[
+ p^*(s)=\frac{s(1-\rho x)-\rho z}{2D}.
+\]
+On the interval where $p^*(s)>1-s$, maximizing over $p$ produces a
+quadratic in $s$ with leading coefficient
+\begin{equation}\label{eq:K-leading}
+ K=\frac12-A\lVert v\rVert_2^2
+       +\frac{(1-\rho x)^2}{4D}.
+\end{equation}
+We now prove $K\geq0$.  Since
+$\lVert v\rVert_2^2\leq x^2+(1-x)^2$, multiplication by $4D$
+shows that $4DK$ is at least
+\begin{equation}\label{eq:P-x}
+ P(x):=(\rho^2-4D-8D^2)x^2
+ +(4D+8D^2-2\rho)x+1-4D^2.
+\end{equation}
+Its leading coefficient is positive, because
+\[
+ \rho^2-4D-8D^2
+ \geq(1+2D)^2-4D-8D^2=1-4D^2>0.
+\]
+Its discriminant is $16D E$, where
+\begin{align*}
+ E&=D\rho^2-\rho(1+2D)+(1-D)(1+2D)^2\\
+  &=D\bigl(\rho-(1+2D)\bigr)
+     \left(\rho-\frac{(1+2D)(1-D)}D\right).
+\end{align*}
+The first factor in the product is nonnegative because
+$\rho-1=D/\alpha\geq2D$.  The second is nonpositive.  Indeed, that
+claim is equivalent to
+$D^2(1/\alpha+2)\leq1$, while
+\[
+ D^2\left(\frac1\alpha+2\right)
+ =\frac{1/\alpha+2}{4h^2}\leq\frac14,
+\]
+because every $h_k$, and hence $h$, is larger than
+$\sqrt{1/\alpha+2}$.  Thus the discriminant is nonpositive.
+Since $P(0)=1-4D^2>0$, $P(x)\geq0$ and therefore $K\geq0$.
+
+The set
+\[
+ I=\{s\in[0,1]:p^*(s)>1-s\}
+\]
+is an interval and does not contain $0$.  On $I$, the optimized
+value is convex by $K\geq0$, so its maximum over the closure of $I$
+is attained either at $s=1$ or where $p^*(s)=1-s$.  Outside $I$,
+the constrained maximizer already has $p=1-s$.  Consequently a global
+maximizer of \eqref{eq:Jsp} has either $s=1$ or $p=1-s$.  Such a
+maximizer exists because the domain in $s$ is compact and the term
+$-Dp^2$ is coercive in $p$.
+
+Apply this replacement successively to the finitely many overloaded
+rows, always conditioning on the current values of all other rows.  The
+support functional never decreases.  If $s=1$, the prefix has become
+flat.  If $p=1-s$, the whole row has load $1$; reclassify the former
+tail as a base job and merge it with an existing cell in the same
+intersection if necessary, using \eqref{eq:cell-merge-change}.  Rows
+already treated remain flat when later rows are changed.  After this
+finite induction, every prefix/base row has total load $1$.
+
+\medskip
+\noindent
+\textbf{3. Removing tail gains from nonempty optimal columns.}
+Let $X=(x_{ig})$ be the resulting matrix of prefix/base cells.  It has
+$m$ rows, $m$ columns, and every row sum is $1$.  Put
+\[
+ L_g:=\sum_i x_{ig},\qquad Q:=\sum_{i,g}x_{ig}^2.
+\]
+If tails of sizes $t_1,\dots,t_s$ lie in $O$-column $g$, their
+contribution to $\mathcal H$ is
+\begin{equation}\label{eq:tail-column-contribution}
+ \sum_i(t_i-Dt_i^2)-\rho L_g\sum_i t_i
+ -\rho\sum_{i<j}t_it_j.
+\end{equation}
+Replacing two tails $u,v$ by one algebraic tail of size $u+v$
+increases \eqref{eq:tail-column-contribution} by
+$(\rho-2D)uv>0$.  Thus we may retain at most one potential tail in
+each $O$-column.  Optimizing its nonnegative size gives
+\begin{equation}\label{eq:gL}
+ g(L):=\max_{t\geq0}\{t-Dt^2-\rho Lt\}
+      =\frac{(1-\rho L)_+^2}{4D}.
+\end{equation}
+Allowing a potential tail independently in every column is an upper
+relaxation.  The prefix/base contribution is obtained from
+$C(W)=m/2-Q/2$ and
+$C(O)=\frac12\sum_gL_g^2-Q/2$.  Hence
+\begin{equation}\label{eq:H-flat-upper}
+ \mathcal H\leq \Phi(X):=\frac m2+\beta Q-a\sum_gL_g^2+
+                    \sum_g g(L_g).
+\end{equation}
+
+The row-stochastic matrix polytope is compact and $\Phi$ is continuous;
+choose a global maximizer $X$.  We claim that no column load lies
+strictly between $0$ and $1/\rho$.  Suppose
+$0<L_b<1/\rho$, set $v_i=x_{ib}/L_b$, and, for $g\neq b$, set
+\[
+ w_{ig}:=\frac{x_{ig}}{1-x_{ib}}.
+\]
+The denominator is positive because $x_{ib}\leq L_b<1$.  For
+$0\leq z\leq1/\rho$, define a row-stochastic matrix by
+\begin{equation}\label{eq:column-variation}
+ x_{ib}(z)=zv_i,\qquad
+ x_{ig}(z)=(1-zv_i)w_{ig}\quad(g\neq b).
+\end{equation}
+The original matrix occurs at $z=L_b$, a strict interior point of this
+segment.
+
+The coefficient of $z^2$ in $Q(X(z))$ is
+\[
+ U:=\sum_i v_i^2\left(1+\sum_{g\neq b}w_{ig}^2\right)\leq2,
+\]
+because $\sum_iv_i=1$ and every $w_i$ is a probability vector.
+Writing $r_g=\sum_iv_iw_{ig}$, the coefficient of $z^2$ in
+$\sum_gL_g(z)^2$ is
+\[
+ V:=1+\sum_{g\neq b}r_g^2\leq2,
+\]
+because $\sum_{g\neq b}r_g=1$.  Thus the quadratic part of
+$\beta Q-a\sum_gL_g^2$ has coefficient at least
+$-2a=-\rho$.  On the whole interval,
+$g(L_b(z))=(1-\rho z)^2/(4D)$, whose quadratic coefficient is
+$\rho^2/(4D)$.  Every other $g(L_g(z))$ is convex, since $g$ is
+convex and $L_g(z)$ is affine.  Therefore $\Phi(X(z))$ is strictly
+convex: its quadratic coefficient is at least
+\[
+ \frac{\rho^2}{4D}-\rho>0,
+\]
+where the last inequality follows from $4D\leq2/3<\rho$.
+An interior point of a nonconstant strictly convex function cannot be a
+maximum on a segment, contradicting the choice of $X$.
+
+It follows that every nonempty column has load at least $1/\rho$, so
+its tail gain is zero.  Let $e$ be the number of empty columns.  Only
+these columns contribute to $\sum_g g(L_g)$, each by $1/(4D)$.
+Delete the empty columns and transpose the remaining matrix.  In the
+new orientation there are
+\begin{equation}\label{eq:c-r-d}
+ c:=m\text{ unit-sum columns},\qquad
+ r:=m-e\text{ rows},\qquad d:=e=c-r.
+\end{equation}
+Writing the row sums again as $L_i$, it remains, by
+\eqref{eq:H-flat-upper}, to prove
+\begin{equation}\label{eq:transport-target}
+ a\sum_{i=1}^rL_i^2-\beta Q-\frac c2-\frac d{4D}\geq0.
+\end{equation}
+
+\medskip
+\noindent
+\textbf{4. Purification and integer peeling.}
+For a nonnegative matrix with $c$ unit-sum columns and prescribed row
+sums $L=(L_i)$, let
+\[
+ V_c(L):=\max\sum_{i,j}x_{ij}^2.
+\]
+The feasible transportation polytope is compact, so this maximum is
+attained whenever the margins are feasible.
+We need the following exact identity.
+
+\smallskip
+\noindent
+\emph{Purification lemma.}
+If $L_i\geq1$, one can make some column pure in row $i$, preserving
+all margins and without decreasing the square sum.  Consequently, if
+$z_i=\lfloor L_i\rfloor$, $f_i=L_i-z_i$, and
+$N=\sum_i z_i$, then
+\begin{equation}\label{eq:purification-identity}
+ V_c(L)=N+V_{c-N}(f).
+\end{equation}
+
+To prove the lemma, choose a target column $b$ maximizing
+$a_0=x_{ib}$, and put $R_0=1-a_0$.  If $R_0=0$, the column is
+already pure.  Otherwise choose numbers
+$0\leq d_j\leq x_{ij}$, $j\neq b$, with
+$\sum_{j\neq b}d_j=R_0$.  This is possible because
+$L_i-a_0\geq1-a_0=R_0$.  If $y_h=x_{hb}$ for $h\neq i$, choose a
+nonnegative transport $\varepsilon_{hj}$ with row sums $y_h$ and
+column sums $d_j$; for example,
+$\varepsilon_{hj}=y_hd_j/R_0$.  Make column $b$ pure in row $i$,
+remove $d_j$ from cell $(i,j)$, and add
+$\varepsilon_{hj}$ to cell $(h,j)$.  All margins are preserved.
+Since $x_{ij}\leq a_0$ for every donor column, the change in square sum
+is at least
+\begin{align*}
+ &(1-a_0^2)-\sum_hy_h^2
+ +\sum_j(d_j^2-2a_0d_j)+\sum_{h,j}\varepsilon_{hj}^2\\
+ &\qquad=R_0^2-\sum_hy_h^2+\sum_jd_j^2
+              +\sum_{h,j}\varepsilon_{hj}^2\geq0,
+\end{align*}
+because $\sum_hy_h=R_0$.  Repeating this operation peels exactly
+$z_i$ pure columns from row $i$, for every $i$.  Starting with a
+maximizer proves the upper inequality in
+\eqref{eq:purification-identity}; adjoining the $N$ pure columns to a
+maximizing residual matrix proves the reverse inequality.
+
+\medskip
+\noindent
+\textbf{5. The scalar partition lemma and the basic residual bound.}
+Define
+\begin{equation}\label{eq:phi-def}
+ \phi(x):=
+ \begin{cases}
+ 2\sqrt{aD}\,x-\beta x^2,&0\leq x\leq\tau,\\
+ Ax^2+D,&\tau\leq x\leq1.
+ \end{cases}
+\end{equation}
+The two expressions and their first derivatives agree at $\tau$.
+
+\smallskip
+\noindent
+\emph{Scalar partition lemma.}
+For every finite partition $x_1+\cdots+x_s=1$, $x_j\geq0$,
+\begin{equation}\label{eq:scalar-partition}
+ \sum_j\phi(x_j)\geq M.
+\end{equation}
+
+Discard zero parts.  Among parts strictly below $\tau$, hold the sum of
+two parts fixed.  Their total contribution is a concave quadratic in one
+of the two parts, so moving to an endpoint makes one part zero or
+$\tau$ and does not increase the sum.  Repetition leaves at most one
+part $y\in[0,\tau]$ below the threshold.  If there are $k$ remaining
+parts, all at least $\tau$, convexity of $Ax^2+D$ allows us to replace
+them by $k$ equal parts $(1-y)/k$.  Thus it suffices to consider
+\begin{equation}\label{eq:Fky}
+ F_k(y)=Dk+\frac Ak(1-y)^2+2\sqrt{aD}\,y-\beta y^2,
+ \qquad
+ 0\leq y\leq u_k:=\min\{\tau,1-k\tau\}.
+\end{equation}
+Only integers with $k\leq R$ occur.  Expanding,
+\begin{equation}\label{eq:Fky-expanded}
+ F_k(y)=Dk+\frac Ak
+ +2\left(\sqrt{aD}-\frac Ak\right)y
+ +\left(\frac Ak-\beta\right)y^2.
+\end{equation}
+Its minimum on the feasible interval is attained at an endpoint.  To
+see this, the assertion is immediate if the quadratic coefficient is
+nonpositive.  If it is positive and the derivative at zero is
+nonnegative, the function is increasing.  In the remaining case its
+vertex is
+\[
+ y_*=\frac{A/k-\sqrt{aD}}{A/k-\beta}.
+\]
+The negative derivative condition says
+$k<AR/a$.  By \eqref{eq:R-sandwich}, $AR/a\leq n$, so
+$k\leq n-1\leq R-1$.  Moreover
+\[
+ y_*\geq\tau
+ \quad\Longleftrightarrow\quad
+ \frac A k(1-\tau)\geq A\tau
+ \quad\Longleftrightarrow\quad k\leq R-1.
+\]
+Thus the vertex lies to the right of the feasible interval and again the
+minimum is at an endpoint.
+
+At $y=0$, \eqref{eq:canonical-envelope} gives
+$F_k(0)=Dk+A/k\geq M$.  If $u_k=\tau$, the endpoint partition can be
+viewed as $k+1$ parts on the convex branch (with $\tau$ belonging to
+either branch), and Jensen's inequality gives
+\[
+ F_k(\tau)\geq D(k+1)+\frac{A}{k+1}\geq M.
+\]
+If $u_k=1-k\tau<\tau$, all endpoint parts are at most $\tau$.  For
+$0<x\leq\tau$,
+\begin{align}
+ \frac{\phi(x)}x
+ &\geq2\sqrt{aD}-\beta\tau
+   =DR+\frac AR
+   \geq Dn+\frac An=M. \label{eq:phi-linear-lower}
+\end{align}
+The last inequality follows because
+\[
+ DR+\frac AR-\left(Dn+\frac An\right)
+ =(R-n)\left(D-\frac{A}{nR}\right)\geq0;
+\]
+the two factors are nonnegative by \eqref{eq:R-sandwich} and
+$a=DR^2$.  Hence the sum over an all-small endpoint partition is at
+least $M\sum_jx_j=M$.  This proves
+\eqref{eq:scalar-partition}.
+
+We now deduce a matrix inequality.  Let a matrix have $q$ unit-sum
+columns, $r$ rows with arbitrary row sums $s_i\geq0$, and square sum
+$Q$.  Then
+\begin{equation}\label{eq:basic-residual}
+ a\sum_i s_i^2-\beta Q+Dr+C_0q\geq0.
+\end{equation}
+For each nonzero row, distribute $as_i^2+D$ among its cells
+proportionally to cell size.  A cell $x\leq s_i$ receives, after its
+$-\beta x^2$ term is included, at least
+\[
+ x\inf_{s\geq x}\left(as+\frac Ds\right)-\beta x^2
+ =\phi(x).
+\]
+Indeed, the unconstrained minimum occurs at $s=\tau$, giving the first
+branch in \eqref{eq:phi-def}; when $x\geq\tau$, it occurs at $s=x$,
+giving $ax^2+D-\beta x^2=Ax^2+D$.  Applying the scalar partition lemma
+in every column gives a total of at least $qM$.  Since $C_0=-M$, this
+cancels $C_0q$.  Every zero row retains its unused positive $D$, so
+\eqref{eq:basic-residual} follows.
+
+\medskip
+\noindent
+\textbf{6. A strengthened residual bound for fractional row sums.}
+Suppose now that every row sum satisfies $0\leq s_i<1$.  We prove
+\begin{equation}\label{eq:strengthened-residual}
+ E:=a\sum_i s_i^2-\beta Q+Dr+C_0q
+ \geq\sum_i(\rho s_i-K_0)_+.
+\end{equation}
+Put
+\[
+ G(s):=as^2+D-(\rho s-K_0)_+,
+ \qquad H_0:=\frac1{4D}-a.
+\]
+For a cell of size $x$ in a row of sum $s<1$, proportional
+distribution of $G(s)$, followed by inclusion of $-\beta x^2$, gives,
+for $0<x<1$, the lower cell charge
+\begin{equation}\label{eq:psi-def-inf}
+ \psi(x):=x\inf_{x\leq s<1}\frac{G(s)}s-\beta x^2.
+\end{equation}
+Set $\psi(0):=0$ and define \(\psi(1)\) by continuous extension.
+
+Let $x_0$ be the larger root of
+\begin{equation}\label{eq:x0-equation}
+ ax^2-H_0x+D=0.
+\end{equation}
+We first establish
+\begin{equation}\label{eq:x0-range}
+ \frac{\sqrt3}{2}\leq x_0\leq1.
+\end{equation}
+Let $s_0=\sqrt3/2$, $C=s_0^2+s_0$, and define
+\[
+ u:=\frac{s_0(1-s_0)}8,
+ \quad v_n:=\frac C2\left(n+\frac1n\right)-1,
+ \quad w_n:=\frac{C(n-1)}{4n}.
+\]
+Substitution of \eqref{eq:a-explicit} into the left side of
+\eqref{eq:x0-equation} at $s_0$ gives exactly
+\begin{equation}\label{eq:x0-s0-eval}
+ w_n-\frac uD-v_nD.
+\end{equation}
+Here $u,v_n>0$, and $w_n^2\leq4uv_n$.  For completeness, for
+$n=2,3,4$, the respective values of $4uv_n-w_n^2$ are
+\[
+ \frac{483-268\sqrt3}{1024},\qquad
+ \frac{95-52\sqrt3}{192},\qquad
+ \frac{2163-1132\sqrt3}{4096},
+\]
+all positive.  For $n\geq5$, $w_n\leq C/4$ and
+$v_n\geq(13/5)C-1$, whence
+\[
+ 4uv_n-w_n^2
+ \geq4u\left(\frac{13}{5}C-1\right)-\frac{C^2}{16}
+ =\frac{687-380\sqrt3}{1280}>0.
+\]
+The arithmetic--geometric mean inequality now makes
+\eqref{eq:x0-s0-eval} nonpositive.  Thus the quadratic in
+\eqref{eq:x0-equation} has real roots and $s_0$ lies between them.
+
+At $x=1$, the same quadratic equals
+\[
+ a-H_0+D=A-M\geq0,
+\]
+where the identity follows from \eqref{eq:C0-M-K0} and the inequality
+from \eqref{eq:remaining-parameter-inequalities}.  Also
+$H_0>0$ by $4Da<1$, so both roots are positive.  Since
+$s_0<1$, the larger root lies between $s_0$ and $1$, proving
+\eqref{eq:x0-range}.
+
+We next compute $\psi$.  The penalty in $G$ starts at
+$\sigma:=K_0/\rho$.  The identity $K_0-\rho=M-A\leq0$ gives
+$0<\sigma\leq1$.  On the unpenalized branch,
+\[
+ \frac{G(s)}s=as+\frac Ds;
+\]
+on the penalized branch,
+\[
+ \frac{G(s)}s=as-\rho+\frac1{4Ds}.
+\]
+The latter is decreasing up to $s=1$, because $4Da<1$, and its
+infimum is $H_0$.  Equation \eqref{eq:x0-equation} gives
+\begin{equation}\label{eq:sigma-x0}
+ \sigma-x_0=\frac{1-x_0}{2}
+       \left(1+\frac{D}{ax_0}\right)\geq0.
+\end{equation}
+Moreover, the discriminant of \eqref{eq:x0-equation} is nonnegative, so
+\(H_0\geq2\sqrt{aD}\).  If \(x_-\) is its smaller root, Vieta's
+formula gives $x_-x_0=D/a=\tau^2$.  Since
+$x_0\geq\sqrt3/2>1/2\geq\tau$, it follows that
+\[
+ x_-\leq\tau\leq x_0.
+\]
+For \(x\leq\tau\), the infimum of the unpenalized branch is
+\(2\sqrt{aD}\leq H_0\).  For \(\tau\leq x\leq x_0\), its infimum is
+\(ax+D/x\), and
+\[
+ ax+\frac Dx\leq H_0
+ \quad\Longleftrightarrow\quad ax^2-H_0x+D\leq0.
+\]
+For \(x_0\leq x<1\), this inequality is reversed, while the decreasing
+penalized branch has infimum \(H_0\).  Together with
+\(x_0\leq\sigma\leq1\), these comparisons give
+\begin{equation}\label{eq:psi-piecewise}
+ \psi(x)=
+ \begin{cases}
+ \phi(x),&0\leq x\leq x_0,\\
+ H_0x-\beta x^2,&x_0\leq x\leq1.
+ \end{cases}
+\end{equation}
+When $\sigma=1$, the same conclusion follows by continuity; in that
+case $x_0=1$.
+
+By \eqref{eq:x0-range} and
+\eqref{eq:remaining-parameter-inequalities},
+\begin{align}
+ \psi(x_0)=Ax_0^2+D
+ &\geq \frac{3A}{4}+D
+ \geq \frac An+Dn=M.\label{eq:psi-x0-lower}
+\end{align}
+The second inequality is precisely
+$1/n+D(n-1)/A\leq3/4$.  Also
+\begin{equation}\label{eq:psi-one}
+ \psi(1)=H_0-\beta=M+D.
+\end{equation}
+The second branch in \eqref{eq:psi-piecewise} is concave, so
+$\psi(x)\geq M$ throughout $[x_0,1]$.  In addition,
+$\psi(x)\geq0$ on all of $[0,1]$: this is clear on the second branch,
+and on the first it follows from \eqref{eq:phi-def} and
+$2\sqrt{aD}-\beta\tau=(a+A)\tau>0$.
+
+Consider one unit-sum column.  If all its cells are at most $x_0$,
+then \eqref{eq:psi-piecewise} and the scalar partition lemma give total
+charge at least $M$.  Otherwise, since $x_0\geq\sqrt3/2>1/2$, there
+is a unique cell larger than $x_0$; that cell alone contributes at
+least $M$, and all other cells contribute nonnegatively.  Thus every
+column has total $\psi$-charge at least $M$.  Summing over columns,
+using $C_0=-M$, and retaining the unused $D$ from every zero row proves
+\eqref{eq:strengthened-residual}.
+
+\medskip
+\noindent
+\textbf{7. Completion of the transport inequality.}
+Return to \eqref{eq:transport-target}.  Write
+\[
+ L_i=z_i+f_i,\qquad z_i=\lfloor L_i\rfloor,\qquad0\leq f_i<1.
+\]
+Because $\sum_iL_i=c$, the number
+\[
+ q:=\sum_i f_i=c-\sum_i z_i
+\]
+is an integer.  By the purification identity,
+\begin{equation}\label{eq:Q-purified-upper}
+ Q\leq V_c(L)=c-q+V_q(f).
+\end{equation}
+Since $\beta\geq0$, it is enough to use the right side in place of
+$Q$.  For fixed $f$, choose a nonnegative integer vector $z$ with
+$\sum_i z_i=c-q$ minimizing
+$\sum_i(z_i+f_i)^2$.  This can only lower the left side of
+\eqref{eq:transport-target}.  Such a minimizer has one of the following
+two forms:
+\begin{enumerate}
+ \item every $z_i\geq1$; or
+ \item every $z_i\in\{0,1\}$.
+\end{enumerate}
+Indeed, if $z_i=0$ and $z_j\geq2$, moving one unit from $j$ to
+$i$ changes the square sum by
+\[
+ 2(1-z_j+f_i-f_j)<0,
+\]
+contradicting minimality.
+
+In the first case, put $s_i=L_i-1=z_i-1+f_i$.  There are
+$r=c-d$ rows and $\sum_i s_i=d$.  Applying the purification identity
+to $s$ shows
+\[
+ c-q+V_q(f)=r+V_d(s).
+\]
+Let a $d$-column residual matrix attain $V_d(s)$.  Substitution in
+the left side of \eqref{eq:transport-target} gives
+\begin{align*}
+ &a\sum_i(1+s_i)^2-\beta(r+V_d(s))
+       -\frac c2-\frac d{4D}\\
+ &\qquad=a\sum_i s_i^2-\beta V_d(s)+Dr+C_0d,
+\end{align*}
+where we used $\sum_i s_i=d$, $c=r+d$, $2a=\rho$, and the
+definitions of $A,C_0$.  This is nonnegative by the basic residual
+bound \eqref{eq:basic-residual}.
+
+In the second case, let
+\[
+ Z:=\{i:z_i=0\},\qquad t:=|Z|,\qquad
+ F_0:=\sum_{i\in Z}f_i.
+\]
+The number of one entries in $z$ is $c-q$, so
+\begin{equation}\label{eq:t-q-d}
+ t=r-(c-q)=q-d.
+\end{equation}
+Let a $q$-column fractional matrix with row sums $f$ attain
+$V_q(f)$, and denote by
+\[
+ E:=a\sum_i f_i^2-\beta V_q(f)+Dr+C_0q
+\]
+the left side of its strengthened residual inequality.  A direct
+expansion, using \eqref{eq:t-q-d}, gives
+\begin{equation}\label{eq:final-expansion}
+ a\sum_i(z_i+f_i)^2-\beta(c-q+V_q(f))
+       -\frac c2-\frac d{4D}
+ =E+tK_0-\rho F_0.
+\end{equation}
+By \eqref{eq:strengthened-residual},
+\[
+ E\geq\sum_i(\rho f_i-K_0)_+
+ \geq\sum_{i\in Z}(\rho f_i-K_0)
+ =\rho F_0-tK_0.
+\]
+Together with \eqref{eq:final-expansion}, this proves
+\eqref{eq:transport-target} in the second case as well.
+
+Thus \eqref{eq:transport-target} always holds.  Reversing the reductions
+in Sections 3, 2, and 1 gives $\mathcal H\leq0$ in
+\eqref{eq:support-functional}.  Therefore
+$\gamma_{\alpha}(W)\leq\rho \gamma_{\alpha}(O)$.  Taking $O$ optimal completes the
+proof.
+\end{proof}
+
+\section{Matching instances and the exact ratio}
+
+\begin{proposition}[Matching finite instances]
+\label{prop:matching-instance}
+For every $0<\alpha\leq1/2$ and every index $k$ attaining
+$H(\alpha)=h_k(\alpha)$, there is an instance on $k+1$ machines and
+a list schedule whose ratio is exactly
+$\rho_k(\alpha)=1+1/(2\alpha h_k(\alpha))$.
+\end{proposition}
+
+\begin{proof}
+Use $m=k+1$ machines, and take $k$ jobs of size
+$1$, $k$ jobs of size $1/k$, and one job of size $h_k$.  A list can
+first put the $k$ unit jobs and one small job on the empty machines,
+then put the remaining small jobs on the small-job machine, and finally
+schedule the long job.  Immediately before the long job, every machine
+has load \(1\), so the final minimum-load tie is harmless: whichever
+machine is selected, the long job's collision contribution is \(h_k\).
+The list schedule's value is
+\[
+ F_W=\alpha\left(h_k^2+k+\frac1k\right)
+       +\frac{k-1}{2k}+h_k.
+\]
+Pairing each unit job with one small job and putting the long job alone
+has value
+\[
+ F_O=\alpha\left(h_k^2+k+\frac1k\right)+1.
+\]
+Since $h_k$ satisfies
+\[
+ h_k^2-\frac{k+1}{k}h_k
+       -\left(k+\frac1k+\frac1\alpha\right)=0,
+\]
+one obtains the ratio explicitly as follows.  With
+$b_k=(k+1)/(2k)$,
+\[
+ F_W-F_O=h_k-b_k,
+ \qquad
+ F_O=2\alpha h_k(h_k-b_k),
+\]
+where the second identity follows by substituting the displayed
+quadratic into $F_O$.  Therefore
+$F_W/F_O=1+1/(2\alpha h_k)=\rho_k$.
+The displayed comparison schedule is optimal.  By
+\eqref{eq:objective-load-form}, $Q_J$ is fixed by the instance, so it
+suffices to minimize the sum of squared machine loads.  First,
+\[
+ h_k>\sqrt{k+\frac1k+\frac1\alpha}
+ \geq\sqrt{k+\frac1k+2}
+ =\sqrt{k}+\frac1{\sqrt{k}}\geq1+\frac1k.
+\]
+If total load \(x>0\) is colocated with the long job, choose one attached
+job of size \(p\).  The least-loaded one of the other \(k\) machines has
+load at most \((k+1-x)/k\leq1+1/k<h_k\).  Moving \(p\) to that machine
+strictly decreases the sum of squared loads: if the destination load is
+$L$, the change is
+\[
+ 2p\bigl[L-(h_k+x-p)\bigr]<0,
+\]
+because the long machine still has load $h_k+x-p\geq h_k>L$ after
+$p$ is removed.  Hence the long job is alone in every optimum.  The
+other $k$ machines then have total load $k+1$, and the displayed
+assignment attains the square-sum lower bound by making all their loads
+equal to $1+1/k$.
+\end{proof}
+
+\begin{proposition}[The active integer]
+\label{prop:active-index}
+For $k\geq2$, define
+\[
+ T_k:=k^4+2k^3-2k^2-5k+1.
+\]
+For each integer $k\geq2$, the index $k$ minimizes $h_\ell(\alpha)$
+over all $\ell\geq1$ if and only if
+\[
+ \begin{cases}
+ \displaystyle \frac1{15}\leq\alpha\leq\frac12,
+   & k=2,\\[6pt]
+ \displaystyle \frac1{T_k}\leq\alpha\leq\frac1{T_{k-1}},
+   & k\geq3.
+ \end{cases}
+\]
+At a shared endpoint the two adjacent indices are both active.
+These intervals cover all $0<\alpha\leq1/2$.
+\end{proposition}
+
+\begin{proof}
+For an integer $\ell\geq1$, introduce
+\[
+ q_\ell(x):=
+ x^2-\frac{\ell+1}{\ell}x
+ -\left(\ell+\frac1\ell+\frac1\alpha\right).
+\]
+Its positive root is $h_\ell$.  Since $q_k(h_k)=0$, subtraction gives
+\begin{equation}
+ q_\ell(h_k)
+ =\frac{(\ell-k)(h_k+1-k\ell)}{k\ell}.
+ \label{eq:root-comparison}
+\end{equation}
+The other root of $q_\ell$ is negative.  Therefore, for $h_k>0$,
+\[
+ h_k\leq h_\ell
+ \quad\Longleftrightarrow\quad
+ q_\ell(h_k)\leq0.
+\]
+For $\ell>k$, equation \eqref{eq:root-comparison} requires
+$h_k\leq k\ell-1$, and the strongest such requirement is obtained at
+$\ell=k+1$.  For $\ell<k$, it requires
+$h_k\geq k\ell-1$, and the strongest requirement is obtained at
+$\ell=k-1$.  Hence
+\begin{equation}
+ h_k\leq h_\ell\quad\text{for every $\ell\geq1$}
+ \quad\Longleftrightarrow\quad
+ k(k-1)-1\leq h_k\leq k(k+1)-1.
+ \label{eq:active-window}
+\end{equation}
+The proof of Theorem~\ref{thm:exact-wlpt-alpha} already showed
+$h_2<h_1$, so $k=1$ is never active.
+
+The transition between $k$ and $k+1$ occurs when
+$h_k=k(k+1)-1$.  Substitution in the defining quadratic
+\[
+ h_k^2-\frac{k+1}{k}h_k
+ =k+\frac1k+\frac1\alpha
+\]
+gives
+\[
+ \frac1\alpha
+ =k^4+2k^3-2k^2-5k+1=T_k.
+\]
+Moreover,
+\[
+ T_{k+1}-T_k=4k^3+12k^2+6k-4>0
+ \qquad(k\geq2),
+\]
+and $T_2=15$, while $T_k\to\infty$.  For fixed $k$, the root $h_k$
+is strictly increasing in $1/\alpha$.  Thus
+\eqref{eq:active-window} says, for $k\geq3$, that $k$ is active
+exactly when
+\[
+ T_{k-1}\leq\frac1\alpha\leq T_k,
+\]
+which is the stated interval after taking reciprocals.  For $k=2$, the
+lower side of the active window is automatic on the present domain and
+the upper side gives $1/\alpha\leq T_2=15$.  The monotonicity and
+$T_k\to\infty$ also prove that the intervals cover
+$(0,1/2]$ and meet only at the stated adjacent transitions.
+\end{proof}
+
+\begin{corollary}[Exact worst-list ratio]
+\label{cor:exact-ratio}
+For every $0<\alpha\leq1/2$,
+\[
+\boxed{\;
+\sup_I\frac{\WLPT_\alpha(I)}{\OPT_\alpha(I)}
+ =\max_{k\geq2}\left(1+\frac1{2\alpha h_k(\alpha)}\right)
+ =1+\frac1{2\alpha H(\alpha)}.
+\;}
+\]
+Here the supremum ranges over every finite positive-processing-time
+instance and every finite number of identical machines.
+In fact, under the tie convention stated in Section~1, a finite
+matching instance attains the displayed value.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:exact-wlpt-alpha} proves the upper bound for every
+instance and every list schedule.  Select an active integer from
+Proposition~\ref{prop:active-index}; Proposition
+\ref{prop:matching-instance} supplies a finite instance attaining the
+same value.  The two inequalities coincide.
+\end{proof}
+
+\begin{remark}[Why a fixed $k$ is not a universal formula]
+An individual expression $\rho_k(\alpha)$ is a universal upper bound
+only when $k$ is active at that value of $\alpha$.  Outside its active
+interval it is merely the value of the corresponding lower-bound
+construction and is smaller than the true worst-case ratio.  The
+envelope $1+1/(2\alpha H(\alpha))$, or equivalently the piecewise
+choice in Proposition~\ref{prop:active-index}, is the universal bound.
+\end{remark}
+
+\begin{corollary}[Comparison with the benchmark bound]
+\label{cor:strict-improvement}
+For $0<\alpha<1/2$,
+\[
+ 1+\frac1{2\alpha H(\alpha)}
+ <1+\frac1{6\alpha}.
+\]
+At $\alpha=1/2$, both sides equal $4/3$, and no strict improvement is
+possible.
+\end{corollary}
+
+\begin{proof}
+Because $h_k$ is the positive root of $q_k$, evaluation at $x=3$
+shows
+\[
+ h_k\geq3
+ \quad\Longleftrightarrow\quad
+ k+\frac4k+\frac1\alpha\geq6.
+\]
+For $k\geq2$, the arithmetic--geometric mean inequality gives
+$k+4/k\geq4$, with equality only at $k=2$.  Also
+$1/\alpha\geq2$, with equality only at $\alpha=1/2$.
+Thus $H(\alpha)>3$ throughout $0<\alpha<1/2$, proving the strict
+inequality.  At $\alpha=1/2$, $h_2=3$, so the exact ratio is $4/3$.
+Proposition~\ref{prop:matching-instance} attains it, ruling out a
+smaller universal upper bound.
+\end{proof}
+
+\begin{remark}[Endpoint check and provenance]
+At $\alpha=1/2$, identity \eqref{eq:objective-load-form} becomes
+$F_{1/2}(S)=\tfrac12\sum_iL_i(S)^2$.  The value $4/3$ is therefore
+consistent with the sharp squared-load result of
+Avidor, Azar, and Sgall~\cite{AvidorAzarSgall2001}.  That citation is
+used only as an endpoint check.  To our knowledge, the parameterized
+exact envelope is unpublished; it is presented here as a new,
+self-contained derivation and is not attributed to that paper.
+\end{remark}
+
+\begin{thebibliography}{1}
+
+\bibitem{AvidorAzarSgall2001}
+A.~Avidor, Y.~Azar, and J.~Sgall,
+\newblock Ancient and new algorithms for load balancing in the
+  $\ell_p$ norm,
+\newblock \emph{Algorithmica} 29(3):422--441, 2001.
+\newblock \href{https://doi.org/10.1007/s004530010051}
+  {doi:10.1007/s004530010051}.
+
+\end{thebibliography}
+
+\end{document}

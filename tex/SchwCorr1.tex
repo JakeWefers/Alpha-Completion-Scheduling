@@ -4,7 +4,7 @@
 \usepackage{amsmath,amsthm}
 
 \newtheorem{corollary}{Corollary}
-\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\WSPT}{\mathrm{WSPT}}
 \newcommand{\OPT}{\mathrm{OPT}}
 
 \begin{document}
@@ -15,10 +15,10 @@ instance $I$ of $P||\sum_j w_j C_j(\alpha)$, with $ \alpha \in (0,1]$. That is,
 \[
         \lambda(I)
         =
-        \max_{\text{WSPT schedule }S\text{ of }I}\frac{\sum_{j\in I} w_j C_j(S(I))(\alpha)}
+        \max_{\text{WSPT schedule }S\text{ of }I}\frac{\sum_{j\in I} w_j C_j(\sigma(I))(\alpha)}
              {\sum_{j\in I} w_j C_j^*(\alpha)},
 \]
-where $C_j(S(I))(\alpha)$ and $C_j^*(\alpha)$ are the $\alpha$-completion times of job $j$ in the WSPT
+where $C_j(\sigma(I))(\alpha)$ and $C_j^*(\alpha)$ are the $\alpha$-completion times of job $j$ in the WSPT
 schedule  $S$ and in an optimal schedule, respectively. Then for every instance
 $I$ of $P||\sum_j w_j C_j(\alpha)$, there is an instance $I'$ of
 $P||\sum_j p_j C_j(\alpha)$ with
@@ -54,15 +54,15 @@ Then it holds that
 And thus for any schedule S of $I$,
 \[
 \begin{aligned}
-        \sum_{j\in I} w_j C_j(S(I))(\alpha)
+        \sum_{j\in I} w_j C_j(\sigma(I))(\alpha)
         &=
         \sum_{j\in I}
         \left(
             \sum_{k=i(j)}^d (r_k-r_{k+1})
-        \right)p_j C_j(S(I))(\alpha)                                      \\
+        \right)p_j C_j(\sigma(I))(\alpha)                                      \\
         &\overset{(1)}{=}
         \sum_{k=1}^d (r_k-r_{k+1})
-        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(S(I))(\alpha) .
+        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(\sigma(I))(\alpha) .
 \end{aligned}
 \]
 
@@ -116,10 +116,10 @@ Regarding (1), we show
         \sum_{j\in I}
         \left(
             \sum_{k=i(j)}^d (r_k-r_{k+1})
-        \right)p_j C_j(S(I))(\alpha)
+        \right)p_j C_j(\sigma(I))(\alpha)
         =
         \sum_{k=1}^d \left((r_k-r_{k+1})
-        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(S(I))(\alpha) \right).
+        \sum_{\substack{j\in I\\ i(j)\leq k}} p_j C_j(\sigma(I))(\alpha) \right).
 \]
 
 by induction on the number of jobs $n = |I|$.

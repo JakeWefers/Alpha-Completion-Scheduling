@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=30mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{remark}[lemma]{Remark}
+
+\newcommand{\OptCost}{C_{\alpha}^{*}(I)}
+\newcommand{\WorstCost}{C_{\alpha}^{W}(I)}
+\newcommand{\LamI}{\lambda_{\alpha}(I)}
+
+\begin{document}
+
+
+\begin{lemma}[Largest Job is single in opt]
+Let $S^*$ be an optimal schedule, and suppose that a job
+$j^*$ of processing time $p$ is a singleton. Then every job $k$
+with
+\[
+    p_k>p,
+\]
+is also a singleton.
+
+Consequently, if $j^*$ is the only singleton job in $S^*$,
+then $j^*$ is a largest job.
+\end{lemma}
+
+\begin{proof}
+Let $M_0$ be the singleton machine containing $j^*$, so that its
+load is $p$.  Consider any job $k$ with processing time
+\[
+    p_k>p,
+\]
+and let $M_i$ be the machine containing $k$.  Denote the load of
+$M_i$ by $L_i$.
+
+Exchange $j^*$ and $k$.  Set
+\[
+    \delta:=p_k-p>0.
+\]
+Before the exchange, the two machine loads are $(p,L_i)$.  After the
+exchange, they are $(p_k,L_i-\delta)$.
+All other machine loads remain unchanged.  Hence the change in cost is
+\begin{align*}
+    p_k^2+(L_i-\delta)^2-p^2-L_i^2
+      &=2\delta(p_k-L_i).
+\end{align*}
+Because $L_i\geq p_k$, this quantity is nonpositive.  If $M_i$
+contains any job besides $k$, then all processing times are positive
+and the exchange would strictly decrease the cost of the schedule which 
+contradicts its optimality. 
+Note that the exchange might not directly result in a list schedule. 
+But, rescheduling the jobs that finish last in this setup will only further 
+reduce machine loads, so this does not contradict the cost reduction.
+Or expressed differntly, at least one of the longest jobs must be single-scheduled.
+Finally, every job larger than $p$ must also be single scheduled in $S^*$.
+\end{proof}
+
+\section{The perturbation lemma}
+
+\begin{definition}[Perturbed Instance]
+Let $I$ be an instance of
+$P\parallel\sum_j p_jC_j(\alpha)$, and let $j^*$ be a job with
+processing time $p_{j^*}=p $. For \(\varepsilon\geq 0\), define
+\(I(\varepsilon)\) to be the instance obtained from \(I\) by increasing
+only the processing time of \(j^*\) by \(\varepsilon\). Formally,
+\[
+p_j(\varepsilon)
+:=
+\begin{cases}
+p+\varepsilon, & \text{if } j=j^*,\\
+p_j,           & \text{if } j\neq j^*.
+\end{cases}
+\]
+We call $I(\varepsilon)$ the perturbed instance of $I$.
+\end{definition}
+
+\begin{lemma}[Perturbing single job]
+\label{lem:critical-singleton-perturbation}
+Let $\alpha\in(0,\tfrac12]$, and let $j^*$ be a job of processing
+time $p$.  Suppose that
+\begin{enumerate}
+    \item $j^*$ is single scheduled in an optimal schedule of I
+    \item $j^*$ is not single scheduled in a obective maximizing schedule $S^W$ of $I$
+    \item $j^*$ is last on its machine in $S^W$.
+\end{enumerate}
+Let $M_{W}(j^*)$ be the \(\mathrm{WSPT}\) machine containing
+$j^*$. As $j^*$ is not single scheduled in $\sigma^{W}$, 
+Thus, $S^W_{j^*}>0$, and the load of the WLPT machine containing
+$j^*$ is $p+S^W_{j^*}$.
+
+Then, for every $\varepsilon\geq0$,
+\begin{equation}
+    \lambda_{\alpha}(I(\varepsilon))
+    \geq
+    \frac{
+        \WorstCost+(S^W_{j^{*}}+2\alpha p)\varepsilon
+        +\alpha\varepsilon^2
+    }{
+        \OptCost+2\alpha p\varepsilon
+        +\alpha\varepsilon^2
+    }.
+    \label{eq:ratio-perturbation-bound}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For any fixed schedule $S$ in which  ajob $j$ is last scheduled on
+a machine, increasing its processing time $p$ to
+$p+\varepsilon$ changes the assignment's cost by
+\begin{align}
+    \Delta(\sigma(I),\varepsilon)
+      &=
+      \frac12\bigl((p+\varepsilon+S_{j})^2-(p+S_{j})^2\bigr)
+      \notag\\
+      &\quad+
+      \left(\alpha-\frac12\right)
+      \bigl((p+\varepsilon)^2-p^2\bigr)
+      \notag\\
+      &=(S_{j}+2\alpha p)\varepsilon+\alpha\varepsilon^2.
+    \label{eq:fixed-assignment-cost-change}
+\end{align}
+where $S$ denotes the starting time of $j$ which is of course equal to the load preceding $j$. 
+
+
+Keep the optimal assignment from $I$ in which $j^*$ is 
+single scheduled. This assignment is feasible for $I(\varepsilon)$.
+As $j^*$ is single scheduled in an optimal schedule, $\sigma^{*}_{j^*}=0$. From (Queyranne reference here), shows that
+its cost on $I(\varepsilon)$ is
+\[
+    \OptCost+2\alpha p\varepsilon+\alpha\varepsilon^2.
+\]
+Obviously, 
+\begin{equation}
+    C_{\alpha}^{*}(I(\varepsilon))
+    \leq
+    \OptCost+2\alpha p\varepsilon+\alpha\varepsilon^2.
+    \label{eq:opt-candidate-bound}
+\end{equation}
+
+Next, fix a list producing a schedule $S^W$ that has properties from the statement.
+Increasing the processing time of $j^*$ leaves all assignment
+decisions before $j^*$ unchanged.  After $j^*$ is assigned,
+only the availability time of its machine increases.  Since
+$j^*$ is last on that machine, every later job in the fixed list
+was assigned to another machine; making the machine of $j^*$
+available later cannot change any of those choices.  Thus the same
+list produces the same assignment for $I(\varepsilon)$.
+
+Taking $S=S_{j^*}$ in \eqref{eq:fixed-assignment-cost-change} gives the
+cost
+\[
+    \WorstCost+(S_{j^*}+2\alpha p)\varepsilon
+    +\alpha\varepsilon^2.
+\]
+It remains a list schedule for $I(\varepsilon)$, whereas
+$C_{\alpha}^{W}(I(\varepsilon))$ is the largest cost of any list schedule (for $I(\varepsilon)$)
+Consequently,
+\begin{equation}
+    C_{\alpha}^{W}(I(\varepsilon))
+    \geq
+    \WorstCost+(T_{j^*}+2\alpha p)\varepsilon
+    +\alpha\varepsilon^2.
+    \label{eq:wlpt-candidate-bound}
+\end{equation}
+
+Dividing \eqref{eq:wlpt-candidate-bound} by
+\eqref{eq:opt-candidate-bound} gives
+\eqref{eq:ratio-perturbation-bound}.
+\end{proof}
+
+\section{Improving the approximation ratio}
+
+\begin{theorem}[Strict improvement when the accompanying load is large]
+\label{thm:strict-perturbation-improvement}
+Let $\alpha\in(0,\tfrac12]$, and suppose that
+\begin{equation}
+    \LamI\leq 1+\frac{1}{6\alpha}
+    \label{eq:rho-upper-bound}
+\end{equation}
+for every instance $I$ of
+$P\parallel\sum_jp_jC_j(\alpha)$.  Let $I$ and $j^*$ satisfy the
+assumptions of
+\ref{lem:critical-singleton-perturbation}.  If
+\[
+    \sigma^{W}_{j^*}>\frac p3,
+\]
+then
+\begin{equation}
+    \boxed{\lambda_{\alpha}(I(\varepsilon))>\LamI}
+    \label{eq:strict-ratio-improvement}
+\end{equation}
+for every
+\begin{equation}
+    0<\varepsilon<
+    6\left(\sigma^{W}_{j^*}-\frac p3\right).
+    \label{eq:epsilon-improvement-range}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By
+\ref{lem:critical-singleton-perturbation}, it is enough to show
+\[
+    \frac{
+        \WorstCost+(\sigma^{W}_{j^*}+2\alpha p)\varepsilon
+        +\alpha\varepsilon^2
+    }{
+        \OptCost+2\alpha p\varepsilon
+        +\alpha\varepsilon^2
+    }
+    >\LamI.
+\]
+Using $\WorstCost=\LamI\OptCost$ and rearanging terms, shows
+that this strict inequality is equivalent to
+\begin{equation}
+    \sigma^{W}_{j^*}>
+    (\LamI-1)(2\alpha p+\alpha\varepsilon).
+    \label{eq:exact-improvement-condition}
+\end{equation}
+\eqref{eq:rho-upper-bound} gives
+\[
+    (\lambda-1)(2\alpha p+\alpha\varepsilon)
+    \leq
+    \frac{1}{6\alpha}
+    (2\alpha p+\alpha\varepsilon)
+    =
+    \frac p3+\frac{\varepsilon}{6}.
+\]
+If \eqref{eq:epsilon-improvement-range} holds, then
+\[
+    \frac p3+\frac{\varepsilon}{6}<\sigma^{W}_{j^*}.
+\]
+Thus \eqref{eq:exact-improvement-condition} holds, and
+\eqref{eq:ratio-perturbation-bound} yields
+\eqref{eq:strict-ratio-improvement}.
+\end{proof}
+From \ref{thm:strict-perturbation-improvement} we can follow, that a $\lambda$-maximzing instance must fulfill
+\[
+S_{j^*}^{W} \le \frac{p}{3}
+\]
+\end{document}

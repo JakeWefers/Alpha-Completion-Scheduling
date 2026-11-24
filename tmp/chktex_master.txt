@@ -1,0 +1,795 @@
+Warning 8 in master.tex line 54: Wrong length of dash may have been used.
+    + (#1-1)  
+         ^
+Warning 37 in master.tex line 55: You should avoid spaces after parenthesis.
+      / (  
+         ^
+Warning 37 in master.tex line 57: You should avoid spaces after parenthesis.
+        * (  
+           ^
+Warning 36 in master.tex line 59: You should put a space in front of parenthesis.
+          + sqrt(  
+                ^
+Warning 37 in master.tex line 59: You should avoid spaces after parenthesis.
+          + sqrt(  
+                 ^
+Warning 37 in master.tex line 61: You should avoid spaces after parenthesis.
+            + (  
+               ^
+Warning 36 in master.tex line 62: You should put a space in front of parenthesis.
+              4*(#1-1)  
+                ^
+Warning 8 in master.tex line 62: Wrong length of dash may have been used.
+              4*(#1-1)  
+                   ^
+Warning 8 in master.tex line 63: Wrong length of dash may have been used.
+              * ((#1-1) + #2*(#1^2-2*#1+2))  
+                    ^
+Warning 36 in master.tex line 63: You should put a space in front of parenthesis.
+              * ((#1-1) + #2*(#1^2-2*#1+2))  
+                             ^
+Warning 8 in master.tex line 63: Wrong length of dash may have been used.
+              * ((#1-1) + #2*(#1^2-2*#1+2))  
+                                  ^
+Warning 37 in master.tex line 64: You should avoid spaces in front of parenthesis.
+            )  
+            ^
+Warning 37 in master.tex line 66: You should avoid spaces in front of parenthesis.
+          )  
+          ^
+Warning 37 in master.tex line 67: You should avoid spaces in front of parenthesis.
+        )  
+        ^
+Warning 37 in master.tex line 68: You should avoid spaces in front of parenthesis.
+      )  
+      ^
+Warning 36 in master.tex line 100: You should put a space in front of parenthesis.
+\newcommand{\LamI}{\lambda_{\alpha}(I)}  
+                                   ^
+Warning 36 in master.tex line 102: You should put a space in front of parenthesis.
+\newcommand{\Cost}{F_{\alpha}(S(I))}  
+                             ^
+Warning 36 in master.tex line 102: You should put a space in front of parenthesis.
+\newcommand{\Cost}{F_{\alpha}(S(I))}  
+                               ^
+Warning 36 in master.tex line 103: You should put a space in front of parenthesis.
+\newcommand{\ComplAlpha}{C_{j}^{\alpha}(S(I))}  
+                                       ^
+Warning 36 in master.tex line 103: You should put a space in front of parenthesis.
+\newcommand{\ComplAlpha}{C_{j}^{\alpha}(S(I))}  
+                                         ^
+Warning 36 in master.tex line 104: You should put a space in front of parenthesis.
+\newcommand{\OptCost}{F_{\alpha}^{*}(I)}  
+                                    ^
+Warning 36 in master.tex line 105: You should put a space in front of parenthesis.
+\newcommand{\WorstCost}{F_{\alpha}^{W}(I)}  
+                                      ^
+Warning 36 in master.tex line 106: You should put a space in front of parenthesis.
+\newcommand{\Sstar}{S^{*}(I)}  
+                         ^
+Warning 36 in master.tex line 107: You should put a space in front of parenthesis.
+\newcommand{\SW}{S^{W}(I)}  
+                      ^
+Warning 36 in master.tex line 108: You should put a space in front of parenthesis.
+\newcommand{\machLoad}{L^{i}(S(I))}  
+                            ^
+Warning 36 in master.tex line 108: You should put a space in front of parenthesis.
+\newcommand{\machLoad}{L^{i}(S(I))}  
+                              ^
+Warning 36 in master.tex line 109: You should put a space in front of parenthesis.
+\newcommand{\machLoadMax}{L^{\max}(S(I))}  
+                                  ^
+Warning 36 in master.tex line 109: You should put a space in front of parenthesis.
+\newcommand{\machLoadMax}{L^{\max}(S(I))}  
+                                    ^
+Warning 36 in master.tex line 110: You should put a space in front of parenthesis.
+\newcommand{\machLoadMin}{L^{\min}(S(I))}  
+                                  ^
+Warning 36 in master.tex line 110: You should put a space in front of parenthesis.
+\newcommand{\machLoadMin}{L^{\min}(S(I))}  
+                                    ^
+Warning 36 in master.tex line 125: You should put a space in front of parenthesis.
+    \draw[job, fill=#1] (#3,-#2) rectangle ++(#4,1);  
+                                             ^
+Warning 12 in master.tex line 594: Interword spacing (`\ ') should perhaps be used.
+\cref{chap:introduction} provides the motivation and problem statement. \cref{chap:foundations} presents the necessary theoretical foundations and background literature. Further chapters discuss methodology, results, and conclusions.  
+                                                                       ^
+Warning 24 in master.tex line 743: Delete this space to maintain correct pagereferences.
+\label{fig:instance-43-ratio}  
+^
+Warning 3 in master.tex line 747: You should enclose the previous parenthesis with `{}'.
+    \lambda_{0}(I) \ge \frac{F_{0}(S^{W}(I))}{F_{0}(S^{*}(I))} =\frac{(p+1)^2+1-p^2-2}{2}=p  
+                                                                          ^
+Warning 9 in master.tex line 753: `)' expected, found `]'.
+\texorpdfstring{$\alpha \in (0,1]$}{alpha in (0,1]}}\label{chap:alpha_all}  
+                                ^
+Warning 9 in master.tex line 753: `)' expected, found `]'.
+\texorpdfstring{$\alpha \in (0,1]$}{alpha in (0,1]}}\label{chap:alpha_all}  
+                                                 ^
+Warning 2 in master.tex line 755: Non-breaking space (`~') should have been used.
+We initially try to generalise results from \cite{Schwiegelshohn:2011} that aim at reducing the pool  
+                                           ^
+Warning 9 in master.tex line 761: `)' expected, found `]'.
+\(\alpha \in (0,1]\), there exists an instance \(I'\) of  
+                 ^
+Warning 3 in master.tex line 878: You should enclose the previous parenthesis with `{}'.
+        \frac12\left((2\alpha-1)\left(\sum_{j\in I}p_j^2\right)+(\machLoadMax)^2\right).  
+                                                                             ^
+Warning 25 in master.tex line 889: You might wish to put this between a pair of `{}'
+        \sum_{j=1}^n p_jC_j^{\alpha}(S(I))  
+                       ^^
+Warning 25 in master.tex line 893: You might wish to put this between a pair of `{}'
+        \sum_{j=1}^n p_jC_{j-1}(S)+\alpha\left(\sum_{j=1}^n p_j^2  \right)                   \\                   
+                       ^^
+Warning 25 in master.tex line 897: You might wish to put this between a pair of `{}'
+        \sum_{j=1}^n p_jC_j(S)+(\alpha-1)\left(\sum_{j=1}^n p_j^2  \right)                      \\  
+                       ^^
+Warning 3 in master.tex line 899: You should enclose the previous parenthesis with `{}'.
+        \frac12\left((\machLoadMax)^2+\sum_{j=1}^n p_j^2\right)+(\alpha-1)\left(\sum_{j=1}^n p_j^2  \right)\\  
+                                  ^
+Warning 3 in master.tex line 901: You should enclose the previous parenthesis with `{}'.
+        \frac12\left((\machLoadMax)^2+(2\alpha-1)\left(\sum_{j=1}^n p_j^2  \right) \right)  
+                                  ^
+Warning 2 in master.tex line 904: Non-breaking space (`~') should have been used.
+Where, as in \cite{Schwiegelshohn:2011} we make use of a result from \cite{queyranne1993structure} for this chain of equalities.  
+            ^
+Warning 2 in master.tex line 904: Non-breaking space (`~') should have been used.
+Where, as in \cite{Schwiegelshohn:2011} we make use of a result from \cite{queyranne1993structure} for this chain of equalities.  
+                                                                    ^
+Warning 3 in master.tex line 921: You should enclose the previous parenthesis with `{}'.
+        \frac12\left((2\alpha-1)\left(\sum_{j\in I}p_j^2\right)+\sum_{i=1}^m (\machLoad)^2\right).  
+                                                                                       ^
+Warning 3 in master.tex line 1021: You should enclose the previous parenthesis with `{}'.
+            \sum_{i=1}^m(L^{i}(S(I)))^2  
+                                    ^
+Warning 2 in master.tex line 1024: Non-breaking space (`~') should have been used.
+Applying \eqref{eq:queyranne-identity} to $S^{W}(I)$ gives  
+        ^
+Warning 3 in master.tex line 1033: You should enclose the previous parenthesis with `{}'.
+            (p_j+L^{\min}(S^{W}(I)))^2                    \\  
+                                   ^
+Warning 3 in master.tex line 1036: You should enclose the previous parenthesis with `{}'.
+        \frac12(m-|L(I)|)(L^{\min}(S^{W}(I)))^2.  
+                                            ^
+Warning 2 in master.tex line 1057: Non-breaking space (`~') should have been used.
+as in the proof of \ref{Corr: Splitting Jobs}. In the list for $S^{*}(I)$, the first new job  
+                  ^
+Warning 2 in master.tex line 1072: Non-breaking space (`~') should have been used.
+executes only a single long job. By \eqref{eq:queyranne-identity} and the  
+                                   ^
+Warning 3 in master.tex line 1075: You should enclose the previous parenthesis with `{}'.
+        \sum_{i=1}^m(L^{i}(S^{*}(I)))^2  
+                                    ^
+Warning 3 in master.tex line 1091: You should enclose the previous parenthesis with `{}'.
+t=\frac{\left(\sum_{i\in M} i\right)^2}{\sum_{i\in M} i^2}  
+                                   ^
+Warning 2 in master.tex line 1096: Non-breaking space (`~') should have been used.
+In \ref{corr: Queyranne}, this transformation is either applied to the set $L(I)$ of long  
+  ^
+Warning 2 in master.tex line 1110: Non-breaking space (`~') should have been used.
+$\sum_{i=1}^m L^{i}(S(I))$ due to \ref{Corr: Splitting Jobs}. Furthermore, due to the  
+                                 ^
+Warning 3 in master.tex line 1116: You should enclose the previous parenthesis with `{}'.
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}  
+                                             ^
+Warning 3 in master.tex line 1119: You should enclose the previous parenthesis with `{}'.
+        \frac{\left(\sum_{j\in L(I)}p_j\right)^2}  
+                                             ^
+Warning 3 in master.tex line 1120: You should enclose the previous parenthesis with `{}'.
+        {|L(I)|\left(\frac{\sum_{j\in L(I)}p_j}{|L(I)|}\right)^2}       \\  
+                                                             ^
+Warning 3 in master.tex line 1122: You should enclose the previous parenthesis with `{}'.
+        \frac{|L(I)|\left(\sum_{j\in L(I)}p_j\right)^2}  
+                                                   ^
+Warning 3 in master.tex line 1123: You should enclose the previous parenthesis with `{}'.
+        {\left(\sum_{j\in L(I)}p_j\right)^2}  
+                                        ^
+Warning 2 in master.tex line 1143: Non-breaking space (`~') should have been used.
+Due to \ref{Corr: Splitting Jobs}, assume schedule $S^{W}(I)$ in which  
+      ^
+Warning 2 in master.tex line 1154: Non-breaking space (`~') should have been used.
+and an optimal schedule separately. Due to \eqref{eq:t-and-p} and \eqref{eq:wspt-value}  
+                                          ^
+Warning 2 in master.tex line 1154: Non-breaking space (`~') should have been used.
+and an optimal schedule separately. Due to \eqref{eq:t-and-p} and \eqref{eq:wspt-value}  
+                                                                 ^
+Warning 3 in master.tex line 1162: You should enclose the previous parenthesis with `{}'.
+        \sum_{j\in L(I)}(p_j+L^{\min}(S^{W}(I)))^2                  \\  
+                                               ^
+Warning 3 in master.tex line 1164: You should enclose the previous parenthesis with `{}'.
+        +(m-|L(I)|)(L^{\min}(S^{W}(I)))^2                           \\  
+                                      ^
+Warning 25 in master.tex line 1170: You might wish to put this between a pair of `{}'
+        2\sum_{j\in L(I)}(p_jL^{\min}(S^{W}(I)))               \\  
+                            ^^
+Warning 3 in master.tex line 1172: You should enclose the previous parenthesis with `{}'.
+        +m(L^{\min}(S^{W}(I)))^2                                    \\  
+                             ^
+Warning 10 in master.tex line 1175: Solo `)' found.
+        +2tpL^{\min}(S^{W}(I')))  
+                               ^
+Warning 3 in master.tex line 1176: You should enclose the previous parenthesis with `{}'.
+        +m(L^{\min}(S^{W}(I')))^2                                  \\  
+                              ^
+Warning 3 in master.tex line 1179: You should enclose the previous parenthesis with `{}'.
+        +t(p+L^{\min}(S^{W}(I')))^2  
+                                ^
+Warning 3 in master.tex line 1180: You should enclose the previous parenthesis with `{}'.
+        +(m-t)(L^{\min}(S^{W}(I')))^2                              \\  
+                                  ^
+Warning 36 in master.tex line 1189: You should put a space in front of parenthesis.
+\begin{enumerate}[label=(\arabic*)]  
+                        ^
+Warning 2 in master.tex line 1197: Non-breaking space (`~') should have been used.
+Therefore, because of \eqref{eq:t-and-p} and \eqref{eq:wspt-value} together with the convexity   
+                     ^
+Warning 2 in master.tex line 1197: Non-breaking space (`~') should have been used.
+Therefore, because of \eqref{eq:t-and-p} and \eqref{eq:wspt-value} together with the convexity   
+                                            ^
+Warning 3 in master.tex line 1205: You should enclose the previous parenthesis with `{}'.
+        \sum_{i=1}^m(L^{i}(S^{*}(I)))^2                 \\  
+                                    ^
+Warning 3 in master.tex line 1209: You should enclose the previous parenthesis with `{}'.
+        \sum_{i=1}^m(L^{i}(S^{*}(I)))^2                 \\  
+                                    ^
+Warning 3 in master.tex line 1213: You should enclose the previous parenthesis with `{}'.
+        m(L^{\min}(S^{*}(I')))^2  
+                             ^
+Warning 3 in master.tex line 1229: You should enclose the previous parenthesis with `{}'.
+    +(m-|K(I)|)\bigl(L^{\min}(S^{*}(I))\bigr)^2  
+                                            ^
+Warning 3 in master.tex line 1233: You should enclose the previous parenthesis with `{}'.
+    (2\alpha-1)tp^2+t'(p')^2  
+                         ^
+Warning 3 in master.tex line 1234: You should enclose the previous parenthesis with `{}'.
+    +(m-|K(I)|-k)\bigl(L^{\min}(S^{*}(I))\bigr)^2  
+                                              ^
+Warning 3 in master.tex line 1238: You should enclose the previous parenthesis with `{}'.
+    (2\alpha-1)tp^2+t'(p')^2  
+                         ^
+Warning 3 in master.tex line 1242: You should enclose the previous parenthesis with `{}'.
+    \right)^2  
+          ^
+Warning 3 in master.tex line 1247: You should enclose the previous parenthesis with `{}'.
+    +(m-t)\bigl(L^{\min}(S^{*}(I'))\bigr)^2  
+                                        ^
+Warning 3 in master.tex line 1252: You should enclose the previous parenthesis with `{}'.
+    +(m-t)\bigl(L^{\min}(S^{*}(I'))\bigr)^2  
+                                        ^
+Warning 36 in master.tex line 1269: You should put a space in front of parenthesis.
+\begin{enumerate}[label=(\alph*)]  
+                        ^
+Warning 3 in master.tex line 1290: You should enclose the previous parenthesis with `{}'.
+    t'\cdot(p')^2  
+              ^
+Warning 3 in master.tex line 1293: You should enclose the previous parenthesis with `{}'.
+    +k\bigl(L^{\min}(S^{*}(I))\bigr)^2  
+                                   ^
+Warning 3 in master.tex line 1298: You should enclose the previous parenthesis with `{}'.
+    +k\bigl(L^{\min}(S^{*}(I))\bigr)^2  
+                                   ^
+Warning 36 in master.tex line 1338: You should put a space in front of parenthesis.
+Due to this relation, Eqs.~(11)--(13), and the convexity of the square  
+                                 ^
+Warning 24 in master.tex line 1348: Delete this space to maintain correct pagereferences.
+\label{prop:instance-structure}  
+^
+Warning 36 in master.tex line 1349: You should put a space in front of parenthesis.
+\begin{enumerate}[label=(\alph*)]  
+                        ^
+Warning 2 in master.tex line 1365: Non-breaking space (`~') should have been used.
+\subsection{Case (1) of Corollary \ref{corr:same-length-jobs}}  
+                                 ^
+Warning 2 in master.tex line 1367: Non-breaking space (`~') should have been used.
+For case (1) of \ref{corr:same-length-jobs}  
+               ^
+Warning 2 in master.tex line 1383: Non-breaking space (`~') should have been used.
+Let $I_1$ be an instance that fulfills the requirments of \ref{prop:instance-structure} and $p\le \frac{1}{1-\frac{u}{m}}$.  
+                                                         ^
+Warning 3 in master.tex line 1393: You should enclose the previous parenthesis with `{}'.
+        \bigl(L^{i}(S^{*}(I))\bigr)^2  
+                                  ^
+Warning 3 in master.tex line 1399: You should enclose the previous parenthesis with `{}'.
+        m\left(\frac{m+up}{m}\right)^2  
+                                   ^
+Warning 3 in master.tex line 1413: You should enclose the previous parenthesis with `{}'.
+        \bigl(L^{i}(S^{W}(I))\bigr)^2  
+                                  ^
+Warning 3 in master.tex line 1421: You should enclose the previous parenthesis with `{}'.
+        u(p+1)^2  
+             ^
+Warning 3 in master.tex line 1433: You should enclose the previous parenthesis with `{}'.
+            + m-u + u(p+1)^2  
+                         ^
+Warning 3 in master.tex line 1438: You should enclose the previous parenthesis with `{}'.
+            + m\left(\frac{m+up}{m}\right)^2  
+                                         ^
+Warning 3 in master.tex line 1455: You should enclose the previous parenthesis with `{}'.
+        + \left(\frac{u}{m}\right)^2p^2  
+                                 ^
+Warning 3 in master.tex line 1469: You should enclose the previous parenthesis with `{}'.
+\LamI = 1+\frac{1}{(1+\sqrt{2\alpha})^2}.  
+                                    ^
+Warning 2 in master.tex line 1472: Non-breaking space (`~') should have been used.
+\subsection{Case (2) of Corollary \ref{corr:same-length-jobs}}  
+                                 ^
+Warning 2 in master.tex line 1473: Non-breaking space (`~') should have been used.
+Now for case (2) of Corollary \ref{corr:same-length-jobs}:  
+                             ^
+Warning 2 in master.tex line 1491: Non-breaking space (`~') should have been used.
+Let $I_2$ be an instance that fulfills the requirments of \ref{prop:instance-structure} and $p > \frac{1}{1-\frac{u}{m}}$.  
+                                                         ^
+Warning 3 in master.tex line 1503: You should enclose the previous parenthesis with `{}'.
+        \bigl(L^{i}(S(I_2))\bigr)^2  
+                                ^
+Warning 3 in master.tex line 1509: You should enclose the previous parenthesis with `{}'.
+        (m-u)\left(\frac{m}{m-u}\right)^2  
+                                      ^
+Warning 3 in master.tex line 1517: You should enclose the previous parenthesis with `{}'.
+        (m-u)\left(\frac{m}{m-u}\right)^2  
+                                      ^
+Warning 3 in master.tex line 1530: You should enclose the previous parenthesis with `{}'.
+        \frac12\left(2\alpha up^2 + (m-u)\left(\frac{m}{m-u}\right)^2\right)  
+                                                                  ^
+Warning 3 in master.tex line 1556: You should enclose the previous parenthesis with `{}'.
+    \lambda_{\alpha}(I_{2}) =\frac{1}{1-\frac{2}{(2\sqrt{\alpha}+\sqrt{2})^2}},  
+                                                                         ^
+Warning 3 in master.tex line 1566: You should enclose the previous parenthesis with `{}'.
+\left(2\sqrt{\alpha}+\sqrt{2}\right)^2=  
+                                   ^
+Warning 3 in master.tex line 1567: You should enclose the previous parenthesis with `{}'.
+2\left(1+\sqrt{2\alpha}\right)^2.  
+                             ^
+Warning 3 in master.tex line 1575: You should enclose the previous parenthesis with `{}'.
+1-\dfrac{2}{\left(2\sqrt{\alpha}+\sqrt{2}\right)^2}  
+                                               ^
+Warning 3 in master.tex line 1579: You should enclose the previous parenthesis with `{}'.
+1-\dfrac{2}{2\left(1+\sqrt{2\alpha}\right)^2}  
+                                         ^
+Warning 3 in master.tex line 1582: You should enclose the previous parenthesis with `{}'.
+\frac{\left(1+\sqrt{2\alpha}\right)^2}  
+                                  ^
+Warning 3 in master.tex line 1583: You should enclose the previous parenthesis with `{}'.
+{\left(1+\sqrt{2\alpha}\right)^2-1}.  
+                             ^
+Warning 3 in master.tex line 1590: You should enclose the previous parenthesis with `{}'.
+\frac{\left(1+\sqrt{2\alpha}\right)^2}  
+                                  ^
+Warning 3 in master.tex line 1591: You should enclose the previous parenthesis with `{}'.
+{\left(1+\sqrt{2\alpha}\right)^2-1}  
+                             ^
+Warning 3 in master.tex line 1594: You should enclose the previous parenthesis with `{}'.
+1+\frac{1}{\left(1+\sqrt{2\alpha}\right)^2}  
+                                       ^
+Warning 3 in master.tex line 1597: You should enclose the previous parenthesis with `{}'.
+\frac{\left(1+\sqrt{2\alpha}\right)^2}  
+                                  ^
+Warning 3 in master.tex line 1598: You should enclose the previous parenthesis with `{}'.
+{\left(1+\sqrt{2\alpha}\right)^2-1}  
+                             ^
+Warning 3 in master.tex line 1600: You should enclose the previous parenthesis with `{}'.
+\frac{\left(1+\sqrt{2\alpha}\right)^2+1}  
+                                  ^
+Warning 3 in master.tex line 1601: You should enclose the previous parenthesis with `{}'.
+{\left(1+\sqrt{2\alpha}\right)^2}\\  
+                             ^
+Warning 3 in master.tex line 1604: You should enclose the previous parenthesis with `{}'.
+\left(1+\sqrt{2\alpha}\right)^2  
+                            ^
+Warning 3 in master.tex line 1606: You should enclose the previous parenthesis with `{}'.
+\left(1+\sqrt{2\alpha}\right)^2-1  
+                            ^
+Warning 3 in master.tex line 1624: You should enclose the previous parenthesis with `{}'.
+\lambda_{\alpha} = \frac{1}{1-\frac{2}{(2\sqrt{\alpha}+\sqrt{2})^2}}.  
+                                                               ^
+Warning 2 in master.tex line 1631: Non-breaking space (`~') should have been used.
+For the case of $\alpha \in (0, \frac12)$, the splitting lemma from \cite{Schwiegelshohn:2011}   
+                                                                   ^
+Warning 25 in master.tex line 1638: You might wish to put this between a pair of `{}'
+    Consider an instance $I$ of the problem $P||\sum p_jC_j^{\alpha}$ where $\alpha \in (0,\frac12]$.   
+                                                       ^^
+Warning 9 in master.tex line 1638: `)' expected, found `]'.
+    Consider an instance $I$ of the problem $P||\sum p_jC_j^{\alpha}$ where $\alpha \in (0,\frac12]$.   
+                                                                                                  ^
+Warning 25 in master.tex line 1639: You might wish to put this between a pair of `{}'
+    Then there exists an instance $I'$ of the problem $P||\sum p_jC_j^{\alpha}$ for the same $\alpha$, such that no two jobs   
+                                                                 ^^
+Warning 1 in master.tex line 1651: Command terminated with space.
+        \small\normalfont  
+                         ^
+Warning 2 in master.tex line 1662: Non-breaking space (`~') should have been used.
+\begin{proof}[Proof of corollary \ref{corr: Unification}]  
+                                ^
+Warning 25 in master.tex line 1668: You might wish to put this between a pair of `{}'
+        &= (1-2\alpha)p_jp_k \ge 0.  
+                        ^^
+Warning 25 in master.tex line 1675: You might wish to put this between a pair of `{}'
+        &= (1-2\alpha)p_jp_k \ge 0.  
+                        ^^
+Warning 25 in master.tex line 1681: You might wish to put this between a pair of `{}'
+        &= \frac{F_{\alpha}(S^{W}(I')) + (1-2\alpha)p_jp_k}{F_{\alpha}(S^{*}(I'))+ (1-2\alpha)p_jp_k } \\  
+                                                      ^^
+Warning 25 in master.tex line 1681: You might wish to put this between a pair of `{}'
+        &= \frac{F_{\alpha}(S^{W}(I')) + (1-2\alpha)p_jp_k}{F_{\alpha}(S^{*}(I'))+ (1-2\alpha)p_jp_k } \\  
+                                                                                                ^^
+Warning 2 in master.tex line 1690: Non-breaking space (`~') should have been used.
+Note that we can easily obtain another characterization by using \ref{corr: Unification}.  
+                                                                ^
+Warning 24 in master.tex line 1712: Delete this space to maintain correct pagereferences.
+\begin{lemma} \label{lemma: Peak increase }  
+             ^
+Warning 3 in master.tex line 1730: You should enclose the previous parenthesis with `{}'.
+\sum_{i=1}^n (x_i')^2 > \sum_{i=1}^n x_i^2.  
+                  ^
+Warning 3 in master.tex line 1737: You should enclose the previous parenthesis with `{}'.
+\sum_{i=1}^n (x_i')^2-\sum_{i=1}^n x_i^2  
+                  ^
+Warning 3 in master.tex line 1739: You should enclose the previous parenthesis with `{}'.
+(x_1+\delta)^2-x_1^2  
+           ^
+Warning 3 in master.tex line 1741: You should enclose the previous parenthesis with `{}'.
+\sum_{i=2}^n \left((x_i-\delta_i)^2-x_i^2\right).  
+                                ^
+Warning 3 in master.tex line 1761: You should enclose the previous parenthesis with `{}'.
+\sum_{i=1}^n (x_i')^2-\sum_{i=1}^n x_i^2 > 0,  
+                  ^
+Warning 40 in master.tex line 1807: You should put punctuation outside inner math mode.
+Since \(F\) is linear in \(x\), it is suffices to show $F(0)\ge 0$ and $F(1)\ge 0.$\\  
+                                                                                 ^
+Warning 2 in master.tex line 2005: Non-breaking space (`~') should have been used.
+Now since $\sum_{j=1}^{n}p_j$ is fixed, $\sum_{i=1}^{m}L^{i}(S(I))$ is also fixed for any instance, we can apply \ref{lemma: Peak increase }  
+                                                                                                                ^
+Warning 2 in master.tex line 2017: Non-breaking space (`~') should have been used.
+We can apply \ref{lemma: Peak increase } to get   
+            ^
+Warning 3 in master.tex line 2020: You should enclose the previous parenthesis with `{}'.
+r:= \sum_{i=1}^m (L^{i}(S'^{W}(I')))^2 - \sum_{i=1}^m (L^{i}(S^{W}(I)))^2 \ge 0  
+                                   ^
+Warning 3 in master.tex line 2020: You should enclose the previous parenthesis with `{}'.
+r:= \sum_{i=1}^m (L^{i}(S'^{W}(I')))^2 - \sum_{i=1}^m (L^{i}(S^{W}(I)))^2 \ge 0  
+                                                                      ^
+Warning 3 in master.tex line 2025: You should enclose the previous parenthesis with `{}'.
+A:= \sum_{i=1}^m (L^{i}(S^{W}(I)))^2 \qquad B:=\sum_{i=1}^{n}p_i^2 \qquad C:=\sum_{i=1}^m (L^{i}(S^{*}(I)))^2  
+                                 ^
+Warning 3 in master.tex line 2025: You should enclose the previous parenthesis with `{}'.
+A:= \sum_{i=1}^m (L^{i}(S^{W}(I)))^2 \qquad B:=\sum_{i=1}^{n}p_i^2 \qquad C:=\sum_{i=1}^m (L^{i}(S^{*}(I)))^2  
+                                                                                                          ^
+Warning 2 in master.tex line 2034: Non-breaking space (`~') should have been used.
+A final application of \ref{lem: A,B,C,r} gives the stated result.  
+                      ^
+Warning 3 in master.tex line 2068: You should enclose the previous parenthesis with `{}'.
+    p_k^2+(L_i-\delta)^2-p^2-L_i^2  
+                     ^
+Warning 25 in master.tex line 2086: You might wish to put this between a pair of `{}'
+$P\parallel\sum_j p_jC_j^{\alpha}$, and let $j^\star$ be a job with  
+                    ^^
+Warning 24 in master.tex line 2102: Delete this space to maintain correct pagereferences.
+\label{lem:critical-singleton-perturbation}  
+^
+Warning 9 in master.tex line 2103: `)' expected, found `]'.
+Let $\alpha\in(0,\tfrac12]$, and let $j^\star$ be a job of processing  
+                         ^
+Warning 13 in master.tex line 2106: Intersentence spacing (`\@') should perhaps be used.
+    \item $j^\star$ is single scheduled in an optimal schedule of I;  
+                                                                   ^
+Warning 13 in master.tex line 2107: Intersentence spacing (`\@') should perhaps be used.
+    \item $j^\star$ is not single scheduled in a WLPT schedule $S^{W}$ of I;  
+                                                                           ^
+Warning 3 in master.tex line 2143: You should enclose the previous parenthesis with `{}'.
+      \frac12\bigl((p+\varepsilon+T_{j})^2-(p+T_{j})^2\bigr)  
+                                       ^
+Warning 3 in master.tex line 2143: You should enclose the previous parenthesis with `{}'.
+      \frac12\bigl((p+\varepsilon+T_{j})^2-(p+T_{j})^2\bigr)  
+                                                   ^
+Warning 3 in master.tex line 2147: You should enclose the previous parenthesis with `{}'.
+      \bigl((p+\varepsilon)^2-p^2\bigr)  
+                          ^
+Warning 2 in master.tex line 2157: Non-breaking space (`~') should have been used.
+As $j^*$ is single scheduled in an optimal schedule, $T=0$. From \eqref{eq:fixed-assignment-cost-change}, shows that  
+                                                                ^
+Warning 2 in master.tex line 2179: Non-breaking space (`~') should have been used.
+Taking $T=T_{j^*}$ in \eqref{eq:fixed-assignment-cost-change} gives the  
+                     ^
+Warning 2 in master.tex line 2196: Non-breaking space (`~') should have been used.
+Dividing \eqref{eq:wlpt-candidate-bound} by  
+        ^
+Warning 2 in master.tex line 2197: Non-breaking space (`~') should have been used.
+\eqref{eq:opt-candidate-bound} in the favorable directions proves  
+^
+Warning 2 in master.tex line 2198: Non-breaking space (`~') should have been used.
+\eqref{eq:ratio-perturbation-bound}.  
+^
+Warning 24 in master.tex line 2203: Delete this space to maintain correct pagereferences.
+\label{thm:strict-perturbation-improvement}  
+^
+Warning 9 in master.tex line 2204: `)' expected, found `]'.
+Let $\alpha\in(0,\tfrac12]$, and suppose that  
+                         ^
+Warning 25 in master.tex line 2210: You might wish to put this between a pair of `{}'
+$P\parallel\sum_jp_jC_j^{\alpha}$.  Let $I$ and $j^\star$ satisfy the  
+                ^^
+Warning 25 in master.tex line 2210: You might wish to put this between a pair of `{}'
+$P\parallel\sum_jp_jC_j^{\alpha}$.  Let $I$ and $j^\star$ satisfy the  
+                   ^^
+Warning 2 in master.tex line 2231: Non-breaking space (`~') should have been used.
+\ref{lem:critical-singleton-perturbation}, it is enough to show  
+^
+Warning 2 in master.tex line 2249: Non-breaking space (`~') should have been used.
+\eqref{eq:rho-upper-bound} gives  
+^
+Warning 2 in master.tex line 2258: Non-breaking space (`~') should have been used.
+If \eqref{eq:epsilon-improvement-range} holds, then  
+  ^
+Warning 2 in master.tex line 2262: Non-breaking space (`~') should have been used.
+Thus \eqref{eq:exact-improvement-condition} holds, and  
+    ^
+Warning 2 in master.tex line 2263: Non-breaking space (`~') should have been used.
+\eqref{eq:ratio-perturbation-bound} yields  
+^
+Warning 2 in master.tex line 2264: Non-breaking space (`~') should have been used.
+\eqref{eq:strict-ratio-improvement}.  
+^
+Warning 36 in master.tex line 2268: You should put a space in front of parenthesis.
+\subsection{\texorpdfstring{$1+ \frac{1}{6\alpha}$}{1 + 1/(6 alpha)}}  
+                                                          ^
+Warning 36 in master.tex line 2282: You should put a space in front of parenthesis.
+We know, from Schwiegelshohn(insert reference here), that for \(\alpha \ge  
+                            ^
+Warning 3 in master.tex line 2372: You should enclose the previous parenthesis with `{}'.
+    \frac{\beta}{9(1-\beta x)^2}.  
+                            ^
+Warning 12 in master.tex line 2414: Interword spacing (`\ ') should perhaps be used.
+that we have found the best possible upper bound for $m=2$. and jobs  
+                                                           ^
+Warning 25 in master.tex line 2435: You might wish to put this between a pair of `{}'
+ \item $\max_{I \in P||\sum_{j \in I}p_jC_j^{\alpha}}\lambda_{\alpha}(I) = \frac43$.   
+                                       ^^
+Warning 25 in master.tex line 2464: You might wish to put this between a pair of `{}'
+\sum_{\{j,k\}\subseteq M_i(S)}p_jp_k.  
+                                ^^
+Warning 25 in master.tex line 2477: You might wish to put this between a pair of `{}'
+ Q:=\sum_jp_j^2  
+         ^^
+Warning 25 in master.tex line 2482: You might wish to put this between a pair of `{}'
+ \sum_{i=1}^m\ \sum_{\{j,k\}\subseteq M_i(S)}p_jp_k.  
+                                               ^^
+Warning 3 in master.tex line 2502: You should enclose the previous parenthesis with `{}'.
+ K_m:=(m-1)^2,  
+          ^
+Warning 24 in master.tex line 2508: Delete this space to maintain correct pagereferences.
+\label{lemma: P_W-P*}  
+^
+Warning 12 in master.tex line 2518: Interword spacing (`\ ') should perhaps be used.
+be the current load of the receiving machine (eq. this is the starting time of j).  The placement creates pair  
+                                                 ^
+Warning 25 in master.tex line 2521: You might wish to put this between a pair of `{}'
+ P_{W}=\sum_jp_j\ell_j.  
+            ^^
+Warning 25 in master.tex line 2560: You might wish to put this between a pair of `{}'
+ \sum_{r<s}x_rx_s  
+             ^^
+Warning 25 in master.tex line 2561: You might wish to put this between a pair of `{}'
+ \le \frac{k-1}{2}\sum_{r=1}^kx_r^2.  
+                             ^^
+Warning 25 in master.tex line 2565: You might wish to put this between a pair of `{}'
+\((\sum_rx_r)^2\le k\sum_rx_r^2\).  
+        ^^
+Warning 3 in master.tex line 2565: You should enclose the previous parenthesis with `{}'.
+\((\sum_rx_r)^2\le k\sum_rx_r^2\).  
+            ^
+Warning 25 in master.tex line 2565: You might wish to put this between a pair of `{}'
+\((\sum_rx_r)^2\le k\sum_rx_r^2\).  
+                         ^^
+Warning 3 in master.tex line 2585: You should enclose the previous parenthesis with `{}'.
+(P^*)^2  
+    ^
+Warning 3 in master.tex line 2640: You should enclose the previous parenthesis with `{}'.
+ n-m\le 1+(m-1)m - m = (m-1)^2=K_m.  
+                           ^
+Warning 12 in master.tex line 2644: Interword spacing (`\ ') should perhaps be used.
+and at least $m$ jobs precede it in the schedule. its preceding load \(\ell_p\) is positive.  Immediately before placing \(p\),  
+                                                 ^
+Warning 26 in master.tex line 2656: You ought to remove spaces in front of punctuation.
+There are at most \(K_m-1\) other positive-load ($\ell_j > 0$) assignments .  Summing (9)  
+                                                                          ^
+Warning 40 in master.tex line 2745: You should put punctuation inside display math mode.
+\].   
+  ^
+Warning 24 in master.tex line 2759: Delete this space to maintain correct pagereferences.
+\label{thm:main}  
+^
+Warning 3 in master.tex line 2803: You should enclose the previous parenthesis with `{}'.
+ g_1'(z)=\frac{\alpha/3-1/6}{(\alpha+z)^2}\le0.  
+                                      ^
+Warning 24 in master.tex line 2926: Delete this space to maintain correct pagereferences.
+\label{fig:g1-g2-comparison}  
+^
+Warning 24 in master.tex line 3033: Delete this space to maintain correct pagereferences.
+\label{fig:instance-structure}  
+^
+Warning 3 in master.tex line 3244: You should enclose the previous parenthesis with `{}'.
+(m-u)\left(1-\frac um\right)^2  
+                           ^
+Warning 3 in master.tex line 3245: You should enclose the previous parenthesis with `{}'.
+ +u\left(p+1-\frac um\right)^2  
+                           ^
+Warning 3 in master.tex line 3254: You should enclose the previous parenthesis with `{}'.
+B&=\sum_{j=1}^{m-ku-1}2\left(\frac{j}{m}\right)^2+\left((k+1)u-m+1\right)\left(\frac{m-ku}{m}\right)^2  
+                                              ^
+Warning 3 in master.tex line 3254: You should enclose the previous parenthesis with `{}'.
+B&=\sum_{j=1}^{m-ku-1}2\left(\frac{j}{m}\right)^2+\left((k+1)u-m+1\right)\left(\frac{m-ku}{m}\right)^2  
+                                                                                                   ^
+Warning 3 in master.tex line 3256: You should enclose the previous parenthesis with `{}'.
++(m-u)\left(1-\frac um\right)^2  
+                            ^
+Warning 3 in master.tex line 3259: You should enclose the previous parenthesis with `{}'.
+&+\left((k+1)u-m+1\right)\left(\frac{m-ku}{m}\right)^2  
+                                                   ^
+Warning 3 in master.tex line 3261: You should enclose the previous parenthesis with `{}'.
++(m-u)\left(1-\frac um\right)^2  
+                            ^
+Warning 3 in master.tex line 3295: You should enclose the previous parenthesis with `{}'.
+&+\left((k+1)u-m+1\right)\left(\frac{m-ku}{m}\right)^2  
+                                                   ^
+Warning 3 in master.tex line 3296: You should enclose the previous parenthesis with `{}'.
++(m-u)\left(1-\frac um\right)^2  
+                            ^
+Warning 3 in master.tex line 3321: You should enclose the previous parenthesis with `{}'.
+\left((k+1)u-m+1\right)\left(\frac{m-ku}{m}\right)^2  
+                                                 ^
+Warning 3 in master.tex line 3338: You should enclose the previous parenthesis with `{}'.
++(1-x)^3  
+     ^
+Warning 3 in master.tex line 3343: You should enclose the previous parenthesis with `{}'.
++(1-x)^3  
+     ^
+Warning 3 in master.tex line 3347: You should enclose the previous parenthesis with `{}'.
++(1-x)^3  
+     ^
+Warning 3 in master.tex line 3359: You should enclose the previous parenthesis with `{}'.
+        +(1-x)^3  
+             ^
+Warning 3 in master.tex line 3370: You should enclose the previous parenthesis with `{}'.
+(m-u)\left(1-\frac um\right)^2  
+                           ^
+Warning 3 in master.tex line 3371: You should enclose the previous parenthesis with `{}'.
++u\left(p+1-\frac um\right)^2  
+                          ^
+Warning 3 in master.tex line 3380: You should enclose the previous parenthesis with `{}'.
+m(1-x)^3  
+     ^
+Warning 3 in master.tex line 3381: You should enclose the previous parenthesis with `{}'.
+ +mx\bigl(p+1-x\bigr)^2  
+                    ^
+Warning 3 in master.tex line 3384: You should enclose the previous parenthesis with `{}'.
+m(1-x)^3  
+     ^
+Warning 3 in master.tex line 3385: You should enclose the previous parenthesis with `{}'.
+ +mx\left(p^2+2p(1-x)+(1-x)^2\right)  
+                          ^
+Warning 3 in master.tex line 3452: You should enclose the previous parenthesis with `{}'.
+\frac{2(p^2+q)-(2p-1)(2p)}{(p^2+q)^2} \\  
+                                 ^
+Warning 3 in master.tex line 3454: You should enclose the previous parenthesis with `{}'.
+\frac{-2p^2+2p+2q}{(p^2+q)^2}.  
+                         ^
+Warning 3 in master.tex line 3471: You should enclose the previous parenthesis with `{}'.
+        q=(p^*)^2-p^*,  
+              ^
+Warning 3 in master.tex line 3476: You should enclose the previous parenthesis with `{}'.
+\frac{2p^*-1}{(p^*)^2+q}  
+                  ^
+Warning 3 in master.tex line 3478: You should enclose the previous parenthesis with `{}'.
+\frac{2p^*-1}{(p^*)^2+(p^*)^2-p^*}  \\  
+                  ^
+Warning 3 in master.tex line 3478: You should enclose the previous parenthesis with `{}'.
+\frac{2p^*-1}{(p^*)^2+(p^*)^2-p^*}  \\  
+                          ^
+Warning 3 in master.tex line 3545: You should enclose the previous parenthesis with `{}'.
+ +(1-x)^3  
+      ^
+Warning 3 in master.tex line 3549: You should enclose the previous parenthesis with `{}'.
+\frac{1}{(k+t)^3}  
+             ^
+Warning 3 in master.tex line 3552: You should enclose the previous parenthesis with `{}'.
+ +(k+t-1)^3  
+        ^
+Warning 3 in master.tex line 3567: You should enclose the previous parenthesis with `{}'.
+        +(k+t-1)^3  
+               ^
+Warning 3 in master.tex line 3639: You should enclose the previous parenthesis with `{}'.
+        +(k+t-1)^3  
+               ^
+Warning 3 in master.tex line 3663: You should enclose the previous parenthesis with `{}'.
+        2t-t^2+3(k+t-1)^2+\frac13.  
+                      ^
+Warning 3 in master.tex line 3680: You should enclose the previous parenthesis with `{}'.
+        \right)^{3/2}  
+              ^
+Warning 3 in master.tex line 3690: You should enclose the previous parenthesis with `{}'.
+3(k-1)^2+6(k-1)t+2t^2+1  
+     ^
+Warning 3 in master.tex line 3691: You should enclose the previous parenthesis with `{}'.
+\right]^2                                      \\  
+      ^
+Warning 3 in master.tex line 3695: You should enclose the previous parenthesis with `{}'.
+3(k-1)^2+6(k-1)t+2t^2+1  
+     ^
+Warning 3 in master.tex line 3711: You should enclose the previous parenthesis with `{}'.
+        3(k-1)^2+6(k-1)t+2t^2+1>0,  
+             ^
+Warning 36 in master.tex line 3756: You should put a space in front of parenthesis.
+\subsection{\texorpdfstring{\(x=\frac{1}{k+1}\)}{x = 1/(k+1)}}  
+                                                       ^
+Warning 3 in master.tex line 3772: You should enclose the previous parenthesis with `{}'.
+ +(1-x)^3  
+      ^
+Warning 3 in master.tex line 3776: You should enclose the previous parenthesis with `{}'.
+\frac{k^3+k}{(k+1)^3} \\  
+                 ^
+Warning 3 in master.tex line 3778: You should enclose the previous parenthesis with `{}'.
+\frac{k(k^2+1)}{(k+1)^3}.  
+                    ^
+Warning 3 in master.tex line 3788: You should enclose the previous parenthesis with `{}'.
+-(1-2\alpha)\frac{k(k^2+1)}{(k+1)^3} \\  
+                                ^
+Warning 3 in master.tex line 3790: You should enclose the previous parenthesis with `{}'.
+\frac{2k\left(k+\alpha(k^2+1)\right)}{(k+1)^3}.  
+                                          ^
+Warning 3 in master.tex line 3799: You should enclose the previous parenthesis with `{}'.
+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}.  
+                                                ^
+Warning 3 in master.tex line 3808: You should enclose the previous parenthesis with `{}'.
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}  
+                                                  ^
+Warning 3 in master.tex line 3822: You should enclose the previous parenthesis with `{}'.
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}  
+                                                  ^
+Warning 3 in master.tex line 3843: You should enclose the previous parenthesis with `{}'.
+(1-x)^3+(k-1)x^3 \\  
+    ^
+Warning 3 in master.tex line 3845: You should enclose the previous parenthesis with `{}'.
+\frac{(k-1)\left((k-1)^2+1\right)}{k^3}.  
+                     ^
+Warning 3 in master.tex line 3855: You should enclose the previous parenthesis with `{}'.
+\frac{(k-1)\left((k-1)^2+1\right)}{k^3} \\  
+                     ^
+Warning 3 in master.tex line 3858: You should enclose the previous parenthesis with `{}'.
+2(k-1)^2  
+     ^
+Warning 3 in master.tex line 3859: You should enclose the previous parenthesis with `{}'.
+ +2\alpha(k-1)\left((k-1)^2+1\right)  
+                        ^
+Warning 3 in master.tex line 3863: You should enclose the previous parenthesis with `{}'.
+2(k-1)\left((k-1)+\alpha\left((k-1)^2+1\right)\right)  
+                                  ^
+Warning 3 in master.tex line 3869: You should enclose the previous parenthesis with `{}'.
+        (k-1)^2+1=k^2-2k+2.  
+            ^
+Warning 3 in master.tex line 3969: You should enclose the previous parenthesis with `{}'.
+        u\left(p+1-\frac um\right)^2-up^2  
+                                 ^
+Warning 3 in master.tex line 3972: You should enclose the previous parenthesis with `{}'.
+        +u\left(1-\frac um\right)^2,  
+                                ^
+Warning 3 in master.tex line 3998: You should enclose the previous parenthesis with `{}'.
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}  
+                                                  ^
+Warning 3 in master.tex line 4078: You should enclose the previous parenthesis with `{}'.
+1+\frac{4k\left(k+\alpha(k^2+1)\right)}{\alpha(k+1)^2}  
+                                                  ^
+Warning 9 in master.tex line 4102: `)' expected, found `]'.
+Fix \(m\in\mathbb{N}\), \(a\in(0,\frac12]\), \(b=1\), and let  
+                                        ^
+Warning 3 in master.tex line 4157: You should enclose the previous parenthesis with `{}'.
+    \sum_{i=1}^m(l_i+b)^2  
+                      ^
+Warning 24 in master.tex line 4243: Delete this space to maintain correct pagereferences.
+\label{fig:computational-schedule-structure}  
+^
+Warning 17 in master.tex line 4452: Number of `(' doesn't match the number of `)'!
+
+
+Warning 17 in master.tex line 4452: Number of `[' doesn't match the number of `]'!
+
+

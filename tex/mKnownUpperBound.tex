@@ -15,20 +15,20 @@ We consider the scheduling problem on $m$ identical parallel machines. Let there
 
 For a given schedule $S$, define the modified completion time of job $j$ as
 \[
-C_j(\alpha) = B_j + \alpha p_j,
+C_j(\alpha) = S_j + \alpha p_j,
 \]
-where $B_j$ is the total processing time of jobs scheduled before $j$ on the same machine, and $\alpha \in (0,1]$ is a fixed parameter.
+where $S_j$ is the total processing time of jobs scheduled before $j$ on the same machine, and $\alpha \in (0,1]$ is a fixed parameter.
 
 The objective function is
 \[
-F_\alpha(S) = \sum_{j=1}^n p_j C_j(\alpha).
+\gamma_{\alpha}(S) = \sum_{j=1}^n p_j C_j(\alpha).
 \]
 
 \section{Pairwise Reformulation}
 
 For any schedule $S$, the objective can be rewritten as
 \[
-F_\alpha(S)
+\gamma_{\alpha}(S)
 =
 \alpha \sum_{j=1}^n p_j^2
 +
@@ -42,12 +42,12 @@ S_2 = \sum_{j=1}^n p_j^2.
 
 Thus,
 \[
-F_\alpha(S) = \alpha S_2 + \text{pair contribution}.
+\gamma_{\alpha}(S) = \alpha S_2 + \text{pair contribution}.
 \]
 
 \section{Worst Schedule and Restricted Optimal Schedule}
 
-Let $W$ denote a worst-case schedule maximizing $F_\alpha(S)$.
+Let $W$ denote a worst-case schedule maximizing $\gamma_{\alpha}(S)$.
 
 Let $OPT^R$ denote an optimal schedule subject to the following restriction:
 
@@ -122,7 +122,7 @@ W_{\alpha,m}
 
 For any schedule,
 \[
-C_j(\alpha) = B_j + \alpha p_j \ge \alpha p_j,
+C_j(\alpha) = S_j + \alpha p_j \ge \alpha p_j,
 \]
 so
 \[
@@ -131,7 +131,7 @@ p_j C_j(\alpha) \ge \alpha p_j^2.
 
 Summing over all jobs,
 \[
-F_\alpha(S) \ge \alpha S_2.
+\gamma_{\alpha}(S) \ge \alpha S_2.
 \]
 
 Thus,

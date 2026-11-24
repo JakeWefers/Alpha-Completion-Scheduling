@@ -1,0 +1,92 @@
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{1}{$P \parallel \sum w_j C_j(\alpha )$}}{3}{definition.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{2}{Schedule}}{3}{definition.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{3}{List}}{3}{definition.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{4}{List Schedule}}{3}{definition.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{5}{Worst List Schedule}}{3}{definition.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{6}{Maximally Unified Instance}}{3}{definition.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{7}{Optimal Schedule}}{3}{definition.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{8}{$S_{\mathrm {LRF}}$}}{3}{definition.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{1}{}}{7}{corollary.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{1}{}}{7}{proof.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{2}{}}{8}{corollary.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{2}{}}{8}{proof.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{3}{}}{11}{corollary.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{3}{}}{11}{proof.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{4}{}}{13}{corollary.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{4}{}}{13}{proof.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {frm-property}{{Property}{1}{Instance structure}}{15}{frm-property.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{5}{Unification Lemma}}{19}{corollary.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{9}{Pairwise Unification}}{19}{definition.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {corollary}{{Corollary}{6}{}}{19}{corollary.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{5}{}}{19}{proof.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{6}{Proof of Unification Lemma}}{19}{proof.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{10}{Single scheduled job}}{20}{definition.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{1}{}}{20}{lemma.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{7}{}}{20}{proof.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{2}{}}{20}{lemma.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{8}{}}{21}{proof.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{3}{Single scheduled}}{21}{lemma.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{9}{}}{21}{proof.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{4}{Jobs larger than a singleton job}}{24}{lemma.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{10}{}}{24}{proof.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {definition}{{Definition}{11}{Perturbed Instance}}{24}{definition.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{5}{Critical-singleton perturbation comparison}}{25}{lemma.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{11}{}}{25}{proof.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Theorem}{1}{Strict improvement when the accompanying load is large}}{25}{theorem.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{12}{}}{26}{proof.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{6}{Monotonicity in $K/C$}}{27}{lemma.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{13}{}}{27}{proof.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Theorem}{2}{Supremum of the ratio}}{28}{theorem.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{14}{}}{28}{proof.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{7}{}}{29}{lemma.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{15}{}}{29}{proof.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {theorem}{{Theorem}{3}{}}{32}{theorem.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{16}{}}{32}{proof.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lemma}{{Lemma}{8}{}}{40}{lemma.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {proof}{{Proof}{17}{}}{40}{proof.17}%

@@ -11,15 +11,15 @@ Let \(m\ge 2\) be the number of identical parallel machines, and let
 \(\alpha>0\). Consider an instance with processing times
 \(p_1,\dots,p_n>0\). For a schedule \(S\), define
 \[
-F_\alpha(S)=\sum_{j=1}^n p_j C_j(\alpha),
+\gamma_{\alpha}(S)=\sum_{j=1}^n p_j C_j(\alpha),
 \]
 where \(C_j(\alpha)\) denotes the load preceding job \(j\) on its machine plus
 \(\alpha p_j\).
 
-Let \(W^{LS}_{\alpha,m}\) denote the maximum value of \(F_\alpha(S)\) over all
+Let \(W^{LS}_{\alpha,m}\) denote the maximum value of \(\gamma_{\alpha}(S)\) over all
 schedules obtainable by list scheduling over all job orders. Fix a list
 schedule attaining \(W^{LS}_{\alpha,m}\). Let \(OPT^R_{\alpha,m}\) denote the
-minimum value of \(F_\alpha(S)\) among all feasible schedules satisfying the
+minimum value of \(\gamma_{\alpha}(S)\) among all feasible schedules satisfying the
 following pair-separation restriction: if two jobs are scheduled on the same
 machine in the fixed worst list schedule, then they may not be scheduled on
 the same machine in the restricted optimum.
@@ -39,7 +39,7 @@ S_2=\sum_{j=1}^n p_j^2.
 \]
 The objective admits the pairwise representation
 \[
-F_\alpha(S)
+\gamma_{\alpha}(S)
 =
 \alpha S_2
 +
@@ -127,7 +127,7 @@ W^{LS}_{\alpha,m}
 
 On the other hand, for every feasible restricted schedule \(S\),
 \[
-F_\alpha(S)
+\gamma_{\alpha}(S)
 =
 \alpha S_2
 +

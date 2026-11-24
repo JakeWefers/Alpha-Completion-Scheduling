@@ -7,7 +7,7 @@
 \newtheorem{corollary}{Corollary}
 \newtheorem{example}{Example}
 
-\newcommand{\LRF}{\mathrm{LRF}}
+\newcommand{\WSPT}{\mathrm{WSPT}}
 \newcommand{\OPT}{\mathrm{OPT}}
 \newcommand{\Cmax}{C_{\max}}
 \newcommand{\Cmin}{C_{\max}^{\min}}
@@ -55,10 +55,10 @@ execution of a job while a machine is idle increases the completion time of
 this job while it does not reduce the completion time of any other job.
 Hence, for each instance of the $P\|\sum_j w_j C_j$ problem, there is a job
 order such that the corresponding list schedule is an optimal schedule. An
-LRF (Largest-Ratio-First) schedule is a specific list schedule that uses a
+The \(\mathrm{WSPT}\) (Largest-Ratio-First) schedule is a specific list schedule that uses a
 decreasing order of the ratio $w_j/p_j$ for the jobs. In a celebrated paper
 from 1986, Kawaguchi and Kyan~[1] showed that the total weighted completion
-time of an LRF schedule is at most a factor
+time of a \(\mathrm{WSPT}\) schedule is at most a factor
 \[
         \frac12(1+\sqrt{2})
 \]
@@ -82,7 +82,7 @@ is arbitrarily small. Finally, Corollary 5 enables us to additionally demand
 that all long jobs have the same processing time. As a result of these four
 corollaries, we can express the worst case performance with two functions of
 two variables each. Determining the maximum of these functions within the
-permitted ranges of the variables yields the performance guarantee of an LRF
+permitted ranges of the variables yields the performance guarantee of a \(\mathrm{WSPT}\)
 schedule.
 
 Before starting with the actual proof, we briefly point out the convexity of
@@ -104,18 +104,18 @@ $\sum_{i=1}^k x_i^2$ becomes minimal if
 holds for all $1\leq i\leq k$.
 
 We extend our previous definition of an instance $I$ for the
-$P\|\sum_j w_j C_j$ problem to additionally include an LRF order for all
-jobs. This LRF order produces the so-called primary LRF schedule
-$S_{\LRF}(I)$. Therefore, every instance has a unique primary LRF schedule
-$S_{\LRF}$ even if all jobs have the same $w_j/p_j$ ratio. Throughout the
+$P\|\sum_j w_j C_j$ problem to additionally include a \(\mathrm{WSPT}\) order for all
+jobs. This \(\mathrm{WSPT}\) order produces the so-called primary \(\mathrm{WSPT}\) schedule
+$S_{\WSPT}(I)$. Therefore, every instance has a unique primary \(\mathrm{WSPT}\) schedule
+$S_{\WSPT}$ even if all jobs have the same $w_j/p_j$ ratio. Throughout the
 proof, we say that $C(I)$ is the total weighted completion time of
-$S_{\LRF}(I)$ while $C^*(I)$ is the total weighted completion time of an
+$S_{\WSPT}(I)$ while $C^*(I)$ is the total weighted completion time of an
 optimal schedule $S_{\OPT}(I)$ for instance $I$. Furthermore, we use the
 notation
 \[
         \lambda(I)=\frac{C(I)}{C^*(I)}
 \]
-to describe the performance ratio between $S_{\LRF}(I)$ and $S_{\OPT}(I)$.
+to describe the performance ratio between $S_{\WSPT}(I)$ and $S_{\OPT}(I)$.
 
 \begin{corollary}
 For every instance $I$ of the $P\|\sum_j w_j C_j$ problem, there is an
@@ -158,11 +158,11 @@ Next, we define a sequence of instances
         I_k=\{j\in I\mid i(j)\leq k\}
 \]
 for $1\leq k\leq d$ and set $w_j=p_j$ for every job in any $I_k$. Note that
-a job belongs to $I_k$ if it precedes a job $j\in I_k$ in any LRF order of
-instance $I$. For the jobs in any $I_k$, we use the LRF order of these jobs
+a job belongs to $I_k$ if it precedes a job $j\in I_k$ in any \(\mathrm{WSPT}\) order of
+instance $I$. For the jobs in any $I_k$, we use the \(\mathrm{WSPT}\) order of these jobs
 in instance $I$, as our weight selection allows every order of the jobs in
 $I_k$. Therefore, the completion times of any job $j\in I_k$ in
-$S_{\LRF}(I_k)$ and in $S_{\LRF}(I)$ are identical. With $C_j^*$ denoting the
+$S_{\WSPT}(I_k)$ and in $S_{\WSPT}(I)$ are identical. With $C_j^*$ denoting the
 completion time of job $j$ in an optimal schedule for instance $I$, we have
 \[
 \begin{aligned}
@@ -255,18 +255,18 @@ For every instance $I$ of the $P\|\sum_j p_j C_j$ problem, there is an
 instance $I'$ of the $P\|\sum_j p_j C_j$ problem such that
 $\lambda(I')\geq\lambda(I)$ holds and every job in instance $I'$ has an
 arbitrarily small processing time if it starts before
-$\Cmin(S_{\LRF}(I'))$.
+$\Cmin(S_{\WSPT}(I'))$.
 \end{corollary}
 
 \begin{proof}
-Assume an arbitrary list schedule $S(I)$ for an instance $I$ of the
+Assume an arbitrary list schedule $\sigma(I)$ for an instance $I$ of the
 $P\|\sum_j p_j C_j$ problem. We generate an instance $J$ by taking a job
-$j_0$ from $I$ and replacing it in schedule $S(I)$ with two jobs $j_1$ and
+$j_0$ from $I$ and replacing it in schedule $\sigma(I)$ with two jobs $j_1$ and
 $j_2$ such that $p_{j_1}+p_{j_2}=p_{j_0}$, $C_{j_2}=C_{j_0}$, and
 $C_{j_1}=C_{j_0}-p_{j_2}$ hold. Note that this exchange does not alter the
-completion time of any other job in schedule $S(I)$. Therefore, we have
+completion time of any other job in schedule $\sigma(I)$. Therefore, we have
 \[
-        C_{\max}^i(S(I))=C_{\max}^i(S(J))
+        C_{\max}^i(\sigma(I))=C_{\max}^i(S(J))
 \]
 for all $1\leq i\leq m$. Then Eq.~(1) produces
 \[
@@ -276,10 +276,10 @@ for all $1\leq i\leq m$. Then Eq.~(1) produces
         =
         p_{j_1}p_{j_2}.
 \]
-If $C_{j_1}\leq \Cmin(S_{\LRF}(I))$ holds then the resulting schedule
-$S_{\LRF}(J)$ for instance $J$ is a list schedule. As any job order for
-instance $J$ is an LRF order, we can select an order for instance $J$ such
-that we have $S(J)=S_{\LRF}(J)$. As $S_{\OPT}(J)$ is also a list schedule, we
+If $C_{j_1}\leq \Cmin(S_{\WSPT}(I))$ holds then the resulting schedule
+$S_{\WSPT}(J)$ for instance $J$ is a list schedule. As any job order for
+instance $J$ is a \(\mathrm{WSPT}\) order, we can select an order for instance $J$ such
+that we have $S(J)=S_{\WSPT}(J)$. As $S_{\OPT}(J)$ is also a list schedule, we
 have
 \[
         1\leq \lambda(I)
@@ -293,15 +293,15 @@ have
         \lambda(J).
 \]
 We repeat this job splitting until all jobs starting before
-$\Cmin(S_{\LRF}(I))$ have an arbitrarily small processing time. As at most
-$m-1$ jobs can start at $\Cmin(S_{\LRF}(I))$, all but at most $m-1$ jobs have
+$\Cmin(S_{\WSPT}(I))$ have an arbitrarily small processing time. As at most
+$m-1$ jobs can start at $\Cmin(S_{\WSPT}(I))$, all but at most $m-1$ jobs have
 an arbitrarily small processing time.
 \end{proof}
 
 Due to Corollaries 1 and 3, we consider from now on only instances $I$ in
 which $w_j=p_j$ holds for all jobs and all jobs have an arbitrarily small
 processing time with the exception of at most $m-1$ so-called long jobs that
-start at $\Cmin(S_{\LRF}(I))$. We use $L(I)\subseteq I$ to denote the set of
+start at $\Cmin(S_{\WSPT}(I))$. We use $L(I)\subseteq I$ to denote the set of
 these long jobs in instance $I$. Furthermore, we introduce the set
 $K(I)\subseteq L(I)$ of long jobs to be the largest set such that
 \[
@@ -310,11 +310,11 @@ $K(I)\subseteq L(I)$ of long jobs to be the largest set such that
 holds for all $j\in K(I)$. We obtain $K(I)$ by adding long jobs in decreasing
 order of their processing times and testing the property of $K(I)$. All jobs
 from $I\setminus L(I)$ are called small jobs. Note that an instance $I$ only
-contains small jobs if $\Cmin(S_{\LRF}(I))>0$ holds.
+contains small jobs if $\Cmin(S_{\WSPT}(I))>0$ holds.
 
 As the processing time of each small job is arbitrarily small, we can ignore
 the term $\sum_{j\in I\setminus L(I)}p_j^2$ in Eq.~(1) for any list schedule
-$S(I)$ leading to
+$\sigma(I)$ leading to
 \begin{equation}
         \sum_{j\in I}p_j C_j
         =
@@ -322,7 +322,7 @@ $S(I)$ leading to
         \left(
             \sum_{j\in L(I)}p_j^2
             +
-            \sum_{i=1}^m(C_{\max}^i(S(I)))^2
+            \sum_{i=1}^m(C_{\max}^i(\sigma(I)))^2
         \right)
 \end{equation}
 and
@@ -333,13 +333,13 @@ and
         \frac12\sum_{j\in L(I)}p_j^2
         +
         \frac12\sum_{j\in L(I)}
-            (p_j+\Cmin(S_{\LRF}(I)))^2                    \\
+            (p_j+\Cmin(S_{\WSPT}(I)))^2                    \\
         &\quad
         +
-        \frac12\left((m-|L(I)|)(\Cmin(S_{\LRF}(I)))^2\right).
+        \frac12\left((m-|L(I)|)(\Cmin(S_{\WSPT}(I)))^2\right).
 \end{aligned}
 \end{equation}
-Note that Eq.~(3) is the application of Eq.~(2) to $S_{\LRF}(I)$.
+Note that Eq.~(3) is the application of Eq.~(2) to $S_{\WSPT}(I)$.
 
 Next, we address the generation of an optimal schedule for our instances.
 Consider a job order for instance $I$ in which the long jobs precede all small
@@ -397,16 +397,16 @@ jobs or to some makespans. However, $t$ need not be an integer but may be a
 rational number with denominator $q$ resulting in an instance with a
 fractional number of jobs. To obtain an instance with an integral number of
 jobs, we simply replace each machine and each job of the original instance
-$I$ with $q$ identical copies. In the LRF order, all replicas of a job occur
+$I$ with $q$ identical copies. In the \(\mathrm{WSPT}\) order, all replicas of a job occur
 one after another. Therefore, the schedule of each machine is replicated for
-schedule $S_{\LRF}$. Replicating the schedule of each machine for schedule
+schedule $S_{\WSPT}$. Replicating the schedule of each machine for schedule
 $S_{\OPT}$ also yields an optimal schedule for the same reasons discussed
 before. Hence, $C(I)$ and $C^*(I)$ are simply multiplied by $q$, and
 $\lambda(I)$ remains unchanged.
 
 The application of the transformation to the set $L(I)$ or to machine
-makespans of a list schedule $S(I)$ does not change
-$\sum_{i=1}^m C_{\max}^i(S(I))$ due to Eq.~(4). Furthermore, due to the
+makespans of a list schedule $\sigma(I)$ does not change
+$\sum_{i=1}^m C_{\max}^i(\sigma(I))$ due to Eq.~(4). Furthermore, due to the
 convexity of the square function, we have
 \begin{equation}
 \begin{aligned}
@@ -445,17 +445,17 @@ arbitrarily small processing time.
 \end{corollary}
 
 \begin{proof}
-Due to Corollary 3, assume schedule $S_{\LRF}(I)$ for instance $I$ in which
+Due to Corollary 3, assume schedule $S_{\WSPT}(I)$ for instance $I$ in which
 only jobs with an arbitrarily small processing time start before
-$\Cmin(S_{\LRF}(I))$.
+$\Cmin(S_{\WSPT}(I))$.
 
 We apply our transformation to the set $L(I)$ to generate an instance $I'$ in
-which all $t$ long jobs have the same processing time. In the LRF order of
+which all $t$ long jobs have the same processing time. In the \(\mathrm{WSPT}\) order of
 both instances, long jobs appear after all small jobs. Therefore, we have
 \[
-        \Cmin(S_{\LRF}(I))=\Cmin(S_{\LRF}(I')).
+        \Cmin(S_{\WSPT}(I))=\Cmin(S_{\WSPT}(I')).
 \]
-We discuss the consequences of the transformation to the primary LRF schedule
+We discuss the consequences of the transformation to the primary \(\mathrm{WSPT}\) schedule
 and an optimal schedule separately. Due to Eqs.~(3)--(5), we have
 \[
 \begin{aligned}
@@ -463,25 +463,25 @@ and an optimal schedule separately. Due to Eqs.~(3)--(5), we have
         &=
         \sum_{j\in L(I)}p_j^2
         +
-        \sum_{j\in L(I)}(p_j+\Cmin(S_{\LRF}(I)))^2                  \\
+        \sum_{j\in L(I)}(p_j+\Cmin(S_{\WSPT}(I)))^2                  \\
         &\quad
-        +(m-|L(I)|)(\Cmin(S_{\LRF}(I)))^2                           \\
+        +(m-|L(I)|)(\Cmin(S_{\WSPT}(I)))^2                           \\
         &=
         \sum_{j\in L(I)}p_j^2
         +
         \sum_{j\in L(I)}p_j^2
         +
-        2\sum_{j\in L(I)}(p_j\cdot\Cmin(S_{\LRF}(I)))               \\
+        2\sum_{j\in L(I)}(p_j\cdot\Cmin(S_{\WSPT}(I)))               \\
         &\quad
-        +m(\Cmin(S_{\LRF}(I)))^2                                    \\
+        +m(\Cmin(S_{\WSPT}(I)))^2                                    \\
         &=
         t\cdot p^2+t\cdot p^2
-        +2t\cdot p\cdot\Cmin(S_{\LRF}(I'))
-        +m(\Cmin(S_{\LRF}(I')))^2                                  \\
+        +2t\cdot p\cdot\Cmin(S_{\WSPT}(I'))
+        +m(\Cmin(S_{\WSPT}(I')))^2                                  \\
         &=
         t\cdot p^2
-        +t(p+\Cmin(S_{\LRF}(I')))^2
-        +(m-t)(\Cmin(S_{\LRF}(I')))^2                              \\
+        +t(p+\Cmin(S_{\WSPT}(I')))^2
+        +(m-t)(\Cmin(S_{\WSPT}(I')))^2                              \\
         &=
         2C(I').
 \end{aligned}
@@ -494,10 +494,10 @@ that $C^*(I')\leq C^*(I)$ holds, we consider two cases:
 \item
 $C_{\max}^i(S_{\OPT}(I'))=\Cmin(S_{\OPT}(I'))$ holds for all machines $i$.
 
-Remember that any list schedule $S(I')$ is optimal if
-$C_{\max}^i(S(I'))=\Cmin(S(I'))$ holds for all machines $i$ due to the
+Remember that any list schedule $\sigma(I')$ is optimal if
+$C_{\max}^i(\sigma(I'))=\Cmin(\sigma(I'))$ holds for all machines $i$ due to the
 convexity of the square function. Furthermore, the transformation does not
-change $\sum_{i=1}^m C_{\max}^i(S(I))$ for any list schedule $S(I)$.
+change $\sum_{i=1}^m C_{\max}^i(\sigma(I))$ for any list schedule $\sigma(I)$.
 Therefore, Eqs.~(2) and (5) yield together with the convexity of the square
 function:
 \[
@@ -630,7 +630,7 @@ instances and schedules with the following properties:
 additional jobs with an arbitrary small processing time and a total workload
 $m$.
 \item For all jobs, $w_j=p_j$ holds.
-\item In schedule $S_{\LRF}$, all small jobs are executed in the interval
+\item In schedule $S_{\WSPT}$, all small jobs are executed in the interval
 $[0,1]$ while all long jobs are started at 1.
 \item In schedule $S_{\OPT}$, all long jobs are started at 0 and
 $C_{\max}^i(S_{\OPT})=\Cmin(S_{\OPT})$ holds for all machines that execute at

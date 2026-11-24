@@ -36,19 +36,19 @@ gives
 \[
         \sum_j p_j C_j
         =
-        \frac12\sum_i L_i(S(I))^2
+        \frac12\sum_i L_i(\sigma(I))^2
         +
         \frac12\sum_j p_j^2 .
 \]
 The second term is independent of the list schedule. Hence, among list
 schedules, minimizing $\sum_j p_j C_j$ is equivalent to minimizing
-$\sum_i L_i(S(I))^2$, and maximizing $\sum_j p_j C_j$ is equivalent to maximizing
-$\sum_i L_i(S(I))^2$.
+$\sum_i L_i(\sigma(I))^2$, and maximizing $\sum_j p_j C_j$ is equivalent to maximizing
+$\sum_i L_i(\sigma(I))^2$.
 
 It remains to prove the following exchange property of list schedules.
 
 \begin{lemma}[Conditional on the exchange statement]
-Let $W=(W_1,\dots,W_m)$ be the final load vector of a list schedule $S^{W}$ maximizing
+Let $W=(W_1,\dots,W_m)$ be the final load vector of a list schedule $\sigma^{W}$ maximizing
 the objective for instance $I$, and let $O=(O_1,\dots,O_m)$ be the final load vector of a list
 schedule $S^O$ minimizing the objective for instance $I$. After sorting both vectors in nonincreasing
 order,

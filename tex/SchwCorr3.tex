@@ -21,7 +21,7 @@ $C_{max}^{min}(S_{\WSPT}(I'))$ has arbitrarily small processing time.
 \begin{proof}
 Assume an arbitrary list schedule $S$ for an instance $I$ of
 $P||\sum_j p_j C_j (\alpha)$. We generate an instance $J$ by taking a job $j_0$ from
-$I$ and replacing it in schedule $S(I)$ with two jobs $j_1$ and $j_2$ such
+$I$ and replacing it in schedule $\sigma(I)$ with two jobs $j_1$ and $j_2$ such
 that. (kind of inexact to call both the schedule for J and for I S....)
 \[
         p_{j_1}+p_{j_2}=p_{j_0},
@@ -33,13 +33,13 @@ that. (kind of inexact to call both the schedule for J and for I S....)
 
 
 This replacement does not alter the completion time of any other job in
-$S(I)$. Therefore,
+$\sigma(I)$. Therefore,
 \[
-        C_{\max}^i(S(I))=C_{\max}^i(S(J))
+        C_{\max}^i(\sigma(I))=C_{\max}^i(S(J))
 \]
 for all $1\leq i\leq m$. By  (Queyraynne ref. here)
 \begin{align*}
-        \sum_{j\in I}p_j C_j(S(I))(\alpha)-\sum_{j\in J}p_j C_j(S(J))(\alpha) 
+        \sum_{j\in I}p_j C_j(\sigma(I))(\alpha)-\sum_{j\in J}p_j C_j(S(J))(\alpha) 
         &=
         \frac12((2\alpha-1)(p_{j_0}^2-p_{j_1}^2-p_{j_2}^2))\\
         &=
@@ -84,7 +84,7 @@ $I\setminus L(I)$ are called small jobs.
 
 Since every small job has arbitrarily small processing time, we can ignore
 the term $(2\alpha-1)\sum_{j\in I\setminus L(I)}p_j^2$ in
-(Queryanne ref. here or label of Corr. 2). Thus, for any list schedule $S(I)$,
+(Queryanne ref. here or label of Corr. 2). Thus, for any list schedule $\sigma(I)$,
 \begin{equation}
 \label{eq:long-job-identity}
         \sum_{j\in I}p_j C_j
@@ -93,7 +93,7 @@ the term $(2\alpha-1)\sum_{j\in I\setminus L(I)}p_j^2$ in
         \left(
             (2\alpha-1)\sum_{j\in L(I)}p_j^2
             +
-            \sum_{i=1}^m(C_{\max}^i(S(I)))^2
+            \sum_{i=1}^m(C_{\max}^i(\sigma(I)))^2
         \right).
 \end{equation}
 Applying \eqref{eq:long-job-identity} to $S_{\WSPT}(I)$ gives

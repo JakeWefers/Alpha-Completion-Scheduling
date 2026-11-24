@@ -1,0 +1,348 @@
+                                                                                                                                          OperationsResearchLetters39(2011)2553259
+                                                                                                                                        Contents lists available at ScienceDirect
+                                                                                                                               OperationsResearchLetters
+                                                                                                                               journal homepage: www.elsevier.com/locate/orl
+                          AnalternativeproofoftheKawaguchi3KyanboundfortheLargest-Ratio-First
+                          rule
+                          UweSchwiegelshohn∗
+                          Robotics Research Institute, TU Dortmund University, D-44221 Dortmund, Germany
+                          a r t i c l e                         i n f o                                                    a b s t r a c t
+                          Article history:                                                                                 In a well-known paper from 1986, Kawaguchi and Kyan proved that the Largest-Ratio-First rule for total
+                          Received20February2010                                                                                                                                                                                                                                                                          1           √
+                          Accepted9May2011                                                                                 weightedcompletiontimeschedulingonidenticalparallelmachineshasaworstcaseratioof 2(1+                                                                                                                            2).
+                          Available online 13 June 2011                                                                    Weprovideanalternativeandsimpleproofforthisresult.
+                                                                                                                                                                                                                                                               ©2011ElsevierB.V.Allrightsreserved.
+                          Keywords:
+                          Total weighted completion time scheduling
+                          Worstcaseanalysis
+                          Performanceguarantee
+                                 AninstanceoftheschedulingproblemP ‖ ΣwC consistsofn                                                                                                      instance in which w = p holds for all jobs. For these instances,
+                                                                                                      +                                      j   j                         +                                                             j             j
+                          jobs.Eachjobhasaweightw ∈ R andaprocessingtimep ∈ R .                                                                                                           Queyranne [2] has given a simple expression to calculate the to-
+                                                                                           j                                                                   j
+                          The goal is to schedule the jobs on m identical parallel machines                                                                                               tal weighted completion time in a single machine schedule with-
+                          such that the weighted sum of the resulting job completion times                                                                                                outintermediateidletimes.Forthesakeofcompleteness,westate
+                          C (totalweightedcompletiontime)isminimized.Listschedulingis                                                                                                     this result in Corollary 2 and give a brief proof before extending
+                             j
+                          frequently applied to generate schedules for this type of problem:                                                                                              the expression to parallel identical machines. For the purpose of
+                          at time 0 or whenever a machine becomes idle, the available jobs                                                                                                our performance analysis, we show in Corollary 3 that it is suffi-
+                          are scanned in a previously established order to determine the                                                                                                  cient to consider instances that contain at most m − 1 so-called
+                          first job that can be started on machines, idle at this time. Any                                                                                               long jobs while the processing time of all other jobs is arbitrarily
+                          list schedule for the P ‖ Σw C problem has no intermediate idle                                                                                                 small. Finally, Corollary 5 enables us to additionally demand that
+                                                                                            j   j
+                          times as all jobs become available at time 0 and each job only                                                                                                  all long jobs have the same processing time. As a result of these
+                          requires a single machine. Delaying the execution of a job while                                                                                                four corollaries, we can express the worst case performance with
+                          amachineisidleincreasesthecompletiontimeofthisjobwhileit                                                                                                        twofunctionsoftwovariableseach.Determiningthemaximumof
+                          does not reduce the completion time of any other job. Hence, for                                                                                                thesefunctionswithinthepermittedrangesofthevariablesyields
+                          each instance of the P ‖ ΣwjCj problem, there is a job order such                                                                                               theperformanceguaranteeofanLRFschedule.
+                          thatthecorrespondinglistscheduleisanoptimalschedule.AnLRF                                                                                                              Before starting with the actual proof, we briefly point out the
+                          (Largest-Ratio-First) schedule is a specific list schedule that uses                                                                                            convexityofthesquarefunctionasthispropertyisrepeatedlyused
+                          a decreasing order of the ratio w /p for the jobs. In a celebrated                                                                                              in the rest of this note:
+                                                                                                      j      j
+                          paper from 1986, Kawaguchi and Kyan [1] showed that the total                                                                                                          For three positive numbers x,y, and z with x − y > z, we have
+                          weighted completion time of an LRF schedule is at most a factor                                                                                                                  2                        2            2          2                                                  2           2
+                           1           √                                                                                                                                                  (x −z) +(y+z) =x +y −2z(x−y−z)<x +y .
+                           2(1+ 2)largerthantheoptimaltotalweightedcompletiontime;                                                                                                                                                                                                                        ∑k
+                          furthermorethisboundistight.                                                                                                                                           Therefore, for k numbers xi with a fixed sum                                                                   i=1 xi, the sum
+                                                                                                                                                                                                                   ∑                                                                               ∑
+                                 Unfortunately, the original proof by Kawaguchi and Kyan [1] is                                                                                                                          k        2                                                             1        k
+                                                                                                                                                                                          of squares                            x becomesminimalifxi =                                                           xi holds for all
+                          rather long and involved. Therefore, this note provides an alterna-                                                                                             1 f i f k.                     i=1 i                                                                  k        i=1
+                          tive and simpler version of this proof divided into four corollaries.                                                                                                  Weextendourprevious definition of an instance I for the P ‖
+                          Step by step, Corollaries 1, 3 and 5 simplify the performance anal-                                                                                             ΣwC problem to additionally include an LRF order for all jobs.
+                          ysis by reducing the set of instances that must be examined. First,                                                                                                      j    j
+                          Corollary 1 shows that the worst case performance occurs in an                                                                                                  ThisLRForderproducestheso-calledprimaryLRFscheduleSLRF(I).
+                                                                                                                                                                                          Therefore, every instance has a unique primary LRF schedule SLRF
+                                                                                                                                                                                          even if all jobs have the same w /p ratio. Throughout the proof,
+                                                                                                                                                                                                                                                                      j     j
+                                                                                                                                                                                          wesay that C(I) is the total weighted completion time of S                                                                                      (I)
+                                                                                                                                                                                                            ∗                                                                                                                       LRF
+                            ∗ Tel.: +49 231 755 2634; fax: +49 231 755 3251.                                                                                                              while C (I) is the total weighted completion time of an optimal
+                                 E-mail address: Uwe.Schwiegelshohn@udo.edu.                                                                                                              schedule SOPT(I) for instance I. Furthermore, we use the notation
+                          0167-6377/$3seefrontmatter©2011ElsevierB.V.Allrightsreserved.
+                          doi:10.1016/j.orl.2011.06.007
+                 256                                                                                U. Schwiegelshohn / Operations Research Letters 39 (2011) 2553259
+                 ¼(I) = C(I)/C∗(I) to describe the performance ratio between                                                                               identical machine scenario, we simply apply Corollary 2 to every
+                 S      (I) and S              (I).                                                                                                        machine separately and combine the squares of the processing
+                   LRF                   OPT
+                 Corollary 1. For every instance I of the P ‖ Σw C problem, there is                                                                       timesintoasingleterm:
+                                         ′                                                                 ′j   j                                                                                                                    
+                 aninstanceI oftheproblemP ‖ ΣpC with¼(I ) g ¼(I).                                                                                                                                           m
+                                                                                      j  j                                                                 −                     1 − 2 − i                                          2
+                                                                                                                                                                   pC =                         p +               (C        (S))          .                                          (1)
+                 Proof. Let r                 > r > ··· > r be the d different w/p ratios                                                                             j  j                         j                  max
+                                         1            2                           d                                           j     j                        j∈I                 2        j∈I              i=1
+                 of an instance I and r                                = 0. Note that we can use the term
+                             ∑d                              d+1                                                                                                                                                          min                              i
+                 r     =                (r − r              ). Furthermore, let i(j) denote the index of                                                         Furthermore, we introduce C                                    (S) = min{C                     (S)} to be the
+                   i              k=i      k          k+1                                                                                                                                                                max                         i    max
+                 the ratio for job j, that is w /p = r                                      . Then we write w = r                               ·          minimumvalueofthemachinemakespansintheparallelidentical
+                           ∑                                     j        j          i(j)                                     j         i(j)
+                 p =               d        (r −r              ) p andusethistermtoexpressthetotal                                                         machinescenario.NotethatinanylistscheduleS,nojobcanstart
+                    j              k=i(j)      k         k+1           j                                                                                   andatmostm−1jobscancompleteafterCmin(S).
+                 weightedcompletiontimeofanarbitraryscheduleforinstanceI:                                                                                                                                                                        max
+                                                 d                                                                                                       Corollary 3. For every instance I of the P ‖ Σp C problem, there is
+                 −wC =− −(r −r ) pC                                                                                                                                                ′                                                                  j  j    ′
+                             j  j                               k        k+1            j  j                                                               aninstance I of the P ‖ Σp C problem such that ¼(I ) g ¼(I) holds
+                                                                                                                                                                                                            ′  j   j
+                   j∈I                    j∈I       k=i(j)                                                                                                 andeveryjobininstanceI hasanarbitrarilysmallprocessingtimeif
+                                           d                                                                                                             it starts before Cmin(SLRF(I′)).
+                                         −                                   −                                                                                                           max
+                                   =                (r −r              )                pC .
+                                         k=1           k         k+1 j∈I|i(j)fk j j                                                                        Proof. Assume an arbitrary list schedule S(I) for an instance I of
+                                                                                                                                                           the P ‖ ΣpC problem. We generate an instance J by taking a job
+                                                                                                                                                                                 j   j
+                 Next, we define a sequence of instances I = {j ∈ I|i(j) f k} for                                                                          j   from I and replacing it in schedule S(I) with two jobs j and j
+                                                                                                  k                                                         0                                                                                                               1            2
+                 1 f k f d and set w = p for every job in any I . Note that                                                                                suchthatp +p = p ,C = C ,andC = C −p hold.Note
+                                                                j            j                                            k                                                     j           j           j      j           j               j           j           j
+                                                                                                                                                                                 1          2           0       2           0               1           0           2
+                 a job belongs to I if it precedes a job j ∈ I in any LRF order of                                                                         that this exchange does not alter the completion time of any other
+                                                    k                                                   k                                                  job in schedule S(I). Therefore, we have Ci                                              (S(I)) = Ci                 (S(J))
+                 instanceI.ForthejobsinanyIk,weusetheLRForderofthesejobs                                                                                                                                                                     max                         max
+                 ininstanceI,asourweightselectionallowseveryorderofthejobs                                                                                 for all 1 f i f m. Then Eq. (1) produces
+                 in I . Therefore, the completion times of any job j ∈ I in S                                                              (I )
+                        k                                                           ∗                                      k          LRF     k            − − 1
+                 andinSLRF(I) are identical. With C denoting the completion time                                                                                                                             2          2          2
+                                                                                    j                                                                             pC −                 pC = (p −p −p )=p p .
+                                                                                                                                                                     j  j                j   j               j          j          j            j     j
+                 of job j in an optimal schedule for instance I, we have                                                                                                                             2       0           1          2            1    2
+                                                                                                                                                            j∈I                  j∈J
+                                          d                                                                                                                                        min
+                                        ∑                                                                                                                        If C      fC (S (I))holdsthentheresultingscheduleS(J)for
+                                                                                                                                                                       j           max       LRF
+                                              (r −r              )C(I )                                                                                                 1
+                                        k=1 k              k+1           k                                                                                 instance J is a list schedule. As any job order for instance J is an
+                 ¼(I) =            d                                                                                                                     LRForder, we can select an order for instance J such that we have
+                                  ∑ (r −r )∑pC∗                                                                                                            S(J) = SLRF(J). As SOPT(J) is also a list schedule, we have
+                                 k=1           k        k+1 j∈I           j  j
+                                                                     k                                                                                                              C(I)             C(I) −pj pj                        C(J)
+                                    d                                                                                                                      1 f ¼(I) =                          f                       1    2    f                 =¼(J).
+                                   ∑                                                                                                                                               C∗(I)            C∗(I) − pj pj                      C∗(J)
+                                        (r −r              )C(I )                                                                                                                                                       1    2
+                                  k=1 k              k+1           k                                                                                                                                                                                                                 min
+                           f                                              fmax¼(Ik).                                                                      We repeat this job splitting until all jobs starting before C
+                                   d                                              k                                                                                                                                                                                                  max
+                                  ∑                            ∗                                                                                           (S       (I))haveanarbitrarilysmallprocessingtime.Asatmostm−1
+                                       (r −r              )C (I )                                                                                              LRF
+                                 k=1 k              k+1             k                                                                                      jobs can start at Cmin(SLRF(I)), all but at most m − 1 jobs have an
+                                                                                                                                                                                              max
+                       For single machine list schedules of instances in which w = p                                                                       arbitrarily small processing time.                                   
+                                                                                                                                      j         j                Due to Corollaries 1 and 3, we consider from now on only
+                 holds for all jobs, Queyranne [2] has presented a simple formula                                                                          instances I in which w = p holds for all jobs and all jobs have
+                 to determine the total weighted completion time with Cmax(S),                                                                                                                          j           j
+                 denotingthemaximumcompletiontimeormakespanofschedule                                                                                      anarbitrarily small processing time with the exception of at most
+                 S:                                                                                                                                        m−1so-calledlong jobsthatstartatCmin(SLRF(I)).WeuseL(I) ¦ I
+                                                                                                                                                                                                                                    max
+                 Corollary 2. For any schedule S on a single machine without                                                                               to denote the set of these long jobs in instance I. Furthermore, we
+                                                             ∑                           ∑                                                               introducethesetK(I) ¦ L(I)oflongjobstobethelargestsetsuch
+                                                                                      1                 2                         2                                                    1        ∑
+                 intermediateidletimes,                                 pC =                         p +(C                (S))         holds.
+                                                                  j∈I     j   j       2         j∈I     j           max                                    that pj g m−|K(I)|                        j∈I\K(I) pj holds for all j ∈ K(I). We obtain
+                 Proof. Remembertherelation                                                                                                                K(I) by adding long jobs in decreasing order of their processing
+                  n            2             n           n                 n                    n          i−1                                           times and testing the property of K(I). All jobs from I \ L(I) are
+                     −                      − − −2 − −                                                                                                     called small jobs. Note that an instance I only contains small jobs if
+                            a          =            a           a =               a +2                  a          a
+                               i                      i           k                  i                    i           k                                    Cmin(S           (I)) > 0 holds.
+                     i=1                     i=1         k=1               i=1                   i=2        k=1                                              max       LRF
+                                                                                                                                                                 Astheprocessingtimeofeachsmalljobisarbitrarilysmall,we
+                                                  n            i                n                                                                                                                 ∑
+                                                − − −2                                                                                                     canignoretheterm                                        p2 in Eq. (1) for any list schedule S(I)
+                                       =2              a           a −               a .                                                                                                               j∈I\L(I)       j
+                                                          i           k                i                                                                   leading to
+                                                 i=1        k=1               i=1                                                                                                                                                          
+                                                                                                                                                                                                              m
+                       AssumethatinscheduleS,thejobsininstanceI arescheduled                                                                               −                     1       − 2 − i                                          2
+                 in order of increasing index. Then, we have                                                                                                       pC =                           p +              (C        (S(I)))                                                 (2)
+                                                                                                                                                                      j  j       2                  j                  max
+                    n                     n           j                      n                    n           2                                            j∈I                         j∈L(I)              i=1
+                 −pC =−p−p =1−p2+1 −p                                                                                                                                       1 −                       −                                               
+                           j   j                 j           k        2             j        2                j                                            C(I) =                           p2 +               (p +Cmin(S                   (I)))2
+                  j=1                   j=1         k=1                    j=1                       j=1                                                                    2                  j                   j         max       LRF
+                                        1 −                                                                                                                                       j∈L(I)             j∈L(I)
+                                  =                    p2 +(C               (S))2         .                                                                                +1(m−|L(I)|)(Cmin(S                                  (I)))2.                                           (3)
+                                        2                j            max                                                                                                        2                                max       LRF
+                                                 j∈I                                                                                                             NotethatEq.(3)istheapplicationofEq.(2)toS                                                         (I).
+                                                               i                                                                                                                                                                                              LRF
+                       UsingthenotationCmax(S)todescribethelastcompletiontime                                                                                    Next, we address the generation of an optimal schedule for
+                 or makespan of a list schedule S on machine i in the parallel                                                                             our instances. Consider a job order for instance I in which the
+                                                                        U. Schwiegelshohn / Operations Research Letters 39 (2011) 2553259                                                         257
+               longjobsprecedeallsmalljobs.Inthecorrespondinglistschedule                                     Proof. Due to Corollary 3, assume schedule SLRF(I) for instance I
+               SOPT(I), all long jobs are started at time 0 due to |L(I)| < m.                                in which only jobs with an arbitrarily small processing time start
+               Clearly, we have Cmin(SOPT(I)) f                     1     ∑           pj. If a small          before Cmin(SLRF(I)).
+                                         max           ∑ m−|K(I)|             j∈I\K(I)                                   max
+               job j     finishes after          1                 p, we apply job splitting                      We apply our transformation to the set L(I) to generate an
+                      0                      m−|K(I)|      j∈I\K(I)  j                                                     ′
+               to j     at time         1     ∑            p as described in the proof of                     instance I in which all t long jobs have the same processing time.
+                     0              m−|K(I)|      j∈I\K(I)  j                                                 In the LRF order of both instances, long jobs appear after all small
+               Corollary 3. In the list for schedule SOPT(I), the first new job                               jobs. Therefore, we have Cmin(S              (I)) = Cmin(S         (I′)).
+               j   replaces j       and the other new job j is put at the end of                                                                 max    LRF           max    LRF
+                1                0                                     2                                          We discuss the consequences of the transformation to the
+               the list. After at most m − |K(I)| − 1 such splitting steps,                                   primary LRF schedule and an optimal schedule separately. Due to
+               Ci    (SOPT(I))      = Cmin(SOPT(I)) =                  1     ∑           pj holds if          Eqs. (3)3(5), we have
+                 max                       max                     m−|K(I)|     j∈I\K(I)
+               machine i executes a small job, see Fig. 1(a). Therefore, every                                             − 2 −                       min             2
+                                       i                        min                                           2C(I) =           p +          (p +C         (S    (I)))
+               machine i with C            (SOPT(I)) > C            (SOPT(I)) can only execute                                    j             j     max    LRF
+                                       max                     max                                                        j∈L(I)       j∈L(I)
+               a single long job. Due to Eq. (2) and the convexity of the square
+                                                                           ∑
+               function, it is not possible to further reduce                  m (Ci     (S     (I)))2                                           min             2
+                                                                               i=1   max    OPT                           +(m−|L(I)|)(C              (S    (I)))
+                                                                                                                                                max    LRF
+               by transferring any jobs. Hence, schedule SOPT(I) is an optimal                                             − 2 − 2                     − min
+                                                                                                                      =         p +           p +2           (p · C      (S    (I)))
+               scheduleforinstanceI.                                                                                              j            j               j    max    LRF
+                    Now, we introduce a transformation that replaces a set M of                                           j∈L(I)       j∈L(I)          j∈L(I)
+               positive numbers with a number p that is used t times such that                                                     min              2
+                                                                                                                          +m(C (SLRF(I)))
+               thefollowingequationshold:                                                                                          max
+                −                                                                                                               2         2                min          ′
+                                                                                                                      =t·p +t·p +2t·p·C (SLRF(I ))
+                      i = t · p                                                                     (4)                                                    max
+                                                                                                                          +m(Cmin(SLRF(I′)))2
+                i∈M                                                                                                                max
+                −2               2                                                                                    =t·p2+t(p+Cmin(S (I′)))2
+                     i  =t·p .                                                                      (5)                                        max    LRF
+                i∈M                                                                                                       +(m−t)(Cmin(SLRF(I′)))2
+                                                                                                                                           max
+                                                                                        ∑ i 2                         =2C(I′).
+                                                                                       ( i∈M )
+                    Eqs.(4)and(5)leadtoauniquesolutionwitht = ∑i∈Mi2 and                                                                                                                         ′
+                      ∑i∈Mi2                                                                                      NextweaddresstheoptimalschedulesforinstancesI andI .To
+               p = ∑i∈Mi .                                                                                    showthatC∗(I′) f C∗(I)holds,weconsidertwocases:
+                    In Eq. (2), this transformation is either applied to the set L(I) of                      (1) Ci     (SOPT(I′)) = Cmin(SOPT(I′)) holds for all machines i.
+               longjobsortosomemakespans.However,t neednotbeaninteger                                                max                    max                     ′                     i        ′
+               but may be a rational number with denominator q resulting in an                                     RememberthatanylistscheduleS(I )isoptimalifCmax(S(I ))
+                                                                                                                   =Cmin(S(I′)) holds for all machines i due to the convexity of
+               instance with a fractional number of jobs. To obtain an instance                                          max
+               with an integral number of jobs, we simply replace each machine                                     thesquarefunction.Furthermore,thetransformationdoesnot
+                                                                                                                              ∑
+                                                                                                                   change        m Ci (S(I)) for any list schedule S(I). Therefore,
+               and each job of the original instance I with q identical copies.                                                  i=1   max
+               In the LRF order, all replicas of a job occur one after another.                                    Eqs.(2)and(5)yieldtogetherwiththeconvexityofthesquare
+               Therefore, the schedule of each machine is replicated for schedule                                  function:
+               S    . Replicating the schedule of each machine for schedule S                                                                   m
+                 LRF                                                                                OPT            2C∗(I) = − p2 +−(Ci (S                        (I)))2
+               also yields an optimal schedule for the same reasons discussed                                                            j            max    OPT
+               before. Hence, C(I) and C∗ are simply multiplied by q, and ¼(I)                                                   j∈L(I)        i=1
+               remainsunchanged.                   I
+                                                                                                                                             m
+                    The application of the transformation to the set L(I) or to                                                       2     − i                     2
+               machine makespans of a list schedule S(I) does not change                                                     =t·p + i=1(Cmax(SOPT(I)))
+               ∑m Ci (S(I))duetoEq.(4).Furthermore,duetotheconvexity                                                                  2          min          ′    2         ∗  ′
+                   i=1   max                                                                                                 g t · p +m(C            (SOPT(I ))) = 2C (I )
+               of the square function, we have                                                                                                   max
+                                2                    2                                                    (2) Ci     (SOPT(I′)) > Cmin(SOPT(I′)) holds for some machines i.
+                          ∑                      ∑                                                                   max                    max                                              ∗   ′
+                               p                      p                                                            In the following sequence of equations, we show that C (I ) f
+                                j                      j                                                           C∗(I)alsoholdsforthiscase.Theindividualequationsarelater
+                         j∈L(I)                 j∈L(I)
+               t =        ∑           f           ∑                                                              explainedindetail.
+                               p2                        pj   2
+                                 j                  j∈L(I)                                                             ∗
+                         j∈L(I)           |L(I)|     |L(I)|                                                        2C (I)
+                                                                                                                      = −p2+ −p2+(m−|K(I)|)(Cmin(SOPT(I)))2                                       (7)
+                                                                                                                               j             j                        max
+                                 ∑ 2                                                                                      j∈L(I)       j∈K(I)
+                      |L(I)|          pj                                                                                        2      ′     ′ 2                              min              2
+                  =             j∈L(I)        =|L(I)|.                                              (6)                =t·p +t ·(p) +(m−|K(I)|−k)(Cmax(SOPT(I)))                                  (8)
+                                                                                                                              2      ′     ′ 2             ′
+                             ∑ 2                                                                                       gt·p +t ·(p) +(m−t )
+                            j∈L(I) pj                                                                                        m−|K(I)|−k min                         2
+                                                                                                                         ×                          C     (S    (I))                              (9)
+                                                                                                                                     m−t′            max    OPT
+               Example4. Consider a set L(I) of six long jobs with processing                                          gt·p2+t·p2+(m−t)(Cmin(SOPT(I′)))2 = 2C∗(I′). (10)
+               times 5, 5, 4, 3, 2, and 1, respectively. Our transformation yields                                                                           max
+               five long jobs, all with processing time 4 producing 5 · 4 = 20 =                                       First, we introduce the size k = ∑j∈L(I)\K(I)pj f |L(I)| −
+               ∑                        2             ∑          2                                                                                                     Cmin(SOPT(I))
+                   j∈L(I) pj and 5 · 4    =80= j∈L(I)pj.                                                                                                                max
+                                                                                                                   |K(I)|. If necessary, we use replication to guarantee an integral
+                                                                                                                   k. Eq. (7) is the application of Eq. (2) on schedule S                     (I) by
+               Corollary 5. For every instance I of the P ‖ ΣpjCj problem, there is                                                                                                       OPT
+               an instance I′ of the P ‖ Σp C problem with ¼(I′) g ¼(I) such that                                  using set K(I), see Fig. 1(a).
+                            ′                       j  j                                                               WeapplyourtransformationtwicetoEq.(7):
+               instanceI containsatmost m−1jobswiththesameprocessingtime                                           (a) on set L(I) to transform ∑                 p2
+               while all its other jobs have an arbitrarily small processing time.                                                                          j∈L(I)  j
+                   258                                                                                      U. Schwiegelshohn / Operations Research Letters 39 (2011) 2553259
+                   Fig. 1. Transformation steps of the proof of Corollary 5, Case 2. Small jobs are shaded in grey. (a) Schedule S                                                                                 (I) with set L(I), see Eq. (7) (b) Starting situation for the
+                                                                                                                                                                                                              OPT             ′
+                   secondtransformation(c)Secondtransformation,seeEq.(8)(d)Distributionofsmalljobs,seeEq.(9)(e)ScheduleSOPT(I ),seeEq.(10).
+                           (b) on the makespan of all machines that execute jobs in                                                                                             see Fig. 1(d). This distribution reduces the total weighted
+                                   K(I) and of k additional machines with Ci                                                        (SOPT(I)) =                                 completiontimeduetotheconvexityofthesquarefunction.
+                                      min                                                                                     max                                                      Eq. (10) and Fig. 1(e) show schedule S                                                (I′). In this sched-
+                                   Cmax(SOPT(I)), see Fig. 1(b).                                                                                                                                                                                                       OPT
+                           The second transformation produces the values t′ and p′.                                                                                             ule, only m − t f m − t′ machines are available to ex-
+                           Rememberthatweusereplicationtoguaranteeanintegralt′.                                                                                                 ecute the small jobs due to Eq. (13). Therefore, we have
+                           Due to the convexity of the square function and 0 f pj f                                                                                              m−|K(I)|−kCmin(S                       (I)) f Ci                 (S         (I′)). Due to this relation,
+                                                                                                                                                                                             ′         max        OPT                      max        OPT
+                              min                                                                                                                                                     m−k
+                           C        (SOPT(I)) for all jobs j ∈ L(I) \ K(I), we have                                                                                             Eqs. (11)3(13), and the convexity of the square function, the
+                              max                                                                                                                                               total weighted completion time is reduced again.                                                             
+                           t′ · p′ = − p +k·Cmin(S                                          (I)) = − p = t ·p                                        (11)
+                                                          j                max        OPT                              j                                                      Due to Corollary 5, we can determine max ¼(I) by examining
+                                             j∈K(I)                                                        j∈L(I)                                                                                                                                                         I
+                             ′         ′  2                                                                                                                             onlyinstancesandscheduleswiththefollowingproperties:
+                           t · (p )
+                                = −p2+k(Cmin(SOPT(I)))2                                                                                                                 (1) An instance contains u < m long jobs with processing time p
+                                                  j               max                                                                                                           andadditionaljobswithanarbitrarysmallprocessingtimeand
+                                     j∈K(I)                                                                                                                                     atotal workloadm.
+                                = −p2+k(Cmin(SOPT(I)))2                                                                                                                 (2) For all jobs, wj = pj holds.
+                                                  j               max                                                                                                   (3) InscheduleS                          , all smalljobsareexecutedintheinterval[0,1]
+                                     j∈K(I)                                                                                                                                                                LRF
+                                                                                          2                                                                                     whileall long jobs are started at 1.
+                                    +(|L(I)| − |K(I)| − k) · 0                                                                                                          (4) In scheduleS                          , all long jobs are started at 0 and Ci′                                       (S        ) =
+                                g −p2+ − p2=−p2=t·p2.                                                                                                (12)                          min                     OPT                                                                            max        OPT
+                                                  j                            j                     j                                                                          Cmax(SOPT)holdsforallmachinesthatexecuteatleastonesmall
+                                     j∈K(I)                j∈L(I)\K(I)                  j∈L(I)                                                                                  job.
+                                 ⇒p′gp and t′ ft.                                                                                                    (13)               As every list schedule without small jobs is always optimal, such
+                           In Fig. 1(c) and in Eq. (8), the result of the second transforma-                                                                            instances can be ignored. As we can divide the processing time of
+                           tion to Eq. (7) is shown. Note that both transformations are                                                                                 each job by a constant without changing ¼(I), we define the total
+                           formally applied and do not produce a valid schedule. In par-                                                                                workloadofallsmalljobstobem.Asaresult,weobtainanumerical
+                           ticular, |K(I)| + k − t′ machines are not used in Fig. 1(c) and                                                                              optimization problemwithtwovariablesp > 0and0 < u/m < 1
+                           Eq. (8) as t′ f |K(I)| + k holds due to Eq. (6).                                                                                             for each case of the proof of Corollary 5. Note that Case 1 applies
+                                  In Eq. (9), we evenly distribute the total load (m −                                                                                  if and only if m + u · p g m · p ô p f                                                    1u holds. We solve the
+                                                     min                                                                              ′                                                                                                                        1−m
+                           |K(I)| − k)C                     (SOPT(I)) of all small jobs on m − t machines,                                                              problemsbydeterminingtherootsofthederivatives.
+                                                     max
+                                                                                        U. Schwiegelshohn / Operations Research Letters 39 (2011) 2553259                                                                                     259
+                   (1) p f          1u                                                                                                       Notethatthevalueontheboundaryp =                                      1u isthesameasin
+                                 1−m                                                                                                                                                                          1−m
+                                            1(u·p2 +u·(p+1)2 +m−u)                                                                           thefirst case while f                u,p =1holdsforp →∞and u =0.
+                         ¼(u,p) = 2                                                                                                                                             p                                                    m
+                                                   1                     u·p+m2                                                            There is a single common root of the derivatives ∂f and ∂f at
+                                                        u·p2 +m                                                                                                                                                               ∂ u          ∂p
+                                                   2                          m                                                                               √                          √                       √              m
+                                                      u 2           u                                                                       u = 1− 2 andp = 1+ 2 > 1u = 2.Atthisposition,
+                                                   2mp +2mp+1                                      u                                         m                 2                                     1−m                     √
+                                      =                                                =f           , p    .                                                                                  u               1
+                                            u p2 +        u 2p2 +2up+1                            m                                          we obtain the maximum of f m,p = 2(1 +                                              2) > 4 −
+                                            m            m                 m                                                                   √
+                                                                                                              ∂f           ∂f                2 2.
+                         As there is no common root of both derivatives ∂ u and ∂p                                                                                                                     u               √2
+                                                                                                               m                            Finally note that the machine value m = 1 − 2 is not feasible
+                         within the feasible area of the function, we examine the roots                                                as it is an irrational number. But we can get arbitrarily close to it
+                         of the derivative on the boundaries {p = 0, u = 0, u =
+                                                                                                       m              m                byusingasufficientlylargenumberofreplications.
+                                        1                                                               u     
+                         1,p = 1−u } of the feasible area. As we have f                                  m,p = 1for
+                                          m                                                                                
+                                                                                                            df   u ,   1u
+                         p = 0, u = 0, and u = 1, we must only consider                                          m 1−m .               Acknowledgements
+                                     m                   m                                                         d u
+                                                                                                                    m
+                                                                                            u                       √
+                         This way, we obtain the maximum of f(m,p) = 4 − 2 2 for
+                          u        √                                     √2           1                                                     Theauthorthankstherefereesfortheirvaluablecommentsand
+                          m =( 2−1)andp=1+ 2 = 1−u .                                                                                   suggestions that helped to improve this note significantly.
+                                    1                                                  m
+                   (2) p > 1−u
+                                     m                                                         
+                                            1          2                       2
+                                            2 u·p +u·(p+1) +m−u                                                                        References
+                         ¼(u,p) =             1            2                     m 2
+                                              2    2u·p +(m−u) m−u                                                                     [1] T. Kawaguchi, S. Kyan, Worst case bound of an LRF schedule for the mean
+                                              u 2           u                                                                             weighted flow-time problem, SIAM Journal on Computing 15 (4) (1986)
+                                      = 2mp +2mp+1 =f u,p .                                                                                 111931129.
+                                               2up2 + 1u                           m                                                   [2] M. Queyranne, Structure of a simple scheduling polyhedron, Mathematical
+                                                 m           1−m                                                                            Programming58(2)(1993)2633285.

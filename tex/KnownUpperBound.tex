@@ -14,16 +14,16 @@
 We consider the scheduling problem on identical parallel machines with at most $m$ jobs per machine. The objective is
 
 \[
-F_\alpha(S) = \sum_j p_j C_j(\alpha),
+\gamma_{\alpha}(S) = \sum_j p_j C_j(\alpha),
 \]
 
 where for a job $j$,
 
 \[
-C_j(\alpha) = B_j + \alpha p_j,
+C_j(\alpha) = S_j + \alpha p_j,
 \]
 
-and $B_j$ is the total processing time of jobs scheduled before $j$ on the same machine. We assume $\alpha > 0$.
+and $S_j$ is the total processing time of jobs scheduled before $j$ on the same machine. We assume $\alpha > 0$.
 
 \section*{Reformulation of the Objective}
 
@@ -37,13 +37,13 @@ Then,
 
 \[
 \sum_{j \in S_i} p_j C_j(\alpha)
-= \sum_{j \in S_i} p_j B_j + \alpha \sum_{j \in S_i} p_j^2.
+= \sum_{j \in S_i} p_j S_j + \alpha \sum_{j \in S_i} p_j^2.
 \]
 
 Observe that
 
 \[
-\sum_{j \in S_i} p_j B_j
+\sum_{j \in S_i} p_j S_j
 = \sum_{\substack{a,b \in S_i \\ a \text{ before } b}} p_a p_b
 = \frac{1}{2}\left(L_i^2 - \sum_{j \in S_i} p_j^2\right).
 \]
@@ -58,7 +58,7 @@ Thus,
 Summing over all machines:
 
 \[
-F_\alpha(S)
+\gamma_{\alpha}(S)
 = \frac{1}{2} \sum_i L_i^2 + \left(\alpha - \frac{1}{2}\right)\sum_{j=1}^n p_j^2.
 \]
 
@@ -71,7 +71,7 @@ P = \sum_{j=1}^n p_j, \quad S_2 = \sum_{j=1}^n p_j^2.
 Then
 
 \[
-F_\alpha(S)
+\gamma_{\alpha}(S)
 = \frac{1}{2} \sum_i L_i^2 + \left(\alpha - \frac{1}{2}\right) S_2.
 \]
 
@@ -80,7 +80,7 @@ F_\alpha(S)
 For each job,
 
 \[
-C_j(\alpha) = B_j + \alpha p_j \ge \alpha p_j,
+C_j(\alpha) = S_j + \alpha p_j \ge \alpha p_j,
 \]
 
 so
@@ -92,7 +92,7 @@ p_j C_j(\alpha) \ge \alpha p_j^2.
 Summing over all jobs:
 
 \[
-F_\alpha(S) \ge \alpha S_2.
+\gamma_{\alpha}(S) \ge \alpha S_2.
 \]
 
 Hence,

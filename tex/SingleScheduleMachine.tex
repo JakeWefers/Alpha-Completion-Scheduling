@@ -334,7 +334,7 @@ Let $x_1,\dots,x_n \in \mathbb{R}$ satisfy
 \[
 \sum_{i=1}^n x_i = c,
 \]
-and suppose that $x_1 \ge x_i$ for all $i=2,\dots,n$. Let $\delta>0$, and let
+and suppose that $x_1 \ge x_i$ for all $i=2,\dots,n$. Let $\delta\geq0$, and let
 $\delta_2,\dots,\delta_n \ge 0$ satisfy
 \[
 \sum_{i=2}^n \delta_i = \delta.
@@ -347,8 +347,9 @@ x_i' = x_i-\delta_i \quad \text{for } i=2,\dots,n.
 \]
 Then
 \[
-\sum_{i=1}^n (x_i')^2 > \sum_{i=1}^n x_i^2.
+\sum_{i=1}^n (x_i')^2 \geq \sum_{i=1}^n x_i^2.
 \]
+If \(\delta>0\), then the inequality is strict.
 \end{lemma}
 
 \begin{proof}
@@ -376,17 +377,19 @@ Using $\delta=\sum_{i=2}^n \delta_i$, this equals
 +
 \sum_{i=2}^n \delta_i^2.
 \]
-Since $x_1\ge x_i$ and $\delta_i\ge 0$ for all $i=2,\dots,n$, the first term is nonnegative. The final term is also nonnegative, while $\delta^2>0$. Hence
+Since $x_1\ge x_i$ and $\delta_i\ge 0$ for all $i=2,\dots,n$, every
+term in the last expression is nonnegative. Hence
 \[
-\sum_{i=1}^n (x_i')^2-\sum_{i=1}^n x_i^2 > 0,
+\sum_{i=1}^n (x_i')^2-\sum_{i=1}^n x_i^2 \geq 0.
 \]
-which proves the claim.
+If \(\delta>0\), then \(\delta^2>0\), so the inequality is strict.
 \end{proof}
 
 \begin{lemma}\label{lem: A,B,C,r}
 Let
 \[
-A>C>B\ge 0,\qquad r>0,\qquad B+d<C \qquad \text{and} \qquad \alpha \in [0, \frac12]. 
+A>C>B\ge 0,\qquad r\geq0,\qquad d>0,\qquad B+d<C
+\qquad \text{and} \qquad \alpha \in [0, \frac12].
 \]
 Then: 
 \[
@@ -394,6 +397,7 @@ Then:
 \le
 \frac{A+r+(2\alpha-1)(B+d)}{C+(2\alpha-1)(B+d)}.
 \]
+If \(\alpha<\frac12\), then the inequality is strict.
 \end{lemma}
 
 \begin{proof}
@@ -402,7 +406,7 @@ Let
 \[
 x=1-2\alpha.
 \]
-Since \(a\in[0,\frac12]\), we have \(x\in[0,1]\). The inequality becomes
+Since \(\alpha\in[0,\frac12]\), we have \(x\in[0,1]\). The inequality becomes
 \[
 \frac{A-xB}{C-xB}
 \le
@@ -420,29 +424,12 @@ After cancellation, this is equivalent to
 r(C-xB)+x(A-C)d\ge 0.
 \]
 
-Define
-\[
-F(x)=r(C-xB)+x(A-C)d.
-\]
-Since \(F\) is linear in \(x\), it is suffices to show $F(0)\ge 0$ and $F(1)\ge 0.$\\
-At $x=0$
-\[
-F(0)=rC\ge0.
-\]
-At \(x=1\),
-\[
-F(1)=r(C-B)+(A-C)d.
-\]
-Therefore the inequality holds, if: 
-\[
-r(C-B)+(A-C)d\ge 0.
-\]
-Which is equivalent to: 
-\[
-d\ge -\frac{r(C-B)}{A-C}.
-\]
-
-Which is true since $d\ge 0$ and $-\frac{r(C-B)}{A-C}\le 0$.
+Since \(x\in[0,1]\) and \(C>B\geq0\), we have \(C-xB>0\).
+Moreover, \(r\geq0\), \(x\geq0\), \(A-C>0\), and \(d>0\).
+Thus both terms in the last expression are nonnegative, which proves the
+inequality.
+If \(\alpha<\frac12\), then \(x>0\), so
+\(x(A-C)d>0\). Hence the inequality is strict in this case.
 \end{proof}
 
 \begin{lemma}[Single scheduled]
@@ -622,7 +609,7 @@ We consider two cases.
 \end{enumerate}
 
 
-Now since $\sum_{j=1}^{n}p_j$ is fixed, $\sum_{i=1}^{m}C^{max}_i(S(I))$ is also fixed for any instance, we can apply \ref{lemma: Peak increase }
+Now since $\sum_{j=1}^{n}p_j$ is fixed, $\sum_{i=1}^{m}C^{max}_i(\sigma(I))$ is also fixed for any instance, we can apply \ref{lemma: Peak increase }
 
 with \[x_1 = C^{max}_{max}(S_{WORST}(I)) \qquad x'_1 = C^{max}_{max}(S'_{WORST}(I'))\]
 
